@@ -106,6 +106,12 @@ Route::get('/event/thirteen', function () {
 Route::get('/event/fourteen', function () {
     return view('event.fourteen');
 });
+Route::get('/event/fifteen', function () {
+    return view('event.fifteen');
+});
+Route::get('/event/research-award-giving-ceremony-2023', function () {
+    return view('event.research-award-giving-ceremony-2023');
+});
 Route::get('/project/one', function (){
     return view('project.one');
 });

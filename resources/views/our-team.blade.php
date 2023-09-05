@@ -1,56 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title> Division of Research </title>
-
-  
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="{{asset('css/app.css')}}" />
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="{{asset('js/slick/slick.css')}}">
-  <link rel="stylesheet" href="{{asset('js/slick/slick-theme.css')}}">
-  <!-- FancyBox -->
-  <link rel="stylesheet" href="{{asset('js/fancybox/jquery.fancybox.min.css')}}">
-  
-  <!-- Stylesheets -->
-  <link href="{{asset('css/style.css')}}" rel="stylesheet">
-  
-  <!--Favicon-->
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  
-  <!--data table-->
-  
-  
-  <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
-
-    <link href="{{asset('css/dataTables.responsive.css')}}" rel="stylesheet">
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
-<style>
-    .userms{
-        border: 1px solid #cccccc;
-        border-radius: 25px;
-        margin: 4px;
-        width: 200px
-    }
-</style>
-</head>
-
-
-<body>
-  <div class="page-wrapper">
-
-
-
-<!--Main Header-->
-@include('layouts.header')
-
-
-<!-- Our Story -->
+@extends('layouts.master')
+@section('content')
 <section class="cta">
     <div class="container">
         <div class="row">
@@ -69,7 +18,26 @@
                     <img src="images/director.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
                     <h6>Prof. Dr. Md Kabirul Islam</h6>
-                    <h6>Dean</h6>
+                    <h6>Dean, FGS & Director</h6>
+                  </div>
+              </div>
+              <div class="col-md-5">
+                  
+              </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-5">
+                 
+              </div>
+              <div class="col-md-2 user">
+                  <div class="team-person text-center">
+                    <img src="images/team/ged.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
+                    <p></p>
+                    <h6>Dr. Md. Kamrul Hossain</h6>
+                    <h6>Additional Director</h6>
                   </div>
               </div>
               <div class="col-md-5">
@@ -88,7 +56,7 @@
                     <img src="images/team/monir.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
                     <h6>Mohammad Monir Hossan</h6>
-                    <h6>Sr. Assistant Director</h6>
+                    <h6>Deputy Director</h6>
                   </div>
               </div>
               <div class="col-md-5">
@@ -109,12 +77,20 @@
                     <p></p>
                   </div>
               </div>
-              <div class="col-md-2 user">
+              <!--<div class="col-md-2 user">-->
+              <!--    <div class="team-person text-center">-->
+              <!--      <img src="images/team/mahfuz.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">-->
+              <!--      <p></p>-->
+              <!--      <h6>Md. Mahfuzur Rahman</h6>-->
+              <!--          <h6>Senior Software Engineer (Senior Administrative Officer)</h6>-->
+              <!--    </div>-->
+              <!--</div>-->
+               <div class="col-md-2 user">
                   <div class="team-person text-center">
-                    <img src="images/team/mahfuz.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
+                    <img src="images/team/antora.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
-                    <h6>Md. Mahfuzur Rahman</h6>
-                        <h6>Senior Software Engineer (Senior Administrative Officer)</h6>
+                    <h6>Ms. Maharunnasha Antora</h6>
+                    <h6>Research fellow</h6>
                   </div>
               </div>
               <div class="col-md-4"></div>
@@ -208,19 +184,29 @@
                     <img src="images/team/sharun.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
                     <h6>Ms. Sharun Akter Khushbu</h6>
-                    <h6>Lecturer, CSE</h6>
+                    <h6>Lecturer (Senior Scale), CSE</h6>
                   </div>
               </div>
           
-              <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
               <div class="col-md-3 user_one">
                   <div class="team-person text-center">
-                    <img src="images/team/ged.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
+                    <img src="images/team/faruqui.png" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
-                    <h6>Dr. Md. Kamrul Hossain</h6>
-                    <h6>Associate Professor  & Head, GED</h6>
+                    <h6>Mr. Nuruzzaman Faruqui</h6>
+                    <h6>Assistant Professor, SWE</h6>
                   </div>
               </div>
+              
+              <!--<div class="col-md-1"></div>-->
+              <!--<div class="col-md-3 user_one">-->
+              <!--    <div class="team-person text-center">-->
+              <!--      <img src="images/team/ged.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">-->
+              <!--      <p></p>-->
+              <!--      <h6>Dr. Md. Kamrul Hossain</h6>-->
+              <!--      <h6>Associate Professor  & Head, GED</h6>-->
+              <!--    </div>-->
+              <!--</div>-->
               <div class="col-md-1"></div>
               <div class="col-md-3 user_one">
                   <div class="team-person text-center">
@@ -251,7 +237,7 @@
                     <img src="images/team/nfe.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
                     <h6>Ms. Tasmia Tasnim</h6>
-                    <h6>Lecturer (Senior Scale), NFE</h6>
+                    <h6>Assistant Professor, NFE</h6>
                   </div>
               </div>
               
@@ -321,7 +307,7 @@
                     <img src="images/team/samiha.png" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
                     <p></p>
                     <h6>Ms. Samiha Khan</h6>
-                    <h6>Lecturer, DS</h6>
+                    <h6>Lecturer (Senior Scale), DS</h6>
                   </div>
               </div>
               
@@ -337,7 +323,7 @@
                     <img src="images/team/Mr. Asif Ibne Basit Turza.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="" class="mx-auto d-block">
                     <p></p>
                     <h6>Mr. Asif Ibne Basit Turza</h6>
-                    <h6>Lecturer, Architecture</h6>
+                    <h6>Lecturer (Senior Scale), Architecture</h6>
                   </div>
               </div>
                 
@@ -451,16 +437,6 @@
          <p></p>
         <div class="row">
             <div class="col-md-12">
-               
-              <div class="col-md-1"></div>
-              <div class="col-md-3 user_one">
-                  <div class="team-person text-center">
-                    <img src="images/team/faruqui.png" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
-                    <p></p>
-                    <h6>Mr. Nuruzzaman Faruqui</h6>
-                    <h6>Lecturer (Senior Scale), SWE</h6>
-                  </div>
-              </div>
               
               <div class="col-md-1"></div>
               <div class="col-md-3 user_one">
@@ -510,35 +486,4 @@
         </div>
     </div>
 </section> 
-
-<!--footer-main-->
-@extends('layouts.footer')
-<!--End footer-main-->
-
-</div>
-<!--End pagewrapper-->
-
-
-<!--Scroll to top-->
-<div class="scroll-to-top scroll-to-target" data-target=".header-top">
-  <span class="icon fa fa-angle-up"></span>
-</div>
-
-<script src="{{asset('js/jquery.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/bootstrap-select.min.js')}}"></script>
-<!-- Slick Slider -->
-<script src="{{asset('js/slick/slick.min.js')}}"></script>
-<!-- FancyBox -->
-<script src="{{asset('js/fancybox/jquery.fancybox.min.js')}}"></script>
-<!-- Google Map -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script> 
-<script src="{{asset('js/google-map/gmap.js')}}"></script>
--->
-<script src="{{asset('js/validate.js')}}"></script>
-<script src="{{asset('js/wow.js')}}"></script>
-<script src="{{asset('js/jquery-ui.js')}}"></script>
-<script src="{{asset('js/script.js')}}"></script>
-</body>
-
-</html>
+@endsection

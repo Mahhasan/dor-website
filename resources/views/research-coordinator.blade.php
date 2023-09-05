@@ -54,12 +54,12 @@
                             Cell: 01681745350
                             </td>
                             <td>ITM</td>
-                            <td rowspan="9">FSIT</td>
+                            <td rowspan="7">FSIT</td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td> Mr. Nuruzzaman Faruqui </td>
-                            <td> Lecturer (Senior Scale) <br>
+                            <td>Assistant Professor<br>
                             Email: faruqui.swe@diu.edu.bd <br>
                             Cell: +8801763341153
                             </td>
@@ -141,30 +141,31 @@
                         <tr>
                             <th scope="row">7</th>
                             <td>Ms. Sharun Akter Khushbu</td>
-                            <td>Lecturer <br>
+                            <td>Lecturer (Senior Scale)<br>
                             Email: sharun.cse@diu.edu.bd<br>
                             Cell: 01730599307
                             </td>
                             <td>CSE</td>
                         </tr>
+                        <!--<tr>-->
+                        <!--    <th scope="row">8</th>-->
+                        <!--    <td>Dr. Md. Kamrul Hossain </td>-->
+                        <!--    <td>  Associate Professor  & Head  <br>-->
+                        <!--    Email: kamrul.ged@diu.edu.bd  <br>-->
+                        <!--    Cell: 01915641745-->
+                        <!--    </td>-->
+                        <!--    <td>GED</td>-->
+                        <!--</tr>-->
+                        
+                        <!--<tr>-->
+                        <!--    <th scope="row">8</th>-->
+                        <!--    <td> </td>-->
+                        <!--    <td> <br> <br>-->
+                        <!--    </td>-->
+                        <!--    <td>CIS</td>-->
+                        <!--</tr>-->
                         <tr>
                             <th scope="row">8</th>
-                            <td>Dr. Md. Kamrul Hossain </td>
-                            <td>  Associate Professor  & Head  <br>
-                            Email: kamrul.ged@diu.edu.bd  <br>
-                            Cell: 01915641745
-                            </td>
-                            <td>GED</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td> </td>
-                            <td> <br> <br>
-                            </td>
-                            <td>CIS</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10</th>
                             <td>Dr. Sharifa Sultana </td>
                             <td>  Associate Professor  <br>
                             Email: sharifa@daffodilvarsity.edu.bd <br>
@@ -174,16 +175,16 @@
                             <td rowspan="3">FAHS</td>
                         </tr>
                         <tr>
-                            <th scope="row">11</th>
+                            <th scope="row">9</th>
                             <td>Ms. Tasmia Tasnim </td>
-                            <td>  Lecturer (Senior Scale) <br>
+                            <td>Assistant Professor<br>
                             Email: tasmia.nfe@diu.edu.bd <br>
                             Cell: 01879542472 
                             </td>
                             <td>NFE</td>
                         </tr>
                         <tr>
-                            <th scope="row">12</th>
+                            <th scope="row">10</th>
                             <td>Mr. Md. Imdadul Haque </td>
                             <td>  Assistant Professor <br>
                             Email: Imdadul.ph@diu.edu.bd  <br>
@@ -192,9 +193,9 @@
                             <td>Public Health</td>
                         </tr>
                         <tr>
-                            <th scope="row">13</th>
+                            <th scope="row">11</th>
                             <td>Ms. Samiha Khan </td>
-                            <td> Lecturer <br>
+                            <td>Lecturer (Senior Scale)<br>
                             Email: samihakhan@daffodilvarsity.edu.bd<br>
                             Cell: 01713493232
                             </td>
@@ -211,7 +212,7 @@
                         <!--    <td>English</td>-->
                         <!--</tr>-->
                         <tr>
-                            <th scope="row">14</th>
+                            <th scope="row">12</th>
                             <td>Dr. Md. Mustafa Rashel</td>
                             <td>Associate Professor<br>
                             Email: rashel-linguist@daffodilvarsity.edu.bd <br>
@@ -220,7 +221,7 @@
                             <td>English</td>
                         </tr>
                         <tr>
-                            <th scope="row">15</th>
+                            <th scope="row">13</th>
                             <td>Dr. Kudrat-E-Khuda</td>
                             <td>  Professor & Head <br>
                             Email:  kekbabu.law@diu.edu.bd <br>
@@ -229,7 +230,7 @@
                             <td>Law</td>
                         </tr>
                         <tr>
-                            <th scope="row">16</th>
+                            <th scope="row">14</th>
                             <td>Mr. Aftab Hossain</td>
                             <td>  Assistant Professor & Head   <br>
                             Email:  aftab.jmc@diu.edu.bd <br>
@@ -248,9 +249,9 @@
                         <!--    <td rowspan="6">FE</td>-->
                         <!--</tr>-->
                         <tr>
-                            <th scope="row">17</th>
+                            <th scope="row">15</th>
                             <td>Mr. Asif Ibne Basit Turza</td>
-                            <td>Lecturer <br>
+                            <td>Lecturer (Senior Scale)<br>
                             Email: turza.arch@diu.edu.bd <br>
                             Cell: 01717606169
                             </td>
@@ -258,7 +259,7 @@
                             <td rowspan="5">FE</td>
                         </tr>
                         <tr>
-                            <th scope="row">18</th>
+                            <th scope="row">16</th>
                             <td>Mr. Md. Masud Alom</td>
                             <td>  Assistant Professor <br>
                             Email: masud.ce@diu.edu.bd  <br>
@@ -267,7 +268,7 @@
                             <td>CE</td>
                         </tr>
                         <tr>
-                            <th scope="row">19</th>
+                            <th scope="row">17</th>
                             <td>Dr. Md. Rezwanul Ahsan</td>
                             <td>  Associate Professor <br>
                             Email: ahsan.eee@diu.edu.bd <br>
@@ -276,7 +277,7 @@
                             <td>EEE</td>
                         </tr>
                         <tr>
-                            <th scope="row">20</th>
+                            <th scope="row">18</th>
                             <td>Dr. Mainul Morshed</td>
                             <td>Assistant Professor<br>
                             Email: mainul.te@diu.edu.bd<br>
@@ -293,7 +294,7 @@
                         <!--    <td>TE</td>-->
                         <!--</tr>-->
                         <tr>
-                            <th scope="row">21</th>
+                            <th scope="row">19</th>
                             <td>Ms. Tasnuva Ali </td>
                             <td>  Assistant Professor  <br>
                             Email: tasnuva@daffodilvarsity.edu.bd   <br>
@@ -302,7 +303,7 @@
                             <td>ETE</td>
                         </tr>
                         <tr>
-                            <th scope="row">22</th>
+                            <th scope="row">20</th>
                             <td>Mr. Md. Rayhanul Islam  </td>
                             <td>  Assistant Professor <br>
                             Email: rayhanul.bba@diu.edu.bd  <br>
@@ -312,15 +313,15 @@
                             <td rowspan="4">FBE</td>
                         </tr>
                         <tr>
-                            <th scope="row">23</th>
+                            <th scope="row">21</th>
                             <td>Ms. Fariza Rahman Prodhan</td>
                             <td> Lecturer<br>
-                            Email: fariza.ie0016.c@diu.edu.bd <br>
+                            Email: fariza.die@diu.edu.bd<br>
                             </td>
                             <td>I & E</td>
                         </tr>
                         <tr>
-                            <th scope="row">24</th>
+                            <th scope="row">22</th>
                             <td>Ms. Rozina Akter</td>
                             <td>  Assistant Professor <br>
                             Email:  rozina@daffodilvarsity.edu.bd <br>
@@ -338,7 +339,7 @@
                         <!--    <td>FBE & FHSS (PC)</td>-->
                         <!--</tr>-->
                         <tr>
-                            <th scope="row">25</th>
+                            <th scope="row">23</th>
                             <td>Mst. Khadijatul Kobra  </td>
                             <td>  Assistant Professor <br>
                             Email:  khadijatul.thm@diu.edu.bd  <br>

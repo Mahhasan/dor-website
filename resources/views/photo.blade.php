@@ -49,6 +49,366 @@
                         <br></p>
                 </div>
             </div>
+            <!----------------------------Award Giving Ceremony - 2022 Start-------------------------------->
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-1.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/slider/slider25.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-2.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-2.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-3.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-3.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-4.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-4.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-5.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-5.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-6.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-6.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-7.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-7.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-8.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-8.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-9.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-9.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-10.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-10.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-11.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-11.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-12.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-12.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-13.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-13.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-14.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-14.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-15.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-15.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-16.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-16.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-17.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-17.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-18.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-18.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-19.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-19.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-20.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-20.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-21.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-21.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-22.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-22.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-23.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-23.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-24.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-24.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-25.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-25.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-26.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-26.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-27.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-27.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-28.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-28.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-29.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-29.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-30.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-30.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-31.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-31.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-32.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-32.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-33.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-33.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-34.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-34.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-35.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-35.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-36.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-36.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-37.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-37.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-38.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-38.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-39.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-39.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-40.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-40.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-41.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-41.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-42.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-42.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-43.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-43.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-44.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-44.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-45.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-45.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-46.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-46.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-47.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-47.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-48.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-48.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-49.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-49.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-50.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-50.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/gallery/2023/2023-51.jpg" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
+                    <a data-fancybox="images" href="images/gallery/2023/2023-51.jpg"></a>
+                    <p>Research Award Giving Ceremony 2023</p>
+                </div>
+            </div>
+
+            <!----------------------------Launching Ceremony of Research Update 2022------------------------------->
             <div class="col-md-4 col-sm-6">
                 <div class="gallery-item">
                     <img src="images/gallery/01.JPG" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
@@ -81,13 +441,6 @@
                 <div class="gallery-item">
                     <img src="images/gallery/06.JPG" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
                     <a data-fancybox="images" href="images/gallery/06.JPG"></a>
-                    <p>Launching Ceremony of Research Update 2022</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="gallery-item">
-                    <img src="images/gallery/09.JPG" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
-                    <a data-fancybox="images" href="images/gallery/09.JPG"></a>
                     <p>Launching Ceremony of Research Update 2022</p>
                 </div>
             </div>
@@ -764,13 +1117,6 @@
                 <div class="gallery-item">
                     <img src="images/gallery/2020-22.JPG" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
                     <a data-fancybox="images" href="images/gallery/2020-22.JPG"></a>
-                    <p>Research Award Giving Ceremony 2020</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="gallery-item">
-                    <img src="images/gallery/2020-23.JPG" class="img-responsive" style="width:360px; height:250px;" alt="gallery-image">
-                    <a data-fancybox="images" href="images/gallery/2020-23.JPG"></a>
                     <p>Research Award Giving Ceremony 2020</p>
                 </div>
             </div>

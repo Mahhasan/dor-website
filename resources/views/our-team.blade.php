@@ -3,68 +3,38 @@
 <section class="cta">
     <div class="container">
         <div class="row">
-             <h3 style="text-align:center;">Our
-                        <span>Team</span>
-                    </h3>
-                    <hr>
-                    <p style="text-align:center;"><span>Division of Research</span></p>
-                    <p></p>
-            <div class="col-md-12">
-              <div class="col-md-5">
-                 
-              </div>
-              <div class="col-md-2 user">
-                  <div class="team-person text-center">
-                    <img src="images/director.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
-                    <p></p>
-                    <h6>Prof. Dr. Md Kabirul Islam</h6>
-                    <h6>Dean, FGS & Director</h6>
-                  </div>
-              </div>
-              <div class="col-md-5">
-                  
-              </div>
+            <h3 style="text-align:center;">Our <span>Team</span></h3>
+            <hr>
+            <p style="text-align:center;"><span>Division of Research</span></p>
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-2 user">
+                    <div class="team-person text-center">
+                      <img src="images/director.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
+                      <h6>Prof. Dr. Md Kabirul Islam</h6>
+                      <h6>Dean, FGS & Director</h6>
+                    </div>
+                </div>
             </div>
         </div>
-        <p></p>
-        <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-5">
-                 
-              </div>
-              <div class="col-md-2 user">
-                  <div class="team-person text-center">
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-2 user">
+                <div class="team-person text-center">
                     <img src="images/team/ged.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
-                    <p></p>
                     <h6>Dr. Md. Kamrul Hossain</h6>
                     <h6>Additional Director</h6>
-                  </div>
-              </div>
-              <div class="col-md-5">
-                  
-              </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-                    <p></p>
-            <div class="col-md-12">
-              <div class="col-md-5">
-                 
-              </div>
-              <div class="col-md-2 user">
-                  <div class="team-person text-center">
-                    <img src="images/team/monir.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
-                    <p></p>
-                    <h6>Mohammad Monir Hossan</h6>
-                    <h6>Deputy Director</h6>
-                  </div>
-              </div>
-              <div class="col-md-5">
-                  
-              </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-2 user">
+                <div class="team-person text-center">
+                  <img src="images/team/monir.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
+                  <p></p>
+                  <h6>Mohammad Monir Hossan</h6>
+                  <h6>Deputy Director</h6>
+                </div>
             </div>
         </div>
-        <p></p>
         <div class="row">
             <div class="col-md-12">
              <div class="col-md-4"></div>
@@ -77,14 +47,6 @@
                     <p></p>
                   </div>
               </div>
-              <!--<div class="col-md-2 user">-->
-              <!--    <div class="team-person text-center">-->
-              <!--      <img src="images/team/mahfuz.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">-->
-              <!--      <p></p>-->
-              <!--      <h6>Md. Mahfuzur Rahman</h6>-->
-              <!--          <h6>Senior Software Engineer (Senior Administrative Officer)</h6>-->
-              <!--    </div>-->
-              <!--</div>-->
                <div class="col-md-2 user">
                   <div class="team-person text-center">
                     <img src="images/team/antora.jpg" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">
@@ -447,16 +409,6 @@
                     <h6></h6>
                   </div>
               </div>
-              
-              <!--<div class="col-md-1"></div>-->
-              <!--<div class="col-md-3 user_one">-->
-              <!--    <div class="team-person text-center">-->
-              <!--      <img src="images/team/Ms. Fahmida Siddiqa.JPG" style="width:150px;height:150px;border-radius: 100px;" alt="..." class="mx-auto d-block">-->
-              <!--      <p></p>-->
-              <!--      <h6>Ms. Fahmida Siddiqa</h6>-->
-              <!--      <h6>Senior Lecturer, TE</h6>-->
-              <!--    </div>-->
-              <!--</div>-->
             </div>
         </div>
         <p></p>

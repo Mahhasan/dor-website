@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  
-  <title> Division of Research </title>
-
-  
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="{{asset('css/app.css')}}" />
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="{{asset('js/slick/slick.css')}}">
-  <link rel="stylesheet" href="{{asset('js/slick/slick-theme.css')}}">
-  <!-- FancyBox -->
-  <link rel="stylesheet" href="{{asset('js/fancybox/jquery.fancybox.min.css')}}">
-  
-  <!-- Stylesheets -->
-  <link href="{{asset('css/style.css')}}" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  
-  <!--Favicon-->
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
-</head>
-<body>
-
-<div class="page-wrapper">
-
-@include('layouts.header')
-
-<!-- Our Story -->
+@extends('layouts.master')
+@section('content')
 <section class="cta">
     <div class="container">
         <div class="row">
@@ -43,117 +10,75 @@
                 </div>
             </div>
         </div>
-            <div class="row" >
-                
-                <div class="col-md-9" style="float:none;margin:auto;">
-                    <div class="panel panel-primary">
-                            <div class="panel-heading">Science Discipline</div>
-                            <table class="table table-bordered">
-                                    <thead>
-                                        
-                                        <tr>
-                                            <th scope="col">Lab Name</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                               <a href="https://daffodilvarsity.edu.bd/lab/cse/fablab" target="_blank">FAB LAB (Fabrication Lab)</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>
-                                               <a href="/computer-programming-lab" target="_blank">Computer Programming Lab</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>
-                                               <a href="/iot-lab" target="_blank">IOT LAB</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>
-                                               <a href="/data-science-lab" target="_blank">Data Science Lab</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               <a href="https://it.daffodilvarsity.edu.bd/data-center/" target="_blank">DIU Data Center</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               <a href="/nasa-space-apps-research" target="_blank">NASA Space apps research</a>
-                                            </td>
-                                            
-                                       
-                                        <tr>
-                                            <td>
-                                               <a href="/health-informatics-research-lab" target="_blank">Health informatics research lab</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               <a href="/chemistry-lab" target="_blank">Chemistry lab</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               <a href="/physics-lab" target="_blank">Physics Lab</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               <a href="/esdm-laboratory" target="_blank">ESDM Laboratory</a>
-                                            </td>
-                                            
-                                        </tr>
-                                    </tbody>
-                            </table>
-  
-                        </div>
+        <div class="row" >
+            <div class="col-md-9" style="float:none;margin:auto;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Science Discipline</div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Lab Name</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="https://daffodilvarsity.edu.bd/lab/cse/fablab" target="_blank">FAB LAB (Fabrication Lab)</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/computer-programming-lab" target="_blank">Computer Programming Lab</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/iot-lab" target="_blank">IOT LAB</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/data-science-lab" target="_blank">Data Science Lab</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://it.daffodilvarsity.edu.bd/data-center/" target="_blank">DIU Data Center</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/nasa-space-apps-research" target="_blank">NASA Space apps research</a>
+                                </td>
+                            <tr>
+                                <td>
+                                    <a href="/health-informatics-research-lab" target="_blank">Health informatics research lab</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/chemistry-lab" target="_blank">Chemistry lab</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/physics-lab" target="_blank">Physics Lab</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="/esdm-laboratory" target="_blank">ESDM Laboratory</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-			</div>
-					<!--<div class="text-center">-->
-					<!--    <a href="/Policy-on-Faculty-Promotion-System-that-Recognizes-Interdisciplinary-Research" target="_blank"><button type="button" class="btn btn-primary" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Policy on Faculty Promotion System that Recognizes Interdisciplinary Research</button></a>-->
-					<!--</div>-->
+            </div>
+        </div>
+        <!--<div class="text-center">-->
+        <!--    <a href="/Policy-on-Faculty-Promotion-System-that-Recognizes-Interdisciplinary-Research" target="_blank"><button type="button" class="btn btn-primary" ><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Policy on Faculty Promotion System that Recognizes Interdisciplinary Research</button></a>-->
+        <!--</div>-->
 
     </div>
 </section> 
-
-<!--footer-main-->
-@extends('layouts.footer')
-<!--End footer-main-->
-
-</div>
-
-<script src="{{asset('js/jquery.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/bootstrap-select.min.js')}}"></script>
-<!-- Slick Slider -->
-<script src="{{asset('js/slick/slick.min.js')}}"></script>
-<!-- FancyBox -->
-<script src="{{asset('js/fancybox/jquery.fancybox.min.js')}}"></script>
-<!-- Google Map -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script> 
-<script src="{{asset('js/google-map/gmap.js')}}"></script>
--->
-<script src="{{asset('js/validate.js')}}"></script>
-<script src="{{asset('js/wow.js')}}"></script>
-<script src="{{asset('js/jquery-ui.js')}}"></script>
-<script src="{{asset('js/script.js')}}"></script>
-</body>
-
-</html>
+@endsection

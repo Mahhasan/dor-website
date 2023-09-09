@@ -13,13 +13,6 @@ class DataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function paper()
-    {
-		//$articles = Article::all()->toArray();
-		$articles = Article::orderByDesc('publish_year')->get();
-		return view('paper',compact('articles'));
-    }
-
     public function scopus_article()
     {
 		$client = new Client(); //GuzzleHttp\Client
@@ -57,11 +50,6 @@ class DataController extends Controller
     }
     public function photo(){
         return view('photo');
-    }
-    public function details($id)
-    {
-		$articles = Article::find($id);
-		return view('details',compact('articles','id'));
     }
     /*public function news()
     {

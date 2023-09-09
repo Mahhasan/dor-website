@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,12 +23,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('article', ArticleController::class);
+Route::resource('article', App\Http\Controllers\ArticleController::class);
 Route::get('article/details/{id}', [App\Http\Controllers\ArticleController::class, 'details']);
 
-//Route::post('article/paper','ArticleController@paper');
-Route::get('/paper', [App\Http\Controllers\DataController::class, 'paper']);
-Route::get('details/{id}', [App\Http\Controllers\DataController::class, 'details']);
 Route::get('/research-coordinator', [App\Http\Controllers\DataController::class, 'research_coordinator']);
 Route::get('/ranking', [App\Http\Controllers\DataController::class, 'ranking']);
 Route::get('/about', [App\Http\Controllers\DataController::class, 'about']);

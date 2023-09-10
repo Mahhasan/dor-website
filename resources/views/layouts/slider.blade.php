@@ -1,79 +1,70 @@
-<div class="hero-slider">
-    <!-- Slider Item -->
-    <div class="slider-item" style="background-image: url(images/slider/slider25.jpg);" >
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Slider Item -->
-    <div class="slider-item slide1" style="background-image:url(images/slider/slider-11.png);">
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Slide Content Start -->
-                    <!-- <div class="content style text-center">
-                        <h2 class="text-white text-bold mb-2">Our Best Surgeons</h2>
-                        <p class="tag-text mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sunt animi sequi ratione quod at earum. <br>
-                             Quis quos officiis numquam!</p>
-                        <a href="#" class="btn btn-main btn-white">explore</a>
-                    </div> -->
-                    <!-- Slide Content End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Slider Item -->
-    <div class="slider-item" style="background-image: url(images/slider/slider-14.png);" >
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Slider Item -->
-    <div class="slider-item" style="background-image: url(images/slider/2.JPG)">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item" style="background-image: url(images/slider/slider-13.png);" >
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item" style="background-image: url(images/slider/slider-15.png);" >
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item" style="background-image: url(images/slider/slider-16.png);" >
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider-item" style="background-image: url(images/slider/slider-12.png);" >
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<!-- Demo styles -->
+<style>
+  :root {
+    --swiper-theme-color: #99caff;
+  }
+  .swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 160px;
+    object-fit: cover;
+  }
+</style>
+<!-- Swiper -->
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="images/slider/slider25.jpg" class="img-fluid" alt="DoR Slider Image"></div>
+    <div class="swiper-slide"><img src="images/slider/slider-11.png" class="img-fluid" alt="DoR Slider Image"></div>
+    <div class="swiper-slide"><img src="images/slider/slider-14.png" class="img-fluid" alt="DoR Slider Image"></div>
+    <div class="swiper-slide"><img src="images/slider/2.JPG" class="img-fluid" alt="DoR Slider Image"></div>
+    <div class="swiper-slide"><img src="images/slider/slider-15.png" class="img-fluid" alt="DoR Slider Image"></div>
+    <div class="swiper-slide"><img src="images/slider/slider-16.png" class="img-fluid" alt="DoR Slider Image"></div>
+    <div class="swiper-slide"><img src="images/slider/slider-12.png" class="img-fluid" alt="DoR Slider Image"></div>
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
 </div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    autoplay: {
+      delay: 5000,
+    },
+    loop: true,
+    effect: "fade", // Use "fade" for a simple fade transition
+    speed: 1000, // Add this property for smooth transition (in milliseconds)
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>

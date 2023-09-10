@@ -70,7 +70,7 @@
   <div class="footer-top">
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
              
               <h3 style="color:white;">Quick Link</h3>
               <p></p>
@@ -78,8 +78,8 @@
               <p> <a href="https://www.elsevier.com/" style="color:white;" target="_blank"> Elsevier </a></p>
               <p> <a href="https://www.sciencedirect.com/" style="color:white;" target="_blank"> Science Direct </a></p>
         </div>
-        <div class="col-md-2">
-            <h3 style="color:white;text-align: center">THE</h3>
+        <div class="col-md-3">
+            <h3 style="color:white;">THE</h3>
             <p></p>
             <p></p>
             <figure>
@@ -88,10 +88,10 @@
                 </a>
               </figure>
         </div>
-         <div class="col-md-2">
+         <div class="col-md-3">
           <div class="about-widget">
             <div class="footer-logo">
-            <h3 style="color:white;text-align: center">Scopus</h3>
+            <h3 style="color:white;">Scopus</h3>
             <p></p>
             <p></p>
               <figure>
@@ -102,8 +102,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-2">
-            <h3 style="color:white;text-align: center">QS</h3>
+        <div class="col-md-3">
+            <h3 style="color:white;">QS</h3>
             <p></p>
             <p></p>
             <figure>

@@ -1,84 +1,15 @@
-<!--<footer class="footer-main">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-          <div class="col-md-2">
-             
-              <h3 style="color:white;">Quick Link</h3>
-              <p></p>
-              <p> <a href="https://www2.scopus.com/search/form.uri?display=basic" style="color:white;"> Scopus </a></p>
-              <p> <a href="https://www.elsevier.com/" style="color:white;"> Elsevier </a></p>
-              <p> <a href="https://www.sciencedirect.com/" style="color:white;"> Science Direct </a></p>
-        </div>
-        <div class="col-md-2">
-            <h3 style="color:white;text-align: center">THE</h3>
-            <p></p>
-            <p></p>
-            <figure>
-                <a href="#">
-                  <img src="{{url('images/the1.jpg')}}" alt="Logo" style="width: 170px;height: 70px;">
-                </a>
-              </figure>
-        </div>
-        <div class="col-md-2">
-          <div class="about-widget">
-            <div class="footer-logo">
-            <h3 style="color:white;text-align: center">Scopus</h3>
-            <p></p>
-            <p></p>
-              <figure>
-                <a href="#">
-                  <img src="{{url('images/scopus1.png')}}" alt="Logo" style="width: 170px;height: 70px;">
-                </a>
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-            <h3 style="color:white;text-align: center">QS</h3>
-            <p></p>
-            <p></p>
-            <figure>
-                <a href="#">
-                  <img src="{{url('images/qs2.jpg')}}" alt="Logo" style="width: 170px;height: 70px;">
-                  
-                </a>
-            </figure>
-        </div>
-        
-        <div class="col-md-4">
-          <div class="social-links">
-              <div class="fb-page" 
-  data-href="https://www.facebook.com/dor.daffodil"
-  data-width="380" 
-  data-hide-cover="false"
-  data-show-facepile="false"></div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container clearfix">
-      <div class="copyright-text">
-        <p>&copy; Copyright 2019. All Rights Reserved by
-          <a href="index.html">Division of Research, DIU</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>-->
 <footer class="footer-main">
   <div class="footer-top">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
-             
+        <div class="col-md-3 mb-3">
               <h3 style="color:white;">Quick Link</h3>
               <p></p>
               <p> <a href="https://www2.scopus.com/search/form.uri?display=basic" style="color:white;" target="_blank"> Scopus </a></p>
               <p> <a href="https://www.elsevier.com/" style="color:white;" target="_blank"> Elsevier </a></p>
               <p> <a href="https://www.sciencedirect.com/" style="color:white;" target="_blank"> Science Direct </a></p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
             <h3 style="color:white;">THE</h3>
             <p></p>
             <p></p>
@@ -88,7 +19,7 @@
                 </a>
               </figure>
         </div>
-         <div class="col-md-3">
+         <div class="col-md-3 mb-3">
           <div class="about-widget">
             <div class="footer-logo">
             <h3 style="color:white;">Scopus</h3>
@@ -102,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
             <h3 style="color:white;">QS</h3>
             <p></p>
             <p></p>

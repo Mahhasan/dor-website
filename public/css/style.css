@@ -6,6 +6,82 @@
 @import url("../plugins/timePicker.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700|Source+Sans+Pro:400,600,700");
 
+/* From app.css */
+div.dataTables_wrapper div.dataTables_filter {
+  text-align: right;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: left;
+  display: inline-block;
+}
+div.dataTables_wrapper div.dataTables_filter label .form-control{
+  padding: 0px;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: .5em;
+  display: inline-block;
+  width: auto;
+}
+div.dataTables_wrapper div.dataTables_filter label .form-control-sm {
+  min-height: calc(1.5em + .5rem + calc(var(--bs-border-width) * 2));
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  border-radius: var(--bs-border-radius-sm);
+}
+@media screen and (max-width: 767px) {
+  div.dt-buttons {
+    float: none;
+    width: 100%;
+    text-align: center;
+    margin-bottom: .5em;
+  }
+}
+div.dt-buttons div.dropdown-menu .dt-button {
+  position: relative;
+}
+div.dt-button-collection .dt-button-active::after {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 1em;
+  display: inline-block;
+  content: "✓";
+  color: inherit;
+}
+
+
+.embed-responsive{position:relative;display:block;height:0;padding:0}
+.embed-responsive .embed-responsive-item,.embed-responsive embed,.embed-responsive iframe,.embed-responsive object,
+.embed-responsive video{position:absolute;top:0;left:0;bottom:0;height:100%;width:100%;border:0}
+.embed-responsive-16by9{padding-bottom:56.25%}
+.embed-responsive-4by3{padding-bottom:75%}
+
+.panel {
+  background-color: #fff;
+  border: 1px solid #3097D1;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  padding: 0px;
+  margin-bottom: 20px;
+}
+.panel-primary .panel-heading {
+  color: #fff;
+  background-color: #3097D1;
+  border-color: #3097D1;
+}
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-bottom-color: transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.panel-body {
+  padding: 15px;
+}
+/* ------------ */
 p {
   font-family: "Source Sans Pro", sans-serif;
   color: #848484;
@@ -106,7 +182,7 @@ p {
 
 li {
   list-style: none;
-  padding-left:21px;
+  /* padding-left:21px; */
 }
 
 .anim-3, .anim-3-all * {
@@ -456,23 +532,26 @@ li {
 
 .navbar {
   margin-bottom: 0;
-  background:#002147;
+  background: #002147;
   border: none;
   border-radius: 0;
-  /* for middle menu */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
+.navbar-toggler {
+  background-color: #fff;
+}
+/* .navbar .navbar-nav{
+  padding: 12px 0px;
+} */
 .navbar .navbar-nav li a {
   font-family: "Century Gothic", Century Gothic;
   font-size: 14px;
   color: #fff;
   background-color:#002147; 
-  padding: 25px 5px;
+  padding: 24px 5px;
 }
-
+.nav-item .dropdown-menu li a{
+  padding: 16px 20px;
+}
 .navbar .navbar-nav li a:hover {
   color: #fff;
   background-color:#002147;
@@ -1695,28 +1774,44 @@ li {
   display: flex; 
   justify-content: center;
 }
-.mb-2 {
-    margin-bottom: 8px;
-}
-.user{
+
+.user .team-person{
     border: 1px solid #cccccc;
     border-radius: 25px;
-    margin: 4px;
-    width: 200px;
-    min-height: 200px;
+    margin: 4px 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
-.user_one{
+
+.user_one .team-person{
     border: 1px solid #cccccc;
     border-radius: 25px;
-    margin:0px;
-    width:200px;
-    min-height: 200px;
+    margin-bottom: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.user .team-person img{
+  width:150px;
+  height:150px;
+  border-radius: 100px;
+  margin-bottom: 4px;
+  display: block;
+}
+.user_one .team-person img{
+  width:150px;
+  height:150px;
+  border-radius: 100px;
+  margin-bottom: 4px;
+  display: block;
 }
 .team-section .team-member .contents .btn-main:hover {
   background: #48bdc5;
   color: #fff;
 }
-
+.team-person {
+ text-align: center;
+}
 .team-members .team-person {
   margin-top: 30px;
   border: 1px solid black;
@@ -3109,9 +3204,9 @@ li {
   background: #0d1a2f;
 }
 
-.footer-bottom .copyright-text {
+/* .footer-bottom .copyright-text {
   float: left;
-}
+} */
 
 .footer-bottom .copyright-text p {
   font-size: 15px;
@@ -3121,6 +3216,7 @@ li {
   margin-bottom: 0px;
   letter-spacing: .5px;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .footer-bottom .copyright-text a {

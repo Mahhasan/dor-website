@@ -1,6 +1,6 @@
 <section class="header-uper">
   <div class="container clearfix">
-        <div class="logo">
+        <div class="logo" style="margin-bottom: 0px !important;">
               <figure>
                     <a href="{{ url('/') }}">
                           <img src="{{url('images/diu.png')}}" alt="">
@@ -38,120 +38,85 @@
         </div>
   </div>
 </section>
-<nav class="navbar navbar-default">
-      <div class=" ">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                        aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                  </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                        <li class="active" style="">
-                            <a href="{{ url('/') }}">Home </a>
-                          </li>
-                          <li class="dropdown" style="">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About
-                                    <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu" style="background-color: #002147;">
-                                    <li>
-                                          <a href="{{ url('/about') }}">Message from the Director</a>
-                                    </li>
-                                    <li>
-                                          <a href="{{ url('/mission-vision') }}">Mission & Vision</a>
-                                    </li>
-                                    <li>
-                                          <a href="{{ url('/research-ethics-committee') }}">Research Ethics Committee</a>
-                                    </li>
-                                    <li>
-                                          <a href="{{ url('/our-team') }}">Our Team</a>
-                                    </li>
-                                    <li>
-                                          <a href="{{ url('/about-resources') }}">Resources</a>
-                                    </li>
-                                    <!--<li>
-                                          <a href="{{ url('/contact') }}"> Contact</a>
-                                    </li>-->
-                              </ul>
-                        </li> 
-                        <li class="dropdown" style="">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Research Networking
-                                    <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu" style="background-color: #002147;">
-                                    <li>
-                                          <a href="{{ url('/research-collaboration') }}">Collaborating Research</a>
-                                    </li>
-                                    <li>
-                                          <a href="{{ url('/publication-source') }}">Source of Publications</a>
-                                    </li>
-                              </ul>
-                        </li>
-                        
-                        <li class="dropdown" style="">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Interdisciplinary Research
-                                    <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu" style="background-color: #002147;">
-                                    <li>
-                                          <a href="{{ url('/interdisciplinary_research') }}">Interdisciplinary Research</a>
-                                    </li>
-                                    
-                                    <li>
-                                          <a href="{{ url('/science-discipline') }}">Science Discipline</a>
-                                    </li>
-                              </ul>
-                        </li>
-                          <li style="">
-                                <a href="{{ url('/research-update')}}">Research Update</a>
-                          </li>
-                          <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Publications
-                                    <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu" style="background-color: #002147;">
-                                    <li style="">
-                                          <a href="{{ url('/scopus-article') }}">Scopus/ISI Article</a>
-                                    </li>
-                                    <li style="">
-                                          <a href="{{ url('/journals') }}">DIU Journals</a>
-                                    </li>
-                              </ul>
-                        </li>
-                          <li style="">
-                                <a href="{{ url('/research-coordinator') }}">Research Co-ordinator </a>
-                          </li>
-                          
-                          <li style="">
-                                <a href="{{ url('/ranking') }}">Rankings </a>
-                          </li>
-                          <li>
-                                <a href="{{ url('/event') }}">Events</a>
-                          </li>
-                        
-                        <li class="dropdown" style="">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery
-                                    <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu" style="background-color: #002147;">
-                                    <li>
-                                          <a href="{{ url('/photo') }}">Photo</a>
-                                    </li>
-                                    <li>
-                                          <a href="{{ url('/video') }}">Video</a>
-                                    </li>
-                              </ul>
-                        </li>
-    
-                  </ul>
-           </div>
-            <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container-fluid -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          About
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
+                  <li><a class="dropdown-item" href="{{ url('/about') }}">Message from the Director</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/mission-vision') }}">Mission & Vision</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/research-ethics-committee') }}">Research Ethics Committee</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/our-team') }}">Our Team</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/about-resources') }}">Resources</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Research Networking
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
+                  <li><a class="dropdown-item" href="{{ url('/research-collaboration') }}">Collaborating Research</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/publication-source') }}">Source of Publications</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Interdisciplinary Research
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
+                  <li><a class="dropdown-item" href="{{ url('/interdisciplinary_research') }}">Interdisciplinary Research</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/science-discipline') }}">Science Discipline</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Research Update
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
+                  <li><a class="dropdown-item" href="{{ url('/research-update')}}">Volume 1 No. 1</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Publications
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
+                  <li><a class="dropdown-item" href="{{ url('/scopus-article') }}">Scopus/ISI Article</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/journals') }}">DIU Journals</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/research-coordinator') }}">Research Co-ordinator </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/ranking') }}">Rankings </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/event') }}">Events</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Gallery
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
+                  <li><a class="dropdown-item" href="{{ url('/photo') }}">Photo</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

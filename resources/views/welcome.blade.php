@@ -29,7 +29,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="{{url('/project/two')}}" target="_blank">
-                            <img src="images/project/2.PNG" style="height: 247px;" alt="images" class="img-responsive">
+                            <img src="images/project/2.PNG" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">

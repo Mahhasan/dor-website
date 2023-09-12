@@ -6,7 +6,7 @@
             <div class="col-md-9" style="float:none;margin:auto;">
                 <h3 class="mb-5 text-center" style="margin-bottom:32px;">Physical facilities of DIU for Interdisciplinary Research Teams</h3>
                 <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 32px;" >
-                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/u1o8Or8zbfw" width="200" height="200"  allowfullscreen></iframe>
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/u1o8Or8zbfw" width="100%" height="100%"  allowfullscreen></iframe>
                 </div>
             </div>
         </div>

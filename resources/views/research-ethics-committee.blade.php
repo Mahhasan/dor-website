@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td><a>FAHS Research Ethics Committee</a></td>
+                        <td><a href="#">FAHS Research Ethics Committee</a></td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>

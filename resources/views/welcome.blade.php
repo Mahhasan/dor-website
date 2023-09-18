@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('frontend.layouts.master')
 @section('content')
-@include('layouts.slider')
+@include('frontend.layouts.slider')
 <section class="service-section bg-gray section">
     <div class="container">
         <div class="section-title text-center">

@@ -8,8 +8,13 @@ class ResearchEthicsCommitteeController extends Controller
 {
     public function index()
     {
-        $researchEthicsCommittees = ResearchEthicsCommittee::all();
-        return view('backend.research_ethics_committees', compact('researchEthicsCommittees'));
+        // $researchEthicsCommittees = ResearchEthicsCommittee::all();
+        $fsit = ResearchEthicsCommittee::WHERE('faculty_name', 'FSIT Research Ethics Committee')->get();
+        $fbe = ResearchEthicsCommittee::WHERE('faculty_name', 'FBE Research Ethics Committee')->get();
+        $fahs = ResearchEthicsCommittee::WHERE('faculty_name', 'FAHS Research Ethics Committee')->get();
+        $fe = ResearchEthicsCommittee::WHERE('faculty_name', 'FE Research Ethics Committee')->get();
+        $fhss = ResearchEthicsCommittee::WHERE('faculty_name', 'FHSS Research Ethics Committee')->get();
+        return view('backend.research_ethics_committees', compact('fsit', 'fbe', 'fahs', 'fe', 'fhss'));
     }
 
     public function create()
@@ -41,8 +46,13 @@ class ResearchEthicsCommitteeController extends Controller
 
     public function edit(ResearchEthicsCommittee $researchEthicsCommittee)
     {
-        $researchEthicsCommittees = ResearchEthicsCommittee::all();
-        return view('backend.research_ethics_committees', compact('researchEthicsCommittee', 'researchEthicsCommittees'));
+        // $researchEthicsCommittees = ResearchEthicsCommittee::all();
+        $fsit = ResearchEthicsCommittee::WHERE('faculty_name', 'FSIT Research Ethics Committee')->get();
+        $fbe = ResearchEthicsCommittee::WHERE('faculty_name', 'FBE Research Ethics Committee')->get();
+        $fahs = ResearchEthicsCommittee::WHERE('faculty_name', 'FAHS Research Ethics Committee')->get();
+        $fe = ResearchEthicsCommittee::WHERE('faculty_name', 'FE Research Ethics Committee')->get();
+        $fhss = ResearchEthicsCommittee::WHERE('faculty_name', 'FHSS Research Ethics Committee')->get();
+        return view('backend.research_ethics_committees', compact('researchEthicsCommittee', 'fsit', 'fbe', 'fahs', 'fe', 'fhss'));
     }
 
 

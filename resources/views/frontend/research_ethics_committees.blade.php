@@ -11,7 +11,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <th scope="row">1</th>
                         <td><a href="{{url('/research-ethics-committee-fsit')}}" target="_blank">FSIT Research Ethics Committee</a></td>
                     </tr>
@@ -30,7 +30,13 @@
                     <tr>
                         <th scope="row">5</th>
                         <td><a href="{{url('/research-ethics-committee-fhss')}}" target="_blank">FHSS Research Ethics Committee</a></td>
+                    </tr> -->
+                    @foreach($faculty_name as $key=>$faculty)
+                    <tr>
+                        <td>{{ ++$key }}</td>
+                        <td><a href="#">{{ $faculty }}</a></td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

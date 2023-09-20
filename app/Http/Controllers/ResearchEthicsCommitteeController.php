@@ -34,15 +34,10 @@ class ResearchEthicsCommitteeController extends Controller
         ]);
 
         ResearchEthicsCommittee::create($request->all());
-        Session::flash('success', 'Record created successfully.');
         return redirect()->route('research-ethics-committees.index')
             ->with('success', 'Record created successfully');
     }
 
-    // public function edit(ResearchEthicsCommittee $researchEthicsCommittee)
-    // {
-    //     return view('backend.research_ethics_committees', compact('researchEthicsCommittee'));
-    // }
 
     public function edit(ResearchEthicsCommittee $researchEthicsCommittee)
     {
@@ -55,10 +50,6 @@ class ResearchEthicsCommitteeController extends Controller
         return view('backend.research_ethics_committees', compact('researchEthicsCommittee', 'fsit', 'fbe', 'fahs', 'fe', 'fhss'));
     }
 
-
-
-
-
     public function update(Request $request, ResearchEthicsCommittee $researchEthicsCommittee)
     {
         $request->validate([
@@ -69,7 +60,6 @@ class ResearchEthicsCommitteeController extends Controller
         ]);
 
         $researchEthicsCommittee->update($request->all());
-        Session::flash('success', 'Record updated successfully.');
         return redirect()->route('research-ethics-committees.index')
             ->with('success', 'Record updated successfully');
     }

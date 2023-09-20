@@ -5,6 +5,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -19,7 +20,10 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/css/custome.css')}}" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
 
 </head>
 
@@ -91,7 +95,9 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
+    <!-- <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script> -->
+    <!-- jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
@@ -99,14 +105,51 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
+    <!-- js for data table -->
+    <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
+    <!-- JavaScript to store and retrieve the active tab using cookies -->
+    <script>
+        $(document).ready(function () {
+            // Get the active tab from the cookie (if available)
+            var activeTab = getCookie("activeTab");
 
-    <!-- Page level plugins -->
-    <!-- <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script> -->
+            if (activeTab) {
+                // Activate the saved tab
+                $("#nav-tabContent").find(activeTab).addClass("show active");
+                $("#nav-tab").find('[href="#' + activeTab + '"]').tab("show");
+            }
 
-    <!-- Page level custom scripts -->
-    <!-- <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('admin/js/demo/chart-pie-demo.js')}}"></script> -->
+            // Handle tab change events
+            $("a[data-toggle='tab']").on("shown.bs.tab", function (e) {
+                var tabId = $(e.target).attr("href").substring(1); // Get the tab ID
+                setCookie("activeTab", tabId); // Save the active tab to a cookie
+            });
 
+            // Function to set a cookie
+            function setCookie(name, value) {
+                document.cookie = name + "=" + value + "; path=/";
+            }
+
+            // Function to get a cookie by name
+            function getCookie(name) {
+                var cookieValue = document.cookie.match(
+                    "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
+                );
+                return cookieValue ? cookieValue.pop() : null;
+            }
+        });
+    </script>
+    <!-- Initialize DataTables for each table -->
+    <!-- <script>
+        $(document).ready(function() {
+            $('#dataTableFSIT').DataTable();
+            $('#dataTableFBE').DataTable();
+            $('#dataTableFAHS').DataTable();
+            $('#dataTableFE').DataTable();
+            $('#dataTableFHSS').DataTable();
+        });
+    </script> -->
 </body>
-
 </html>

@@ -1,0 +1,74 @@
+/* CSS for Tabs */
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    /* color: #858796; */
+    /* background-color: transparent; */
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid #385fcf !important;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    /* color: #858796; */
+}
+
+/* CSS for placeholder custom form */
+.custom-form form {
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+  .custom-form .input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+  }
+  .custom-form .input {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 0;
+    box-sizing: border-box;
+    color: #808097;
+    height: calc(1.5em + .75rem + 4px);
+    outline: 0;
+    padding: 0px 20px;
+    width: 100%;
+  }
+  .custom-form .cut {
+    /* background-color: #15172b; */
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 76px;
+  }
+  .custom-form .input:focus ~ .cut,
+  .custom-form .input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+  }
+  .custom-form .placeholder {
+    /* color: #65657b; */
+    left: 32px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 14px;
+  }
+  .custom-form .input:focus ~ .placeholder,
+  .custom-form .input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+  }
+  .custom-form .input:not(:placeholder-shown) ~ .placeholder {
+    color: #4e73df;
+  }
+  .custom-form .input:focus ~ .placeholder {
+    color: #0e4f71;
+  }
+  .bg-aliceblue{
+    background-color: #f0f8ff;
+  }

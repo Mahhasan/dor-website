@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResearchEthicsCommitteeController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ResourceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +25,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::resource('article', App\Http\Controllers\ArticleController::class);
-// Route::get('article/details/{id}', [App\Http\Controllers\ArticleController::class, 'details']);
+
 
 // Data viw using API from SmartEdu repository 
 Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article']);
@@ -120,9 +122,7 @@ Route::get('/project/one', function (){
 Route::get('/project/two', function (){
     return view('frontend.project.two');
 });
-Route::get('/research-ethics-committee', function () {
-    return view('frontend.research-ethics-committee');
-});
+
 Route::get('/research-ethics-committee-fsit', function () {
     return view('frontend.research-ethics-committee-fsit');
 });
@@ -381,6 +381,10 @@ Route::get('/decision-regarding-separate-blc-courses-for-all-lab-classes', funct
     return view('frontend.decision-regarding-separate-blc-courses-for-all-lab-classes');
 });
 
-// Backend
 
+Route::get('/research-ethics-committee', [FrontendController::class, 'ResearchEthicsFaculty']);
+
+
+// Backend
 Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);
+Route::resource('resources', ResourceController::class);

@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
             <!-- <i class="fas fa-laugh-wink"></i> -->
             <img class="p-2" src="images/dor-logo.png" alt="" style="max-width: 80px;">
@@ -43,9 +43,9 @@
                 <h6 class="collapse-header">About Sub Menu:</h6>
                 <a class="collapse-item" href="#">Message from the Director</a>
                 <a class="collapse-item" href="#">Mission & Vision</a>
-                <a class="collapse-item" href="research-ethics-committees">Research Ethics Committee</a>
+                <a class="collapse-item" href="/research-ethics-committees">Research Ethics Committee</a>
                 <a class="collapse-item" href="#">Our Team</a>
-                <a class="collapse-item" href="#">Resources</a>
+                <a class="collapse-item" href="/resources">Resources</a>
             </div>
         </div>
     </li>
@@ -140,4 +140,9 @@
     <!-- <div class="sidebar-heading">
         Addons
     </div> -->
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
 </ul>

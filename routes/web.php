@@ -3,6 +3,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResearchEthicsCommitteeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\ResearchCoordinatorController;
+use App\Http\Controllers\CollaboratingResearchController;
+use App\Http\Controllers\SourceOfPublicationController;
+use App\Http\Controllers\InterdisciplinaryResearchController;
+use App\Http\Controllers\ResearchUpdateController;
+use App\Http\Controllers\DiuJournalController;
+use App\Http\Controllers\RankingController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\VideoController;
+
 
 
 /*
@@ -388,3 +399,13 @@ Route::get('/research-ethics-committee', [FrontendController::class, 'ResearchEt
 // Backend
 Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);
 Route::resource('resources', ResourceController::class);
+Route::resource('research-coordinator', ResearchCoordinatorController::class);
+Route::resource('collaborating-research', CollaboratingResearchController::class);
+Route::resource('source-of-publication', SourceOfPublicationController::class);
+Route::resource('interdisciplinary_research', InterdisciplinaryResearchController::class);
+Route::resource('research-update', ResearchUpdateController::class);
+Route::resource('diu-journals', DiuJournalController::class);
+Route::resource('ranking', RankingController::class);
+Route::resource('events', EventController::class);
+Route::resource('photos', PhotoController::class);
+Route::resource('videos', VideoController::class);

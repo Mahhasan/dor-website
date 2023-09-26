@@ -33,7 +33,7 @@
                     <div class="input-container mb-4">
                         <input type="file" class="form-control border-0" id="document" name="document" required>
                         @if(isset($resource) && $resource->document)
-                            <a href="{{ asset('uploads/' . $resource->document) }}" target="_blank">{{ $resource->document }}</a>
+                            <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank">{{ $resource->document }}</a>
                         @endif                
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $resource->topic }}</td>
                                 <td>
-                                    <a href="{{ asset('uploads/' . $resource->document) }}" target="_blank" title="View Document"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank" title="View Document"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     <a href="{{ route('resources.edit', $resource->id) }}" class="btn text-primary" title="Edit {{$resource->topic}}'s information"><i class="fas fa-edit fa-sm"></i></a>
                                     <form action="{{ route('resources.destroy', $resource->id) }}" method="POST" style="display: inline;">
                                         @csrf

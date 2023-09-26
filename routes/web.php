@@ -402,7 +402,7 @@ Route::resource('resources', ResourceController::class);
 Route::resource('research-coordinator', ResearchCoordinatorController::class);
 Route::resource('collaborating-research', CollaboratingResearchController::class);
 Route::resource('source-of-publication', SourceOfPublicationController::class);
-Route::resource('interdisciplinary_research', InterdisciplinaryResearchController::class);
+Route::resource('interdisciplinary-research', InterdisciplinaryResearchController::class);
 Route::resource('research-update', ResearchUpdateController::class);
 Route::resource('diu-journals', DiuJournalController::class);
 Route::resource('ranking', RankingController::class);

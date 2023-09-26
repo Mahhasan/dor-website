@@ -60,15 +60,15 @@
         <div id="ResearchNetworking" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
-                <a class="collapse-item" href="#">Collaborating Research</a>
-                <a class="collapse-item" href="#">Source of Publications</a>
+                <a class="collapse-item" href="/collaborating-research">Collaborating Research</a>
+                <a class="collapse-item" href="/source-of-publication">Source of Publications</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Interdisciplinary Research -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/interdisciplinary-research">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Interdisciplinary Research</span></a>
     </li>
@@ -98,7 +98,7 @@
     
     <!-- Nav Item - Research Co-ordinator -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/research-coordinator">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Research Co-ordinator</span></a>
     </li>

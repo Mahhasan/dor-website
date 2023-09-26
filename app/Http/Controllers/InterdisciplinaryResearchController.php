@@ -3,82 +3,98 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\InterdisciplinaryResearch;
+use Illuminate\Support\Facades\Session;
 
 class InterdisciplinaryResearchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $interdisciplinaryResearches = InterdisciplinaryResearch::all();
+        return view('backend.interdisciplinary_research', compact('interdisciplinaryResearches'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        // Define an empty researchCoordinator object
+        $interdisciplinaryResearch = new InterdisciplinaryResearch();
+        return view('backend.interdisciplinary_research', compact('interdisciplinaryResearch'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'discipline' => 'required',
+            'lab_name' => 'required',
+            'link' => 'nullable',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('picture')) {
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
+        } else {
+            $imageName = null; // Set the $imageName to null when no file is uploaded
+        }
+
+        InterdisciplinaryResearch::create([
+            'discipline' => $request->discipline,
+            'lab_name' => $request->lab_name,
+            'link' => $request->link,
+            'picture' => $imageName,
+        ]);
+
+        Session::flash('success', 'Record created successfully.');
+        return redirect()->route('interdisciplinary-research.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(InterdisciplinaryResearch $interdisciplinaryResearch)
     {
-        //
+        $interdisciplinaryResearches = InterdisciplinaryResearch::all();
+        return view('backend.interdisciplinary_research', compact('interdisciplinaryResearch', 'interdisciplinaryResearches'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function update(Request $request, InterdisciplinaryResearch $interdisciplinaryResearch)
+{
+    $request->validate([
+        'discipline' => 'required',
+        'lab_name' => 'required',
+        'link' => 'nullable',
+        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $data = $request->only(['discipline', 'lab_name', 'link']);
+
+    if ($request->hasFile('picture')) {
+        $oldPicturePath = public_path('uploads/interdisciplinary_research/' . $interdisciplinaryResearch->picture);
+        
+        if (file_exists($oldPicturePath) && is_file($oldPicturePath)) {
+            // Check if it's a file before trying to unlink
+            unlink($oldPicturePath);
+        }
+
+        $imageName = time() . '.' . $request->picture->extension();
+        $request->picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
+        $data['picture'] = $imageName;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    $interdisciplinaryResearch->update($data);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    Session::flash('success', 'Record updated successfully.');
+    return redirect()->route('interdisciplinary-research.index');
+}
+
+
+    public function destroy(InterdisciplinaryResearch $interdisciplinaryResearch)
     {
-        //
+        // Delete the associated picture file
+        $picturePath = public_path('uploads/interdisciplinary_research/' . $interdisciplinaryResearch->picture);
+        if (file_exists($picturePath)) {
+            unlink($picturePath);
+        }
+
+        $interdisciplinaryResearch->delete();
+
+        return redirect()->route('interdisciplinary-research.index')->with('success', 'Record deleted successfully');
     }
 }

@@ -3,82 +3,57 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\CollaboratingResearch;
+use Illuminate\Support\Facades\Session;
 class CollaboratingResearchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $collaboratingResearches = CollaboratingResearch::all();
+        return view('backend.collaborating_research', compact('collaboratingResearches'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        // Define an empty resource object
+        $collaboratingResearch = new CollaboratingResearch();
+        return view('backend.collaborating_research', compact('collaboratingResearch'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'institute_name' => 'required',
+        ]);
+        
+        CollaboratingResearch::create($request->all());
+        return redirect()->route('collaborating-research.index')
+            ->with('success', 'Record created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(CollaboratingResearch $collaboratingResearch)
     {
-        //
+        $collaboratingResearches = CollaboratingResearch::all();
+        return view('backend.collaborating_research', compact('collaboratingResearch', 'collaboratingResearches'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, CollaboratingResearch $collaboratingResearch)
     {
-        //
+        $request->validate([
+            'institute_name' => 'required',
+        ]);
+    
+        $collaboratingResearch->update($request->all());
+        return redirect()->route('collaborating-research.index')
+            ->with('success', 'Record updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(CollaboratingResearch $collaboratingResearch)
     {
-        //
-    }
+        // Delete the database record
+        $collaboratingResearch->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('collaborating-research.index')
+            ->with('success', 'Record and file deleted successfully');
     }
 }

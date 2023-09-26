@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Resource;
+use Illuminate\Support\Facades\Session;
 class ResourceController extends Controller
 {
     public function index()
@@ -27,7 +28,7 @@ class ResourceController extends Controller
         ]);
 
         $fileName = time().'.'.$request->document->extension();  
-        $request->document->move(public_path('uploads'), $fileName);
+        $request->document->move(public_path('uploads/resource'), $fileName);
         
         Resource::create([
             'topic' => $request->topic,
@@ -55,12 +56,12 @@ class ResourceController extends Controller
         if ($request->hasFile('document')) {
             // Delete the old file if it exists
             if ($resource->document) {
-                unlink(public_path('uploads/' . $resource->document));
+                unlink(public_path('uploads/resource/' . $resource->document));
             }
     
             // Upload the new file
             $fileName = time().'.'.$request->document->extension();  
-            $request->document->move(public_path('uploads'), $fileName);
+            $request->document->move(public_path('uploads/resource'), $fileName);
             $resource->document = $fileName;
         }
     
@@ -77,8 +78,8 @@ class ResourceController extends Controller
         $fileName = $resource->document;
 
         // Delete the file from the storage
-        if (file_exists(public_path('uploads/' . $fileName))) {
-            unlink(public_path('uploads/' . $fileName));
+        if (file_exists(public_path('uploads/resource/' . $fileName))) {
+            unlink(public_path('uploads/resource/' . $fileName));
         }
 
         // Delete the database record

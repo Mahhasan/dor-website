@@ -3,82 +3,57 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\SourceOfPublication;
+use Illuminate\Support\Facades\Session;
 class SourceOfPublicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $sourceOfPublications = SourceOfPublication::all();
+        return view('backend.source_of_publication', compact('sourceOfPublications'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        // Define an empty resource object
+        $sourceOfPublication = new SourceOfPublication();
+        return view('backend.source_of_publication', compact('sourceOfPublication'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'source' => 'required',
+        ]);
+        
+        SourceOfPublication::create($request->all());
+        return redirect()->route('source-of-publication.index')
+            ->with('success', 'Record created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(SourceOfPublication $sourceOfPublication)
     {
-        //
+        $sourceOfPublications = SourceOfPublication::all();
+        return view('backend.source_of_publication', compact('sourceOfPublication', 'sourceOfPublications'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, SourceOfPublication $sourceOfPublication)
     {
-        //
+        $request->validate([
+            'source' => 'required',
+        ]);
+    
+        $sourceOfPublication->update($request->all());
+        return redirect()->route('source-of-publication.index')
+            ->with('success', 'Record updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(SourceOfPublication $sourceOfPublication)
     {
-        //
-    }
+        // Delete the database record
+        $sourceOfPublication->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('source-of-publication.index')
+            ->with('success', 'Record and file deleted successfully');
     }
 }

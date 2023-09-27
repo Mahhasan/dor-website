@@ -10,6 +10,13 @@
             </div>
             <div class="col-sm-6">
                 <div class="video-gallery-item">
+                    <iframe src="https://drive.google.com/file/d/1pz0Asy1DWBLDXmdlnDooonzrB2rYbs1O/preview" width="560" height="315" allow="autoplay"></iframe>
+                    <h3>DIU Research Award Giving Ceremony<br> 2023
+                    </h3>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="video-gallery-item">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/N4MTHWqpQ8s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <h3>Research Award Giving Ceremony 2022</h3>
                 </div>

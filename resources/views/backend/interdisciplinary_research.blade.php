@@ -16,12 +16,12 @@
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
             <h5>Interdisciplinary Research</h5>
             @if(isset($interdisciplinaryResearch))
-            <h6>Edit Record</h6>
-            <form method="POST" action="{{ route('interdisciplinary-research.update', $interdisciplinaryResearch->id) }}" enctype="multipart/form-data">
-                @method('PATCH')
+                <h6>Edit Record</h6>
+                <form method="POST" action="{{ route('interdisciplinary-research.update', $interdisciplinaryResearch->id) }}" enctype="multipart/form-data">
+                    @method('PATCH')
                 @else
-                <h6>Create New Discipline</h6>
-            <form method="POST" action="{{ route('interdisciplinary-research.store') }}" enctype="multipart/form-data">
+                    <h6>Create New Discipline</h6>
+                    <form method="POST" action="{{ route('interdisciplinary-research.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -43,10 +43,15 @@
                         <label for="link" class="placeholder">Link</label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="file" class="form-control border-0" id="picture" name="picture" accept="image/*">
+                        <input type="file" class="form-control border-0" id="picture[]" name="picture[]" accept="image/*" multiple>
                         @if(isset($interdisciplinaryResearch) && $interdisciplinaryResearch->picture)
-                            <a href="{{ asset('uploads/interdisciplinary_research/' . $interdisciplinaryResearch->picture) }}" target="_blank" class="float-right">Click to see existing picture</a>
-                        @endif   
+                            <div class="float-right">
+                                Existing picture:
+                                @foreach(explode(',', $interdisciplinaryResearch->picture) as $picture)
+                                    <a href="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" target="_blank">{{ $picture }}</a>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
                 @if(isset($interdisciplinaryResearch))
@@ -70,7 +75,7 @@
                             <th>discipline</th>
                             <th>lab_name</th>
                             <th>link</th>
-                            <th>Image</th>
+                            <th>Images</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -83,9 +88,11 @@
                                 <td>{{ $interdisciplinaryResearch->link }}</td>
                                 <td>
                                     @if($interdisciplinaryResearch->picture)
-                                        <img src="{{ asset('uploads/interdisciplinary_research/' . $interdisciplinaryResearch->picture) }}" alt="{{ $interdisciplinaryResearch->name }} Image" width="100">
+                                        @foreach(explode(',', $interdisciplinaryResearch->picture) as $picture)
+                                            <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $interdisciplinaryResearch->name }} Image" width="100">
+                                        @endforeach
                                     @else
-                                        No Image Available
+                                        No Images Available
                                     @endif
                                 </td>
                                 <td>

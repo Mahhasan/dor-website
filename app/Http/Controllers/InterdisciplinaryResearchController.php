@@ -22,31 +22,34 @@ class InterdisciplinaryResearchController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'discipline' => 'required',
-            'lab_name' => 'required',
-            'link' => 'nullable',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $request->validate([
+        'discipline' => 'required',
+        'lab_name' => 'required',
+        'link' => 'nullable',
+        'picture.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048',
+    ]);
 
-        if ($request->hasFile('picture')) {
-            $imageName = time() . '.' . $request->picture->extension();
-            $request->picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
-        } else {
-            $imageName = null; // Set the $imageName to null when no file is uploaded
+    $pictures = [];
+
+    if ($request->hasFile('picture')) {
+        foreach ($request->file('picture') as $picture) {
+            $imageName = time() . '_' . uniqid() . '.' . $picture->extension();
+            $picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
+            $pictures[] = $imageName;
         }
-
-        InterdisciplinaryResearch::create([
-            'discipline' => $request->discipline,
-            'lab_name' => $request->lab_name,
-            'link' => $request->link,
-            'picture' => $imageName,
-        ]);
-
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('interdisciplinary-research.index');
     }
+
+    InterdisciplinaryResearch::create([
+        'discipline' => $request->discipline,
+        'lab_name' => $request->lab_name,
+        'link' => $request->link,
+        'picture' => implode(',', $pictures),
+    ]);
+
+    Session::flash('success', 'Record created successfully.');
+    return redirect()->route('interdisciplinary-research.index');
+}
 
     public function edit(InterdisciplinaryResearch $interdisciplinaryResearch)
     {
@@ -54,35 +57,50 @@ class InterdisciplinaryResearchController extends Controller
         return view('backend.interdisciplinary_research', compact('interdisciplinaryResearch', 'interdisciplinaryResearches'));
     }
 
-    public function update(Request $request, InterdisciplinaryResearch $interdisciplinaryResearch)
+public function update(Request $request, InterdisciplinaryResearch $interdisciplinaryResearch)
 {
     $request->validate([
         'discipline' => 'required',
         'lab_name' => 'required',
         'link' => 'nullable',
-        'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'picture.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048',
     ]);
 
     $data = $request->only(['discipline', 'lab_name', 'link']);
+    $pictures = [];
 
     if ($request->hasFile('picture')) {
-        $oldPicturePath = public_path('uploads/interdisciplinary_research/' . $interdisciplinaryResearch->picture);
-        
-        if (file_exists($oldPicturePath) && is_file($oldPicturePath)) {
-            // Check if it's a file before trying to unlink
-            unlink($oldPicturePath);
+        // Delete existing pictures
+        $existingPictures = explode(',', $interdisciplinaryResearch->picture);
+        foreach ($existingPictures as $existingPicture) {
+            $oldPicturePath = public_path('uploads/interdisciplinary_research/' . $existingPicture);
+            if (file_exists($oldPicturePath) && is_file($oldPicturePath)) {
+                unlink($oldPicturePath);
+            }
         }
 
-        $imageName = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
-        $data['picture'] = $imageName;
+        // Upload new pictures
+        foreach ($request->file('picture') as $picture) {
+            $imageName = time() . '_' . uniqid() . '.' . $picture->extension();
+            $picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
+            $pictures[] = $imageName;
+        }
+    } else {
+        // No new pictures uploaded, keep the existing ones
+        $pictures = explode(',', $interdisciplinaryResearch->picture);
     }
+
+    $data['picture'] = implode(',', $pictures);
 
     $interdisciplinaryResearch->update($data);
 
     Session::flash('success', 'Record updated successfully.');
     return redirect()->route('interdisciplinary-research.index');
 }
+
+    
+
+    
 
 
     public function destroy(InterdisciplinaryResearch $interdisciplinaryResearch)

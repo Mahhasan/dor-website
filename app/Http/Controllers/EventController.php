@@ -3,82 +3,108 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
+use Illuminate\Support\Facades\Session;
 
 class EventController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+{public function index()
     {
-        //
+        $events = Event::all();
+        return view('backend.event', compact('events'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        // Define an empty researchCoordinator object
+        $event = new Event();
+        return view('backend.event', compact('event'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'event_details' => 'required',
+        ]);
+
+        $imageName = time() . '.' . $request->picture->extension();
+        $request->picture->move(public_path('uploads/event'), $imageName);
+
+        Event::create([
+            'title' => $request->title,
+            'event_details' => $request->event_details,
+            'picture' => $imageName,
+        ]);
+
+        Session::flash('success', 'Record created successfully.');
+        return redirect()->route('events.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(event $event)
     {
-        //
+        $events = Event::all();
+        return view('backend.event', compact('event', 'events'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, event $event)
     {
-        //
+        $rules = [
+            'title' => 'required',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'event_details' => 'required',
+        ];
+    
+        
+    
+        $data = $request->only(['title', 'event_details']);
+    
+        if ($request->hasFile('picture')) {
+            $oldPicturePath = public_path('uploads/event/' . $event->picture);
+            if (file_exists($oldPicturePath)) {
+                unlink($oldPicturePath);
+            }
+    
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/event'), $imageName);
+            $data['picture'] = $imageName;
+        }
+    
+        $event->update($data);
+    
+        Session::flash('success', 'Record updated successfully.');
+        return redirect()->route('events.index');
+    }
+    
+
+    public function destroy(event $event)
+    {
+        // Delete the associated picture file
+        $picturePath = public_path('uploads/event/' . $event->picture);
+        if (file_exists($picturePath)) {
+            unlink($picturePath);
+        }
+
+        $event->delete();
+
+        return redirect()->route('events.index')->with('success', 'Record deleted successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+// for image upload using check editor
+    public function uploadEventImage(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if ($request->hasFile('upload')) {
+            $image = $request->file('upload');
+            $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/event'), $imageName);
+
+            return response()->json(['url' => asset('uploads/event/' . $imageName)]);
+        }
+
+        return response()->json(['error' => 'Image upload failed.']);
     }
 }

@@ -105,14 +105,14 @@
 
     <!-- Nav Item - Rankings -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/ranking">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rankings</span></a>
     </li>
 
     <!-- Nav Item - Events -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/events">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Events</span></a>
     </li>

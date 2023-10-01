@@ -61,12 +61,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-container col-12 mb-4">
-                        <input type="file" class="form-control border-0" id="picture" name="picture" accept="image/*" required>
-                        @if(isset($researchCoordinator) && $researchCoordinator->picture)
-                            <a href="{{ asset('uploads/research_coordinator/' . $researchCoordinator->picture) }}" target="_blank" class="float-right">Click to see existing picture</a>
-                        @endif   
-                    </div>
+                <div class="input-container col-12 mb-4">
+                    <input type="file" class="form-control border-0" id="picture" name="picture" accept="image/*" {{ isset($researchCoordinator) && $researchCoordinator->picture ? '' : 'required' }}>
+                    @if(isset($researchCoordinator) && $researchCoordinator->picture)
+                        <a href="{{ asset('uploads/research_coordinator/' . $researchCoordinator->picture) }}" target="_blank" class="float-right">Click to see existing picture</a>
+                    @endif
+                </div>
                 </div>
                 @if(isset($researchCoordinator))
                     <button type="submit" class="btn btn-primary">Save Changes</button>

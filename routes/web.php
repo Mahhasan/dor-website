@@ -406,6 +406,9 @@ Route::resource('interdisciplinary-research', InterdisciplinaryResearchControlle
 Route::resource('research-update', ResearchUpdateController::class);
 Route::resource('diu-journals', DiuJournalController::class);
 Route::resource('ranking', RankingController::class);
+
 Route::resource('events', EventController::class);
+Route::post('/upload-image-endpoint', 'EventController@uploadEventImage');
+
 Route::resource('photos', PhotoController::class);
 Route::resource('videos', VideoController::class);

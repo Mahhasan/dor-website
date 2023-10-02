@@ -75,7 +75,7 @@
 
     <!-- Nav Item - Research Update -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/research-update">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Research Update</span></a>
     </li>

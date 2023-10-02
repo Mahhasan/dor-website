@@ -25,24 +25,15 @@
                 @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="input-container col-sm-6 mb-4">
+                    <div class="input-container col-sm-12 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($event) ? $event->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="title" class="placeholder">Title</label>
                     </div>
-                    <div class="input-container col-sm-6 mb-4">
-                        <input type="file" class="form-control border-0" id="picture" name="picture" accept="image/*" {{ isset($event) ? '' : 'required' }}>
-                        @if(isset($event) && $event->picture)
-                            <a href="{{ asset('uploads/event/' . $event->picture) }}" target="_blank" class="float-right">Click to see existing picture</a>
-                        @endif   
-                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 mb-4">
-                    <textarea id="editor" name="event_details"></textarea>
-                        <!-- <textarea class="ckeditor form-control" name="event_details" required>Event Details</textarea> -->
-                        <!-- <div class="cut"></div> -->
-                        <!-- <label for="event_details" class="">Event Details</label> -->
+                    <textarea id="file-picker" name="event_details" value="{{ old('event_details', isset($event) ? $event->event_details : '') }}">{{ old('event_details', isset($event) ? $event->event_details : '') }}</textarea>
                     </div>
                 </div>
                 @if(isset($event))
@@ -65,7 +56,6 @@
                             <th>SL</th>
                             <th>Title</th>
                             <th>Event Details</th>
-                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -76,13 +66,6 @@
                                 <!-- <td>{{ $event->year }}</td> -->
                                 <td><a href="" target="_blank">{{ $event->title }}</a></td>
                                 <td>{!! $event->event_details !!}</td>
-                                <td>
-                                    @if($event->picture)
-                                        <img src="{{ asset('uploads/event/' . $event->picture) }}" alt="{{ $event->title }} Image" width="100">
-                                    @else
-                                        No Image Available
-                                    @endif
-                                </td>
                                 <td>
                                     <a href="{{ route('events.edit', $event->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
                                     <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline;">
@@ -99,29 +82,52 @@
         </div>
     </div>
 </div>
-<!-- <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script> -->
-<!-- Include CKEditor 4 -->
-<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-
-<!-- Include CKFinder -->
-<script src="https://cdn.ckeditor.com/ckfinder/3.6.2/ckfinder.js"></script>
-
-
-<!-- <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
-</script> -->
 <script>
-    CKEDITOR.replace('editor', {
-        filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
-        filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
-    });
-</script>
+  tinymce.init({
+    selector: 'textarea#file-picker',
+    plugins: 'code imagetools ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    // images_upload_url: '/events', // Specify the image upload route
+    image_title: true,
+    automatic_uploads: true, // Enable automatic image uploads
+    file_picker_types: 'image',
+    /* and here's our custom image picker*/
+    file_picker_callback: function (cb, value, meta) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.onchange = function () {
+        var file = this.files[0];
 
+        var reader = new FileReader();
+        reader.onload = function () {
+            /*
+          Note: Now we need to register the blob in TinyMCEs image blob
+          registry. In the next release this part hopefully won't be
+          necessary, as we are looking to handle it internally.
+        */
+        var id = 'blobid' + (new Date()).getTime();
+        var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+        var base64 = reader.result.split(',')[1];
+        var blobInfo = blobCache.create(id, file, base64);
+        blobCache.add(blobInfo);
+
+        /* call the callback and populate the Title field with the file name */
+        cb(blobInfo.blobUri(), { title: file.name });
+      };
+      reader.readAsDataURL(file);
+    };
+
+    input.click();
+  },
+  });
+</script>
 
 @endsection

@@ -22,6 +22,9 @@
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <!-- for tinymce editor -->
+    <script src="https://cdn.tiny.cloud/1/pplezfsut9xqvzw1wnk319ah39r5c22kagc1f5992j2ql3om/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
     <!-- Custom CSS -->
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
 
@@ -110,7 +113,6 @@
     <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
     <!-- JavaScript to store and retrieve the active tab using cookies -->
     <script>
         $(document).ready(function () {
@@ -153,10 +155,10 @@
             $('#dataTableFHSS').DataTable();
         });
     </script> -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function() {
         $('.ckeditor').ckeditor();
         });
-    </script>
+    </script> -->
 </body>
 </html>

@@ -31,7 +31,7 @@
                         <label for="topic" class="placeholder">Topic</label>
                     </div>
                     <div class="input-container mb-4">
-                        <input type="file" class="form-control border-0" id="document" name="document" required>
+                        <input type="file" class="form-control border-0" id="document" name="document" {{ isset($resource) ? '' : 'required' }}>
                         @if(isset($resource) && $resource->document)
                             <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank">{{ $resource->document }}</a>
                         @endif                

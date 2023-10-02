@@ -49,7 +49,7 @@ class ResourceController extends Controller
     {
         $request->validate([
             'topic' => 'required',
-            'document' => 'required',
+            'document' => 'nullable',
         ]);
     
         // Check if a new file has been uploaded

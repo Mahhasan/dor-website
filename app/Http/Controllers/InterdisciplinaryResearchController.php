@@ -98,10 +98,6 @@ public function update(Request $request, InterdisciplinaryResearch $interdiscipl
     return redirect()->route('interdisciplinary-research.index');
 }
 
-    
-
-    
-
 
     public function destroy(InterdisciplinaryResearch $interdisciplinaryResearch)
     {

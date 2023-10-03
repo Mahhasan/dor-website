@@ -3,82 +3,138 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Photo;
+use Illuminate\Support\Facades\Session;
 
 class PhotoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $photos = Photo::all();
+        return view('backend.photos', compact('photos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        // Define an empty researchCoordinator object
+        $photo = new Photo();
+        return view('backend.photos', compact('photo'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+    public function edit(Photo $photo)
+    {
+        $photos = Photo::all();
+        return view('backend.photos', compact('photo', 'photos'));
+    }
+
     public function store(Request $request)
-    {
-        //
+{
+    $request->validate([
+        'title' => 'required',
+        'pictures' => 'nullable|array',
+        'pictures.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'links' => 'nullable|array',
+    ]);
+
+    $pictures = [];
+    $links = [];
+
+    // Upload pictures and store their filenames
+    if ($request->hasFile('pictures')) {
+        foreach ($request->file('pictures') as $pictureFile) {
+            $imageName = time() . '_' . $pictureFile->getClientOriginalName();
+            $pictureFile->move(public_path('uploads/photos'), $imageName);
+            $pictures[] = $imageName;
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    // Store links
+    if ($request->has('links')) {
+        $links = $request->input('links');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    // Create the main photo record with picture filenames and links
+    Photo::create([
+        'title' => $request->title,
+        'pictures' => json_encode($pictures), // Store filenames as JSON
+        'links' => json_encode($links), // Store links as JSON
+    ]);
+
+    Session::flash('success', 'Record created successfully.');
+    return redirect()->route('photos.index');
+}
+
+public function update(Request $request, Photo $photo)
+{
+    $request->validate([
+        'title' => 'required',
+        'pictures' => 'nullable|array',
+        'pictures.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'links' => 'nullable|array',
+    ]);
+
+    $pictures = json_decode($photo->pictures, true) ?? [];
+    $links = json_decode($photo->links, true) ?? [];
+
+    // Upload new pictures and store their filenames
+    if ($request->hasFile('pictures')) {
+        foreach ($request->file('pictures') as $pictureFile) {
+            $imageName = time() . '_' . $pictureFile->getClientOriginalName();
+            $pictureFile->move(public_path('uploads/photos'), $imageName);
+            $pictures[] = $imageName;
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    // Store links
+    if ($request->has('links')) {
+        $links = $request->input('links');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // Remove deleted pictures
+    if ($request->has('deleted_pictures')) {
+        foreach ($request->input('deleted_pictures') as $deletedPicture) {
+            $picturePath = public_path('uploads/photos/' . $deletedPicture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
+            $key = array_search($deletedPicture, $pictures);
+            if ($key !== false) {
+                unset($pictures[$key]);
+            }
+        }
+    }
+
+    // Update the main photo record with updated picture filenames and links
+    $photo->update([
+        'title' => $request->title,
+        'pictures' => json_encode(array_values($pictures)), // Store filenames as JSON
+        'links' => json_encode($links), // Store links as JSON
+    ]);
+
+    Session::flash('success', 'Record updated successfully.');
+    return redirect()->route('photos.index');
+}
+
+
+
+    public function destroy(Photo $photo)
     {
-        //
+        // Decode the JSON data and get the picture filenames
+        $pictures = json_decode($photo->pictures, true);
+
+        if (is_array($pictures)) {
+            // Delete associated pictures and their files
+            foreach ($pictures as $picture) {
+                $picturePath = public_path('uploads/photos/' . $picture);
+                if (file_exists($picturePath)) {
+                    unlink($picturePath);
+                }
+            }
+        }
+
+        $photo->delete();
+
+        return redirect()->route('photos.index')->with('success', 'Record deleted successfully');
     }
 }

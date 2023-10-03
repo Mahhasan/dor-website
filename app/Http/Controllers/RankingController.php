@@ -44,13 +44,13 @@ class RankingController extends Controller
         return redirect()->route('ranking.index');
     }
 
-    public function edit(ranking $ranking)
+    public function edit(Ranking $ranking)
     {
         $rankings = Ranking::all();
         return view('backend.ranking', compact('ranking', 'rankings'));
     }
 
-    public function update(Request $request, ranking $ranking)
+    public function update(Request $request, Ranking $ranking)
     {
         $rules = [
             'title' => 'required',
@@ -81,7 +81,7 @@ class RankingController extends Controller
     }
     
 
-    public function destroy(ranking $ranking)
+    public function destroy(Ranking $ranking)
     {
         // Delete the associated picture file
         $picturePath = public_path('uploads/ranking/' . $ranking->picture);

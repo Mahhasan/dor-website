@@ -64,7 +64,7 @@
                             <tr>
                                 <td>{{ ++$key }}</td>
                                 <!-- <td>{{ $event->year }}</td> -->
-                                <td><a href="" target="_blank">{{ $event->title }}</a></td>
+                                <td>{{ $event->title }}</td>
                                 <td>{!! $event->event_details !!}</td>
                                 <td>
                                     <a href="{{ route('events.edit', $event->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>

@@ -68,7 +68,7 @@
                                 <td>{{ $researchUpdate->volume }}</td>
                                 <td>
                                     <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" target="_blank" title="View file">
-                                        <iframe src="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" width="350px" height="200px"></iframe>
+                                        <iframe src="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" width="400px" height="200px"></iframe>
                                     </a>
                                 <td>
                                     <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" target="_blank" title="View file"><i class="fa fa-eye" aria-hidden="true"></i></a>

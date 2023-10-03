@@ -91,7 +91,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
                 <a class="collapse-item" href="#">Scopus/ISI Article</a>
-                <a class="collapse-item" href="#">DIU Journals</a>
+                <a class="collapse-item" href="/diu-journals">DIU Journals</a>
             </div>
         </div>
     </li>
@@ -127,7 +127,7 @@
         <div id="Gallery" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
-                <a class="collapse-item" href="#">Photo</a>
+                <a class="collapse-item" href="/photos">Photo</a>
                 <a class="collapse-item" href="#">Video</a>
             </div>
         </div>

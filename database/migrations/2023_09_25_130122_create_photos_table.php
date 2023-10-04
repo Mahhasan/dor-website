@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('links')->nullable();
+            $table->longtext('links')->nullable();
             $table->json('pictures')->nullable(); // Store image filenames as JSON array
             $table->timestamps();
         });

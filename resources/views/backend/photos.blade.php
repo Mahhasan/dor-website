@@ -2,15 +2,10 @@
 @section('content')
 <div class="container">
     @if (Session::has('success'))
-        <div class="alert alert-success mt-3">
-            {{ Session::get('success') }}
-        </div>
+        <div class="alert alert-success mt-3">{{ Session::get('success') }}</div>
     @endif
-
     @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">
-            {{ Session::get('error') }}
-        </div>
+        <div class="alert alert-danger mt-3">{{ Session::get('error') }}</div>
     @endif
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
@@ -18,44 +13,43 @@
             @if(isset($photo))
             <h6>Edit Record</h6>
             <form method="POST" action="{{ route('photos.update', $photo->id) }}" enctype="multipart/form-data">
-                @method('PATCH')
-                @else
-                <h6>Create New Record</h6>
+            @method('PATCH')
+            @else
+            <h6>Create New Record</h6>
             <form method="POST" action="{{ route('photos.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
-                <div class="row additional-links">
-    @if(isset($photo) && $photo->links)
-        @foreach(json_decode($photo->links, true) as $index => $link)
-            <div class="input-container col-sm-12 mb-4">
-                <input type="url" class="input" id="link" name="links[]" value="{{ old('links.' . $index, $link) }}" placeholder=" "/>
-                <div class="cut"></div>
-                <label for="link" class="placeholder">Additional Link {{ $index + 1 }}</label>
-                <button type="button" class="btn btn-danger remove-link float-right">Remove Link</button>
-            </div>
-        @endforeach
-    @endif
-</div>
-<button type="button" class="btn btn-primary" id="add-link">Add Link</button>
                 <div class="row mt-5">
-                    <div class="input-container col-sm-6 mb-4">
+                    <div class="input-container col-md-6 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($photo) ? $photo->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="title" class="placeholder">Title</label>
                     </div>
-                    <div class="input-container col-sm-6 mb-4">
-                        <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($photo) ? $photo->link : '') }}" placeholder=" "/>
-                        <div class="cut"></div>
-                        <label for="link" class="placeholder">Image Link</label>
+                    <div class="input-container col-md-6 mb-4">
+                        <div class="additional-links">
+                            @if(isset($photo) && $photo->links)
+                                @foreach(json_decode($photo->links, true) as $index => $link)
+                                    <div class="row input-container mb-4">
+                                        <div class="col-8">
+                                            <input type="url" class="input" id="link" name="links[]" value="{{ old('links.' . $index, $link) }}" placeholder=" "/>
+                                            <div class="cut"></div>
+                                            <label for="link" class="placeholder">Image Link {{ $index + 1 }}</label>
+                                        </div>
+                                        <button type="button" class="col-4 btn btn-outline-danger remove-link">Remove</button>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <button type="button" class="btn btn-outline-info" id="add-link">Insert Additional Image Link  (if any)</button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-sm-12 mb-4">
+                    <div class="form-group col-md-12 mb-4">
                         <input type="file" class="form-control border-0" id="pictures" name="pictures[]" accept="image/*" multiple>
                         @if(isset($photo) && $photo->pictures)
                             <div class="row existing-pictures float-right mt-3 ml-1 mr-1">
                                 @foreach(json_decode($photo->pictures, true) as $picture)
-                                    <div class="existing-picture mr-1">
+                                    <div class="existing-picture mr-2 mb-2">
                                         <input type="checkbox" name="deleted_pictures[]" value="{{ $picture }}">
                                         <img src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="75px" width="100">
                                     </div>
@@ -73,7 +67,6 @@
             </form>
         </div>
     </div>
-
     <div class="row">
         <div class="mx-auto pt-5 pb-5">
             <h5 class="text-center mb-5">Research Coordinator Records</h5>
@@ -125,11 +118,13 @@
         // Add Link button click event
         $('#add-link').click(function () {
             var linkField = `
-                <div class="input-container col-sm-12 mb-4">
-                    <input type="url" class="input" name="links[]" placeholder=" "/>
-                    <div class="cut"></div>
-                    <label for="link" class="placeholder">Additional Image Link</label>
-                    <button type="button" class="btn btn-danger remove-link">Remove Link</button>
+                <div class="row input-container mb-4">
+                    <div class="col-8">
+                        <input type="url" class="input" name="links[]" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="link" class="placeholder">Image Link</label>
+                    </div>
+                    <button type="button" class="col-4 btn btn-outline-danger remove-link">Remove</button>
                 </div>
             `;
             $('.additional-links').append(linkField);
@@ -141,5 +136,4 @@
         });
     });
 </script>
-
 @endsection

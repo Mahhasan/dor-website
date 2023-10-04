@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +20,6 @@ class PhotoController extends Controller
         return view('backend.photos', compact('photo'));
     }
 
-   
     public function edit(Photo $photo)
     {
         $photos = Photo::all();
@@ -115,8 +113,6 @@ public function update(Request $request, Photo $photo)
     Session::flash('success', 'Record updated successfully.');
     return redirect()->route('photos.index');
 }
-
-
 
     public function destroy(Photo $photo)
     {

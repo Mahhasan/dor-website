@@ -27,7 +27,7 @@
     </div>
     <!-- Nav Item - Website Slider -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/website-slider">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Website Slider</span></a>
     </li>
@@ -128,7 +128,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
                 <a class="collapse-item" href="/photos">Photo</a>
-                <a class="collapse-item" href="#">Video</a>
+                <a class="collapse-item" href="/videos">Video</a>
             </div>
         </div>
     </li>

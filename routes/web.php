@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebsiteSliderController;
 use App\Http\Controllers\ResearchEthicsCommitteeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ResourceController;
@@ -14,8 +15,6 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\VideoController;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +26,6 @@ use App\Http\Controllers\VideoController;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -36,12 +34,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
 // Data viw using API from SmartEdu repository 
 Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article']);
 Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'scopus_article_details']);
-
 
 Route::get('/research-coordinator', function () {
     return view('frontend.research-coordinator');
@@ -397,6 +392,7 @@ Route::get('/research-ethics-committee', [FrontendController::class, 'ResearchEt
 
 
 // Backend
+Route::resource('website-slider', WebsiteSliderController::class);
 Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);
 Route::resource('resources', ResourceController::class);
 Route::resource('research-coordinator', ResearchCoordinatorController::class);

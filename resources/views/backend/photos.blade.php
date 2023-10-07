@@ -20,22 +20,29 @@
                 @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="input-container col-md-6 mb-4">
+                    <div class="input-container col-sm-12 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($photo) ? $photo->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="title" class="placeholder">Title</label>
                     </div>
-                    <div class="input-container col-md-6 mb-4">
+                </div>
+                <div class="row">
+                    <div class="input-container col-md-4 mb-4">
+                        <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($photo) ? $photo->year : '') }}" required placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="year" class="placeholder">Year</label>
+                    </div>
+                    <div class="input-container col-md-8 mb-4">
                         <div class="additional-links">
                             @if(isset($photo) && $photo->links)
                                 @foreach(json_decode($photo->links, true) as $index => $link)
                                     <div class="row input-container mb-4">
-                                        <div class="col-8">
+                                        <div class="col-9 col-lg-10">
                                             <input type="url" class="input" id="link" name="links[]" value="{{ old('links.' . $index, $link) }}" placeholder=" "/>
                                             <div class="cut"></div>
                                             <label for="link" class="placeholder">Image Link {{ $index + 1 }}</label>
                                         </div>
-                                        <button type="button" class="col-4 btn btn-outline-danger remove-link">Remove</button>
+                                        <button type="button" class="col-3 col-lg-2 btn btn-outline-danger remove-link">Remove</button>
                                     </div>
                                 @endforeach
                             @endif
@@ -69,13 +76,14 @@
     </div>
     <div class="row">
         <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mb-5">Research Coordinator Records</h5>
+            <h5 class="text-center mb-5">Photo Gallery</h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>SL</th>
                             <th>Title</th>
+                            <th>Year</th>
                             <th>Images</th>
                             <th>Action</th>
                         </tr>
@@ -84,6 +92,7 @@
                         @foreach($photos as $key=>$photo)
                             <tr>
                                 <td>{{ ++$key }}</td>
+                                <td>{{ $photo->year }}</td>
                                 <td>{{ $photo->title }}</td>
                                 <td>
                                     @if($photo->pictures)
@@ -119,12 +128,12 @@
         $('#add-link').click(function () {
             var linkField = `
                 <div class="row input-container mb-4">
-                    <div class="col-8">
+                    <div class="col-8 col-lg-10">
                         <input type="url" class="input" name="links[]" placeholder=" "/>
                         <div class="cut"></div>
                         <label for="link" class="placeholder">Image Link</label>
                     </div>
-                    <button type="button" class="col-4 btn btn-outline-danger remove-link">Remove</button>
+                    <button type="button" class="col-4 col-lg-2 btn btn-outline-danger remove-link">Remove</button>
                 </div>
             `;
             $('.additional-links').append(linkField);

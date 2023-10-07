@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('website_sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('year');
-            $table->longtext('links')->nullable();
-            $table->json('pictures')->nullable(); // Store image filenames as JSON array
+            $table->string('picture');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('website_sliders');
     }
 };

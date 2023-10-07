@@ -27,12 +27,14 @@ class PhotoController extends Controller
     }
 
     public function store(Request $request)
-{
+    {
     $request->validate([
         'title' => 'required',
+        'year' => 'required',
         'pictures' => 'nullable|array',
         'pictures.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         'links' => 'nullable|array',
+        'links.*' => 'url', // Validate links as URLs
     ]);
 
     $pictures = [];
@@ -55,6 +57,7 @@ class PhotoController extends Controller
     // Create the main photo record with picture filenames and links
     Photo::create([
         'title' => $request->title,
+        'year' => $request->year,
         'pictures' => json_encode($pictures), // Store filenames as JSON
         'links' => json_encode($links), // Store links as JSON
     ]);
@@ -67,9 +70,11 @@ public function update(Request $request, Photo $photo)
 {
     $request->validate([
         'title' => 'required',
+        'year' => 'required',
         'pictures' => 'nullable|array',
         'pictures.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         'links' => 'nullable|array',
+        'links.*' => 'url', // Validate links as URLs
     ]);
 
     $pictures = json_decode($photo->pictures, true) ?? [];
@@ -106,6 +111,7 @@ public function update(Request $request, Photo $photo)
     // Update the main photo record with updated picture filenames and links
     $photo->update([
         'title' => $request->title,
+        'year' => $request->year,
         'pictures' => json_encode(array_values($pictures)), // Store filenames as JSON
         'links' => json_encode($links), // Store links as JSON
     ]);

@@ -50,7 +50,7 @@ class WebsiteSliderController extends Controller
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     
-        // $data = $request->only(['title',]);
+        $data = $request->only([]);
     
         if ($request->hasFile('picture')) {
             $oldPicturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);

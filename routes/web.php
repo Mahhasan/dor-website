@@ -1,7 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteSliderController;
+use App\Http\Controllers\DirectorMessageController;
+use App\Http\Controllers\MissionVisionController;
 use App\Http\Controllers\ResearchEthicsCommitteeController;
+use App\Http\Controllers\OurTeamController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ResearchCoordinatorController;
@@ -393,7 +396,10 @@ Route::get('/research-ethics-committee', [FrontendController::class, 'ResearchEt
 
 // Backend
 Route::resource('website-slider', WebsiteSliderController::class);
+Route::resource('director-message', DirectorMessageController::class);
+Route::resource('mission-vision', MissionVisionController::class);
 Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);
+// Route::resource('our-team', OurTeamController::class);
 Route::resource('resources', ResourceController::class);
 Route::resource('research-coordinator', ResearchCoordinatorController::class);
 Route::resource('collaborating-research', CollaboratingResearchController::class);

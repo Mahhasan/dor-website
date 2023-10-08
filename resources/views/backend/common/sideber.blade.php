@@ -41,8 +41,8 @@
         <div id="about" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">About Sub Menu:</h6>
-                <a class="collapse-item" href="#">Message from the Director</a>
-                <a class="collapse-item" href="#">Mission & Vision</a>
+                <a class="collapse-item" href="/director-message">Message from the Director</a>
+                <a class="collapse-item" href="/mission-vision">Mission & Vision</a>
                 <a class="collapse-item" href="/research-ethics-committees">Research Ethics Committee</a>
                 <a class="collapse-item" href="#">Our Team</a>
                 <a class="collapse-item" href="/resources">Resources</a>

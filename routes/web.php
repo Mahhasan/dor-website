@@ -38,8 +38,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Data viw using API from SmartEdu repository 
-Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article']);
-Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'scopus_article_details']);
+Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article'])->name('scopus.article');
+Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'scopus_article_details'])->name('scopus.article.details');
 
 Route::get('/research-coordinator', function () {
     return view('frontend.research-coordinator');
@@ -399,7 +399,7 @@ Route::resource('website-slider', WebsiteSliderController::class);
 Route::resource('director-message', DirectorMessageController::class);
 Route::resource('mission-vision', MissionVisionController::class);
 Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);
-// Route::resource('our-team', OurTeamController::class);
+Route::resource('our-team', OurTeamController::class);
 Route::resource('resources', ResourceController::class);
 Route::resource('research-coordinator', ResearchCoordinatorController::class);
 Route::resource('collaborating-research', CollaboratingResearchController::class);
@@ -411,3 +411,7 @@ Route::resource('ranking', RankingController::class);
 Route::resource('events', EventController::class);
 Route::resource('photos', PhotoController::class);
 Route::resource('videos', VideoController::class);
+
+// Data viw using API from SmartEdu repository 
+Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'admin_scopus_article'])->name('admin.scopus.article');
+Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'admin_scopus_article_details'])->name('admin.scopus.article.details');

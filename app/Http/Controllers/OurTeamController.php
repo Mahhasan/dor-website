@@ -8,79 +8,90 @@ use Illuminate\Support\Facades\Session;
 
 class OurTeamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $ourTeams = OurTeam::all();
+        return view('backend.our_team', compact('ourTeams'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        // Define an empty researchCoordinator object
+        $ourTeam = new OurTeam();
+        return view('backend.our_team', compact('ourTeam'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'designation' => 'required',
+            'level' => 'required',
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imageName = time() . '.' . $request->picture->extension();
+        $request->picture->move(public_path('uploads/our_team'), $imageName);
+
+        OurTeam::create([
+            'name' => $request->name,
+            'designation' => $request->designation,
+            'email' => $request->email,
+            'cell' => $request->cell,
+            'department' => $request->department,
+            'faculty' => $request->faculty,
+            'level' => $request->level,
+            'picture' => $imageName,
+        ]);
+
+        Session::flash('success', 'Record created successfully.');
+        return redirect()->route('our-team.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\OurTeam  $ourTeam
-     * @return \Illuminate\Http\Response
-     */
-    public function show(OurTeam $ourTeam)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\OurTeam  $ourTeam
-     * @return \Illuminate\Http\Response
-     */
     public function edit(OurTeam $ourTeam)
     {
-        //
+        $ourTeams = OurTeam::all();
+        return view('backend.our_team', compact('ourTeam', 'ourTeams'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OurTeam  $ourTeam
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, OurTeam $ourTeam)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'designation' => 'required',
+            'level' => 'required',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->only(['name', 'designation', 'email', 'cell', 'department', 'faculty', 'level']);
+
+        if ($request->hasFile('picture')) {
+            $oldPicturePath = public_path('uploads/our_team/' . $ourTeam->picture);
+            if (file_exists($oldPicturePath)) {
+                unlink($oldPicturePath);
+            }
+
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/our_team'), $imageName);
+            $data['picture'] = $imageName;
+        }
+
+        $ourTeam->update($data);
+
+        Session::flash('success', 'Record updated successfully.');
+        return redirect()->route('our-team.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\OurTeam  $ourTeam
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(OurTeam $ourTeam)
     {
-        //
+        // Delete the associated picture file
+        $picturePath = public_path('uploads/our_team/' . $ourTeam->picture);
+        if (file_exists($picturePath)) {
+            unlink($picturePath);
+        }
+
+        $ourTeam->delete();
+
+        return redirect()->route('our-team.index')->with('success', 'Record deleted successfully');
     }
 }

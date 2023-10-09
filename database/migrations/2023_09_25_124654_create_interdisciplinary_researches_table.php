@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('discipline');
             $table->string('lab_name');
-            $table->string('link');
-            $table->string('picture');
+            $table->string('link')->nullable();
+            $table->json('picture')->nullable();
             $table->timestamps();
         });
     }

@@ -44,7 +44,7 @@
                 <a class="collapse-item" href="/director-message">Message from the Director</a>
                 <a class="collapse-item" href="/mission-vision">Mission & Vision</a>
                 <a class="collapse-item" href="/research-ethics-committees">Research Ethics Committee</a>
-                <a class="collapse-item" href="#">Our Team</a>
+                <a class="collapse-item" href="/our-team">Our Team</a>
                 <a class="collapse-item" href="/resources">Resources</a>
             </div>
         </div>

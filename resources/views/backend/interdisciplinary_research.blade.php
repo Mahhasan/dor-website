@@ -45,10 +45,12 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="form-control border-0" id="picture[]" name="picture[]" accept="image/*" multiple>
                         @if(isset($interdisciplinaryResearch) && $interdisciplinaryResearch->picture)
-                            <div class="float-right">
-                                Existing picture:
-                                @foreach(explode(',', $interdisciplinaryResearch->picture) as $picture)
-                                    <a href="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" target="_blank">{{ $picture }}</a>
+                            <div class="row existing-pictures float-right mt-3 ml-1 mr-1">
+                                @foreach(json_decode($interdisciplinaryResearch->picture, true) as $picture)
+                                    <div class="existing-picture mr-2 mb-2">
+                                        <input type="checkbox" name="deleted_pictures[]" value="{{ $picture }}">
+                                        <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="Image" height="75px" width="100">
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
@@ -88,7 +90,7 @@
                                 <td>{{ $interdisciplinaryResearch->link }}</td>
                                 <td>
                                     @if($interdisciplinaryResearch->picture)
-                                        @foreach(explode(',', $interdisciplinaryResearch->picture) as $picture)
+                                        @foreach(json_decode($interdisciplinaryResearch->picture, true) as $picture)
                                             <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $interdisciplinaryResearch->name }} Image" width="100">
                                         @endforeach
                                     @else

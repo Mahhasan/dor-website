@@ -63,7 +63,7 @@
                                             <td style="text-transform: uppercase;">{{$row->faculty}}</td>
                                             <td style="text-transform: uppercase;">{{$row->department}}</td>
                                             <td>{{$row->publication_year}}</td>
-                                            <td><a href="/scopus-article/{{$row->id}}" target="_blank">Details</a></td>
+                                            <td><a href="{{ route('scopus.article.details', ['id' => $row->id]) }}" target="_blank">Details</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

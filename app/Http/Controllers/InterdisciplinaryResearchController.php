@@ -27,15 +27,17 @@ class InterdisciplinaryResearchController extends Controller
         'discipline' => 'required',
         'lab_name' => 'required',
         'link' => 'nullable',
-        'picture.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048',
+        'picture' => 'nullable|array',
+        'picture.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
     $pictures = [];
 
+    // Upload pictures and store their filenames
     if ($request->hasFile('picture')) {
-        foreach ($request->file('picture') as $picture) {
-            $imageName = time() . '_' . uniqid() . '.' . $picture->extension();
-            $picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
+        foreach ($request->file('picture') as $pictureFile) {
+            $imageName = time() . '_' . $pictureFile->getClientOriginalName();
+            $pictureFile->move(public_path('uploads/interdisciplinary_research'), $imageName);
             $pictures[] = $imageName;
         }
     }
@@ -44,7 +46,7 @@ class InterdisciplinaryResearchController extends Controller
         'discipline' => $request->discipline,
         'lab_name' => $request->lab_name,
         'link' => $request->link,
-        'picture' => implode(',', $pictures),
+        'picture' => json_encode($pictures), // Store filenames as JSON
     ]);
 
     Session::flash('success', 'Record created successfully.');
@@ -57,58 +59,70 @@ class InterdisciplinaryResearchController extends Controller
         return view('backend.interdisciplinary_research', compact('interdisciplinaryResearch', 'interdisciplinaryResearches'));
     }
 
-public function update(Request $request, InterdisciplinaryResearch $interdisciplinaryResearch)
-{
-    $request->validate([
-        'discipline' => 'required',
-        'lab_name' => 'required',
-        'link' => 'nullable',
-        'picture.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048',
-    ]);
+    public function update(Request $request, InterdisciplinaryResearch $interdisciplinaryResearch)
+    {
+        $request->validate([
+            'discipline' => 'required',
+            'lab_name' => 'required',
+            'link' => 'nullable',
+            'picture' => 'nullable|array',
+            'picture.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $data = $request->only(['discipline', 'lab_name', 'link']);
-    $pictures = [];
+        $data = $request->only(['discipline', 'lab_name', 'link']);
+        $pictures = json_decode($interdisciplinaryResearch->picture, true) ?? [];
 
-    if ($request->hasFile('picture')) {
-        // Delete existing pictures
-        $existingPictures = explode(',', $interdisciplinaryResearch->picture);
-        foreach ($existingPictures as $existingPicture) {
-            $oldPicturePath = public_path('uploads/interdisciplinary_research/' . $existingPicture);
-            if (file_exists($oldPicturePath) && is_file($oldPicturePath)) {
-                unlink($oldPicturePath);
+        // Upload new pictures and merge them with existing ones
+        if ($request->hasFile('picture')) {
+            foreach ($request->file('picture') as $pictureFile) {
+                $imageName = time() . '_' . $pictureFile->getClientOriginalName();
+                $pictureFile->move(public_path('uploads/interdisciplinary_research'), $imageName);
+                $pictures[] = $imageName;
             }
         }
 
-        // Upload new pictures
-        foreach ($request->file('picture') as $picture) {
-            $imageName = time() . '_' . uniqid() . '.' . $picture->extension();
-            $picture->move(public_path('uploads/interdisciplinary_research'), $imageName);
-            $pictures[] = $imageName;
+        // Handle deleted pictures
+        if ($request->has('deleted_pictures')) {
+            foreach ($request->input('deleted_pictures') as $deletedPicture) {
+                $picturePath = public_path('uploads/interdisciplinary_research/' . $deletedPicture);
+                if (file_exists($picturePath)) {
+                    unlink($picturePath);
+                }
+                // Remove the deleted picture from the $pictures array
+                $key = array_search($deletedPicture, $pictures);
+                if ($key !== false) {
+                    unset($pictures[$key]);
+                }
+            }
         }
-    } else {
-        // No new pictures uploaded, keep the existing ones
-        $pictures = explode(',', $interdisciplinaryResearch->picture);
+
+        $data['picture'] = json_encode($pictures);
+
+        $interdisciplinaryResearch->update($data);
+
+        Session::flash('success', 'Record updated successfully.');
+        return redirect()->route('interdisciplinary-research.index');
     }
-
-    $data['picture'] = implode(',', $pictures);
-
-    $interdisciplinaryResearch->update($data);
-
-    Session::flash('success', 'Record updated successfully.');
-    return redirect()->route('interdisciplinary-research.index');
-}
 
 
     public function destroy(InterdisciplinaryResearch $interdisciplinaryResearch)
     {
-        // Delete the associated picture file
-        $picturePath = public_path('uploads/interdisciplinary_research/' . $interdisciplinaryResearch->picture);
-        if (file_exists($picturePath)) {
-            unlink($picturePath);
+    // Decode the JSON data and get the picture filenames
+    $pictures = json_decode($interdisciplinaryResearch->picture, true);
+
+    if (is_array($pictures)) {
+        // Delete associated pictures and their files
+        foreach ($pictures as $picture) {
+            $picturePath = public_path('uploads/interdisciplinary_research/' . $picture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
         }
-
-        $interdisciplinaryResearch->delete();
-
-        return redirect()->route('interdisciplinary-research.index')->with('success', 'Record deleted successfully');
     }
+
+    $interdisciplinaryResearch->delete();
+
+    return redirect()->route('interdisciplinary-research.index')->with('success', 'Record deleted successfully');
+    }
+
 }

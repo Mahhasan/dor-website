@@ -25,12 +25,12 @@
             @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="form-group mb-4">
+                    <div class="form-group col-sm-12 mb-4">
                         <textarea id="file-picker" name="mission" value="{{ old('mission', isset($missionVision) ? $missionVision->mission : '') }}">{{ old('mission', isset($missionVision) ? $missionVision->mission : '') }}</textarea>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group mb-4">
+                    <div class="form-group col-sm-12 mb-4">
                         <textarea id="file-picker" name="vision" value="{{ old('vision', isset($missionVision) ? $missionVision->vision : '') }}">{{ old('vision', isset($missionVision) ? $missionVision->vision : '') }}</textarea>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                     @if(isset($missionVisions))
                         @foreach($missionVisions as $key=>$missionVision)
                             <tr>
-                                <td>{{ $missionVision->mission }}</td>
-                                <td>{{ $missionVision->vision }}</td>
+                                <td>{!! $missionVision->mission !!}</td>
+                                <td>{!! $missionVision->vision !!}</td>
                                 <td>
                                     <a href="{{ route('mission-vision.edit', $missionVision->id) }}" class="btn text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
                                     <form action="{{ route('mission-vision.destroy', $missionVision->id) }}" method="POST" style="display: inline;">

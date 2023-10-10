@@ -94,7 +94,7 @@
           Publications
           </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
-                  <li><a class="dropdown-item" href="{{ route('scopus.article') }}">Scopus/ISI Article</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/scopus-article') }}">Scopus/ISI Article</a></li>
                   <li><a class="dropdown-item" href="{{ url('/journals') }}">DIU Journals</a></li>
             </ul>
         </li>

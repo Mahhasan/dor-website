@@ -39,7 +39,11 @@
                             </div><hr>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <table id="example" class="table table-striped" style="width:100%">
+                                @if(auth()->check() && auth()->user()->isAdmin())
+                                    <table id="example" class="table table-striped" style="width:100%">
+                                @else
+                                    <table id="dataTable-example" class="table table-striped" style="width:100%">
+                                @endif
                                     <thead>
                                         <tr>
                                             <th>Title</th>
@@ -58,12 +62,11 @@
                                                 @foreach($row->co_authors as $value)
                                                 {{$value->name}},
                                                 @endforeach
-
                                             </td>
                                             <td style="text-transform: uppercase;">{{$row->faculty}}</td>
                                             <td style="text-transform: uppercase;">{{$row->department}}</td>
                                             <td>{{$row->publication_year}}</td>
-                                            <td><a href="{{ route('scopus.article.details', ['id' => $row->id]) }}" target="_blank">Details</a></td>
+                                            <td><a href="/scopus-article/{{$row->id}}" target="_blank">Details</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -96,19 +99,20 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
     
 
-    <!-- <script>
-       new DataTable('#example');
-    </script> -->
+    <script>
+       new DataTable('#dataTable-example');
+    </script>
+
     <script>
        $(document).ready(function() {
-    var table = $('#example').DataTable( {
-        lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
-    } );
- 
-    table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-} );
+        var table = $('#example').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        } );
+    
+        table.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+        } );
     </script>
 </body>
 

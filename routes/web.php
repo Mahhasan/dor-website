@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteSliderController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\DirectorMessageController;
 use App\Http\Controllers\MissionVisionController;
 use App\Http\Controllers\ResearchEthicsCommitteeController;
@@ -38,8 +39,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Data viw using API from SmartEdu repository 
-Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article'])->name('scopus.article');
-Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'scopus_article_details'])->name('scopus.article.details');
+Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article']);
+Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'scopus_article_details']);
 
 Route::get('/research-coordinator', function () {
     return view('frontend.research-coordinator');
@@ -411,7 +412,3 @@ Route::resource('ranking', RankingController::class);
 Route::resource('events', EventController::class);
 Route::resource('photos', PhotoController::class);
 Route::resource('videos', VideoController::class);
-
-// Data viw using API from SmartEdu repository 
-Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'admin_scopus_article'])->name('admin.scopus.article');
-Route::get('/scopus-article/{id}', [App\Http\Controllers\DataController::class, 'admin_scopus_article_details'])->name('admin.scopus.article.details');

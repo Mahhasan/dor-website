@@ -26,16 +26,19 @@ class WebsiteSliderController extends Controller
         $request->validate([
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        try{
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/website_slider'), $imageName);
 
-        $imageName = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('uploads/website_slider'), $imageName);
-
-        WebsiteSlider::create([
-            'picture' => $imageName,
-        ]);
-
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('website-slider.index');
+            WebsiteSlider::create([
+                'picture' => $imageName,
+            ]);
+            return redirect()->route('website-slider.index')->with('success', "New slider image added successfully."); 
+        }
+        catch(\Exception $e) {
+            // $msg = $e->getMessage();
+            return redirect('website-slider.index')->with('fail', "Record created Failed! Please try again"); 
+        } 
     }
 
     public function edit(WebsiteSlider $websiteSlider)
@@ -51,22 +54,25 @@ class WebsiteSliderController extends Controller
         ];
     
         $data = $request->only([]);
-    
-        if ($request->hasFile('picture')) {
-            $oldPicturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
-            if (file_exists($oldPicturePath)) {
-                unlink($oldPicturePath);
+        try{
+            if ($request->hasFile('picture')) {
+                $oldPicturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
+                if (file_exists($oldPicturePath)) {
+                    unlink($oldPicturePath);
+                }
+        
+                $imageName = time() . '.' . $request->picture->extension();
+                $request->picture->move(public_path('uploads/website_slider'), $imageName);
+                $data['picture'] = $imageName;
             }
     
-            $imageName = time() . '.' . $request->picture->extension();
-            $request->picture->move(public_path('uploads/website_slider'), $imageName);
-            $data['picture'] = $imageName;
+            $websiteSlider->update($data);
+        
+            return redirect()->route('website-slider.index')->with('success', "Slider image updated successfully."); 
         }
-    
-        $websiteSlider->update($data);
-    
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('website-slider.index');
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed! Please try again"); 
+        } 
     }
     
 

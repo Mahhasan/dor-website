@@ -25,6 +25,11 @@
     <!-- for tinymce editor -->
     <script src="https://cdn.tiny.cloud/1/pplezfsut9xqvzw1wnk319ah39r5c22kagc1f5992j2ql3om/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+    <!-- toastr message cdn -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
+
+
     <!-- Custom CSS -->
     <link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
 
@@ -113,6 +118,8 @@
     <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
 
+    <!-- toastr message cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- JavaScript to store and retrieve the active tab using cookies -->
     <script>
         $(document).ready(function () {
@@ -155,5 +162,30 @@
             $('#dataTableFHSS').DataTable();
         });
     </script> -->
+    @if(Session::has('success'))
+    <script type="text/javascript">
+        $(function() {
+            toastr.success("{{ Session::get('success') }}");
+        })
+    </script>
+    @elseif(Session::has('fail'))
+    <script type="text/javascript">
+        $(function() {
+            toastr.danger("{{ Session::get('fail') }}");
+        })
+    </script>
+    @elseif(Session::has('warning'))
+    <script type="text/javascript">
+        $(function() {
+            toastr.warning("{{ Session::get('warning') }}");
+        })
+    </script>
+    @elseif(Session::has('error'))
+    <script type="text/javascript">
+        $(function() {
+            toastr.error("{{ Session::get('error') }}");
+        })
+    </script>
+    @endif
 </body>
 </html>

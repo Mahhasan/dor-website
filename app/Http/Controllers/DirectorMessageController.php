@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DirectorMessage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class DirectorMessageController extends Controller
 {
@@ -28,18 +27,22 @@ class DirectorMessageController extends Controller
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'message' => 'required',
         ]);
+        try{
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/director_message'), $imageName);
 
-        $imageName = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('uploads/director_message'), $imageName);
+            DirectorMessage::create([
+                'title' => $request->title,
+                'message' => $request->message,
+                'picture' => $imageName,
+            ]);
 
-        DirectorMessage::create([
-            'title' => $request->title,
-            'message' => $request->message,
-            'picture' => $imageName,
-        ]);
-
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('director-message.index');
+            Session::flash('success', 'Record created successfully.');
+            return redirect()->route('director-message.index')->with('success', 'Record created successfully.'); 
+        }
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to create record! Please try again"); 
+        } 
     }
 
     public function edit(DirectorMessage $directorMessage)
@@ -57,35 +60,44 @@ class DirectorMessageController extends Controller
         ];
     
         $data = $request->only(['title', 'message']);
-    
-        if ($request->hasFile('picture')) {
-            $oldPicturePath = public_path('uploads/director_message/' . $directorMessage->picture);
-            if (file_exists($oldPicturePath)) {
-                unlink($oldPicturePath);
+
+        try{
+            if ($request->hasFile('picture')) {
+                $oldPicturePath = public_path('uploads/director_message/' . $directorMessage->picture);
+                if (file_exists($oldPicturePath)) {
+                    unlink($oldPicturePath);
+                }
+        
+                $imageName = time() . '.' . $request->picture->extension();
+                $request->picture->move(public_path('uploads/director_message'), $imageName);
+                $data['picture'] = $imageName;
             }
-    
-            $imageName = time() . '.' . $request->picture->extension();
-            $request->picture->move(public_path('uploads/director_message'), $imageName);
-            $data['picture'] = $imageName;
+            $directorMessage->update($data);
+
+            return redirect()->route('director-message.index')->with('success', 'Record updated successfully.');
         }
-    
-        $directorMessage->update($data);
-    
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('director-message.index');
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to update record! Please try again"); 
+        } 
     }
     
 
     public function destroy(DirectorMessage $directorMessage)
     {
         // Delete the associated picture file
-        $picturePath = public_path('uploads/director_message/' . $directorMessage->picture);
-        if (file_exists($picturePath)) {
-            unlink($picturePath);
+        try{
+            $picturePath = public_path('uploads/director_message/' . $directorMessage->picture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
+
+            $directorMessage->delete();
+
+            return redirect()->route('director-message.index')->with('success', 'Record deleted successfully');
         }
-
-        $directorMessage->delete();
-
-        return redirect()->route('director-message.index')->with('success', 'Record deleted successfully');
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to delete record! Please try again"); 
+        } 
     }
+
 }

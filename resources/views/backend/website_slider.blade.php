@@ -9,20 +9,21 @@
                 <h6>Edit Slider Image</h6>
                 <form method="POST" action="{{ route('website-slider.update', $websiteSlider->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
-
             @else
-                <h6>Create New Slider Image</h6>
+                <h6>Add New Slider Image</h6>
                 <form method="POST" action="{{ route('website-slider.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
                 <div class="row mt-5">
                     <div class="input-container col-sm-12 mb-4">
-                        <input type="file" class="form-control border-0" id="picture" name="picture" accept="image/*" {{ isset($websiteSlider) ? '' : 'required' }}>
+                        <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" {{ isset($websiteSlider) ? '' : 'required' }} placeholder=" ">
                         @if(isset($websiteSlider) && $websiteSlider->picture)
                             <div class="mr-2 mt-3 float-right">
                                 <img src="{{ asset('uploads/website_slider/' . $websiteSlider->picture) }}" alt="Image" height="auto" width="200">
                             </div>
                         @endif   
+                        <div class="cut"></div>
+                        <label for="picture" class="placeholder">Slider Image</label>
                     </div>
                 </div>
                 @if(isset($websiteSlider))
@@ -41,6 +42,10 @@
     </div>
 
     <div class="row mb-5">
+        <!-- Initialize the slider number -->
+        @php
+            $sliderNumber = 1;
+        @endphp
         @foreach($websiteSliders as $websiteSlider)
             <div class="col-md-6 mb-4 mx-auto">
                 <div class="card">
@@ -49,14 +54,16 @@
                     @else
                         <img src="{{ asset('path_to_default_image.jpg') }}" class="card-img-top" alt="No Image Available">
                     @endif
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <div class="text-center">
-                            <a href="{{ route('website-slider.edit', $websiteSlider->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="{{ route('website-slider.edit', $websiteSlider->id) }}" class="btn text-primary"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('website-slider.destroy', $websiteSlider->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i> Delete</button>
+                                <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
                             </form>
+                            <!-- Increment slider number for the next iteration -->
+                            <small class="float-right pt-2 pr-2">Slider-{{ $sliderNumber++ }}</small>
                         </div>
                     </div>
                 </div>

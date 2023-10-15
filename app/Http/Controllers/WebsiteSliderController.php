@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\WebsiteSlider;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class WebsiteSliderController extends Controller
@@ -37,7 +36,7 @@ class WebsiteSliderController extends Controller
         }
         catch(\Exception $e) {
             // $msg = $e->getMessage();
-            return redirect('website-slider.index')->with('fail', "Record created Failed! Please try again"); 
+            return redirect('website-slider.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -71,21 +70,26 @@ class WebsiteSliderController extends Controller
             return redirect()->route('website-slider.index')->with('success', "Slider image updated successfully."); 
         }
         catch(\Exception) {
-            return redirect('website-slider.index')->with('fail', "Failed! Please try again"); 
+            return redirect('website-slider.index')->with('fail', "Failed to update record! Please try again"); 
         } 
     }
     
 
     public function destroy(WebsiteSlider $websiteSlider)
     {
-        // Delete the associated picture file
-        $picturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
-        if (file_exists($picturePath)) {
-            unlink($picturePath);
+        // Delete the associated picture file\
+        try{
+            $picturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
+
+            $websiteSlider->delete();
+
+            return redirect()->route('website-slider.index')->with('success', 'Slider image deleted successfully');
         }
-
-        $websiteSlider->delete();
-
-        return redirect()->route('website-slider.index')->with('success', 'Record deleted successfully');
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to delete record! Please try again"); 
+        } 
     }
 }

@@ -74,7 +74,7 @@
                             <option value="8" {{ (isset($ourTeam) && $ourTeam->level == 8) ? 'selected' : '' }}>8 (Officer/Others)</option>
                         </select>
                         <div class="cut"></div>
-                        <label for="level" class="placeholder">Level</label>
+                        <label for="level" class="placeholder">Priority Level</label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="form-control border-0" id="picture" name="picture" accept="image/*" {{ isset($ourTeam) && $ourTeam->picture ? '' : 'required' }}>

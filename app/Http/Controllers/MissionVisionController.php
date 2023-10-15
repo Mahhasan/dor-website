@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\MissionVision;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class MissionVisionController extends Controller
 {
@@ -27,10 +26,13 @@ class MissionVisionController extends Controller
             'mission' => 'required',
             'vision' => 'required',
         ]);
-        
-        MissionVision::create($request->all());
-        return redirect()->route('mission-vision.index')
-            ->with('success', 'Record created successfully');
+        try{    
+            MissionVision::create($request->all());
+            return redirect()->route('mission-vision.index')->with('success', 'Record created successfully');
+        }
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to create record! Please try again"); 
+        } 
     }
 
     public function edit(MissionVision $missionVision)
@@ -45,18 +47,25 @@ class MissionVisionController extends Controller
             'mission' => 'required',
             'vision' => 'required',
         ]);
-    
-        $missionVision->update($request->all());
-        return redirect()->route('mission-vision.index')
-            ->with('success', 'Record updated successfully');
+        try{
+            $missionVision->update($request->all());
+            return redirect()->route('mission-vision.index')->with('success', 'Record updated successfully');
+        }
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to update record! Please try again"); 
+        } 
     }
 
     public function destroy(MissionVision $missionVision)
     {
         // Delete the database record
-        $missionVision->delete();
+        try{
+            $missionVision->delete();
 
-        return redirect()->route('mission-vision.index')
-            ->with('success', 'Record and file deleted successfully');
+            return redirect()->route('mission-vision.index')->with('success', 'Record deleted successfully');
+        }
+        catch(\Exception) {
+            return redirect('website-slider.index')->with('fail', "Failed to delete record! Please try again"); 
+        } 
     }
 }

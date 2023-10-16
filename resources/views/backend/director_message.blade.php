@@ -28,7 +28,7 @@
                             </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Image</label>
+                        <label for="picture" class="placeholder">Image <small class="font-italic">(size: 150 x 150 px)</small></label>
                     </div>
                 </div>
                 <div class="row">
@@ -39,10 +39,10 @@
                     </div>
                 </div>
                 @if(isset($directorMessage))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('director-message.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('director-message.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>

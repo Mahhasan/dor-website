@@ -1,30 +1,16 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <!-- Display Success and Error Messages -->
-    @if (Session::has('success'))
-        <div class="alert alert-success mt-3">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-
-    @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">
-            {{ Session::get('error') }}
-        </div>
-    @endif
-
-    <!-- Display Create/Edit Form -->
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5" >
             <h5>Research Ethics Committee</h5>
             @if(isset($researchEthicsCommittee))
-            <h6>Edit <span class="text-success font-weight-bold">{{$researchEthicsCommittee->name}}'s</span> Record</h6>
-            <form method="POST" action="{{ route('research-ethics-committees.update', $researchEthicsCommittee->id) }}">
+                <h6>Edit <span class="text-success font-weight-bold">{{$researchEthicsCommittee->name}}'s</span> Record</h6>
+                <form method="POST" action="{{ route('research-ethics-committees.update', $researchEthicsCommittee->id) }}">
                 @method('PATCH')
             @else
-            <h6>Create New Record</h6>
-            <form method="POST" action="{{ route('research-ethics-committees.store') }}">
+                <h6>Create New Record</h6>
+                <form method="POST" action="{{ route('research-ethics-committees.store') }}">
             @endif
                 @csrf
                 <div class="row mt-5">
@@ -36,7 +22,7 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="designation" name="designation" value="{{ old('designation', isset($researchEthicsCommittee) ? $researchEthicsCommittee->designation : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="designation" class="placeholder">Designation</label>
+                        <label for="designation" class="placeholder">Designation & Department</label>
                     </div>
                 </div>
                 <div class="row">
@@ -58,10 +44,10 @@
                     </div>
                 </div>
                 @if(isset($researchEthicsCommittee))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('research-ethics-committees.index') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('research-ethics-committees.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>
@@ -69,8 +55,8 @@
     <!-- Tabs -->
     <section id="tabs">
         <div class="row">
-            <div class="col-xs-12 mx-auto pt-5 pb-5">
-                <h5 class="text-center mb-5">Research Ethics Committee Records</h5>
+            <div class="mx-auto pt-5 pb-5">
+                <h5 class="text-center mt-5 mb-5">Research Ethics Committee Records</h5>
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-fsit-tab" data-toggle="tab" href="#nav-fsit" role="tab" aria-controls="nav-fsit" aria-selected="true">FSIT</a>
@@ -88,7 +74,7 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Name</th>
-                                        <th>Designation</th>
+                                        <th>Designation & Department</th>
                                         <th>Faculty Name</th>
                                         <th>Position</th>
                                         <th>Action</th>

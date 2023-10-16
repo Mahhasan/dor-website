@@ -41,7 +41,7 @@ class DirectorMessageController extends Controller
             return redirect()->route('director-message.index')->with('success', 'Record created successfully.'); 
         }
         catch(\Exception) {
-            return redirect('website-slider.index')->with('fail', "Failed to create record! Please try again"); 
+            return redirect('director-message.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -77,7 +77,7 @@ class DirectorMessageController extends Controller
             return redirect()->route('director-message.index')->with('success', 'Record updated successfully.');
         }
         catch(\Exception) {
-            return redirect('website-slider.index')->with('fail', "Failed to update record! Please try again"); 
+            return redirect('director-message.index')->with('fail', "Failed to update record! Please try again"); 
         } 
     }
     
@@ -96,7 +96,7 @@ class DirectorMessageController extends Controller
             return redirect()->route('director-message.index')->with('success', 'Record deleted successfully');
         }
         catch(\Exception) {
-            return redirect('website-slider.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('director-message.index')->with('fail', "Failed to delete record! Please try again"); 
         } 
     }
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Resource;
-use Illuminate\Support\Facades\Session;
 class ResourceController extends Controller
 {
     public function index()
@@ -26,17 +25,20 @@ class ResourceController extends Controller
             'topic' => 'required',
             'document' => 'required',
         ]);
+        try{
+            $fileName = time().'.'.$request->document->extension();  
+            $request->document->move(public_path('uploads/resource'), $fileName);
+            
+            Resource::create([
+                'topic' => $request->topic,
+                'document' => $fileName,
+            ]);
 
-        $fileName = time().'.'.$request->document->extension();  
-        $request->document->move(public_path('uploads/resource'), $fileName);
-        
-        Resource::create([
-            'topic' => $request->topic,
-            'document' => $fileName,
-        ]);
-
-        return redirect()->route('resources.index')
-            ->with('success', 'Record created successfully');
+            return redirect()->route('resources.index')->with('success', 'Record created successfully');
+        }
+        catch(\Exception) {
+            return redirect('resources.index')->with('fail', "Failed to create record! Please try again"); 
+        }
     }
 
     public function edit(Resource $resource)
@@ -51,25 +53,28 @@ class ResourceController extends Controller
             'topic' => 'required',
             'document' => 'nullable',
         ]);
-    
-        // Check if a new file has been uploaded
-        if ($request->hasFile('document')) {
-            // Delete the old file if it exists
-            if ($resource->document) {
-                unlink(public_path('uploads/resource/' . $resource->document));
-            }
-    
-            // Upload the new file
-            $fileName = time().'.'.$request->document->extension();  
-            $request->document->move(public_path('uploads/resource'), $fileName);
-            $resource->document = $fileName;
-        }
-    
-        $resource->topic = $request->topic;
-        $resource->save();
+        try{
+            // Check if a new file has been uploaded
+            if ($request->hasFile('document')) {
+                // Delete the old file if it exists
+                if ($resource->document) {
+                    unlink(public_path('uploads/resource/' . $resource->document));
+                }
         
-        return redirect()->route('resources.index')
-            ->with('success', 'Record updated successfully');
+                // Upload the new file
+                $fileName = time().'.'.$request->document->extension();  
+                $request->document->move(public_path('uploads/resource'), $fileName);
+                $resource->document = $fileName;
+            }
+        
+            $resource->topic = $request->topic;
+            $resource->save();
+            
+            return redirect()->route('resources.index')->with('success', 'Record updated successfully');
+        }
+        catch(\Exception) {
+            return redirect('resources.index')->with('fail', "Failed to update record! Please try again"); 
+        }
     }
 
     public function destroy(Resource $resource)
@@ -81,11 +86,14 @@ class ResourceController extends Controller
         if (file_exists(public_path('uploads/resource/' . $fileName))) {
             unlink(public_path('uploads/resource/' . $fileName));
         }
+        try{
+            // Delete the database record
+            $resource->delete();
 
-        // Delete the database record
-        $resource->delete();
-
-        return redirect()->route('resources.index')
-            ->with('success', 'Record and file deleted successfully');
+            return redirect()->route('resources.index')->with('success', 'Record deleted successfully');
+        }
+        catch(\Exception) {
+            return redirect('resources.index')->with('fail', "Failed to delete record! Please try again"); 
+        }
     }
 }

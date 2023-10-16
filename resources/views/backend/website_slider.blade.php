@@ -23,14 +23,14 @@
                             </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Slider Image</label>
+                        <label for="picture" class="placeholder">Slider Image <small class="font-italic">(size: 1920 x 650 px)</small></label>
                     </div>
                 </div>
                 @if(isset($websiteSlider))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('website-slider.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('website-slider.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>

@@ -35,15 +35,15 @@
     width: 100%;
   }
   .custom-form .cut {
-    /* background-color: #15172b; */
+    background-color: #f0f8ff;
     border-radius: 10px;
     height: 20px;
-    left: 20px;
+    left: 28px;
     position: absolute;
     top: -20px;
     transform: translateY(0);
     transition: transform 200ms;
-    width: 76px;
+    width: 90px;
   }
   .custom-form .input:focus ~ .cut,
   .custom-form .input:not(:placeholder-shown) ~ .cut {

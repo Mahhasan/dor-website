@@ -25,7 +25,7 @@
                     </div>
                     @if(isset($missionVision))
                         <button type="submit" class="btn btn-primary">Save Changes</button>
-                        <a href="{{ route('mission-vision.index') }}" class="btn btn-danger">Cancel</a>
+                        <a href="{{ route('mission-vision.index') }}" class="btn btn-secondary">Cancel</a>
                     @else
                         <button type="submit" class="btn btn-primary">Submit</button>
                     @endif

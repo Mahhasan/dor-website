@@ -68,7 +68,7 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" placeholder=" "{{ isset($ourTeam) ? '' : 'required' }}>
                         @if(isset($ourTeam) && $ourTeam->picture)
-                            <div class="mr-2 mt-3 float-right">
+                            <div class="mt-3 float-right">
                                 <img src="{{ asset('uploads/our_team/' . $ourTeam->picture) }}" alt="Image" height="auto" width="200">
                             </div>
                         @endif
@@ -86,7 +86,6 @@
         </div>
     </div>
 
-    <div class="container">
     <div class="mx-auto mt-5 mb-5">
         <h5 class="text-center pt-5">Our Team</h5>
         <hr>
@@ -130,7 +129,5 @@
             @endif
         @endfor
     </div>
-</div>
-
 </div>
 @endsection

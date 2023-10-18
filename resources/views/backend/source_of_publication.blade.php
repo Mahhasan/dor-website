@@ -1,20 +1,9 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    @if (Session::has('success'))
-        <div class="alert alert-success mt-3">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-
-    @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">
-            {{ Session::get('error') }}
-        </div>
-    @endif
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Source of Publication</h5>
+            <h5>Publication Source</h5>
             @if(isset($sourceOfPublication))
             <h6>Edit Record</h6>
             <form method="POST" action="{{ route('source-of-publication.update', $sourceOfPublication->id) }}">
@@ -27,15 +16,15 @@
                 <div class="row mt-5">
                     <div class="input-container mb-4">
                         <input type="text" class="input" id="source" name="source" value="{{ old('source', isset($sourceOfPublication) ? $sourceOfPublication->source : '') }}" required placeholder=" "/>
-                        <div class="cut"></div>
+                        <div class="cut" style="width: 144px"></div>
                         <label for="source" class="placeholder">Source of Publication</label>
                     </div>
                 </div>
                 @if(isset($sourceOfPublication))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('source-of-publication.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('source-of-publication.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>

@@ -21,11 +21,12 @@ class ResourceController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'topic' => 'required',
-            'document' => 'required',
-        ]);
         try{
+            $request->validate([
+                'topic' => 'required',
+                'document' => 'required|file|mimes:pdf,jpg,jpeg,png,doc,docx|max:3072'
+
+            ]);
             $fileName = time().'.'.$request->document->extension();  
             $request->document->move(public_path('uploads/resource'), $fileName);
             
@@ -35,6 +36,9 @@ class ResourceController extends Controller
             ]);
 
             return redirect()->route('resources.index')->with('success', 'Record created successfully');
+        }
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('resources.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch(\Exception) {
             return redirect('resources.index')->with('fail', "Failed to create record! Please try again"); 
@@ -48,45 +52,48 @@ class ResourceController extends Controller
     }
 
     public function update(Request $request, Resource $resource)
-    {
+{
+    try {
         $request->validate([
             'topic' => 'required',
-            'document' => 'nullable',
+            'document' => 'nullable|file|mimes:pdf,jpg,jpeg,png,doc,docx|max:3072',
         ]);
-        try{
-            // Check if a new file has been uploaded
-            if ($request->hasFile('document')) {
-                // Delete the old file if it exists
-                if ($resource->document) {
+
+        if ($request->hasFile('document')) {
+            // Check if there is an existing document
+            if ($resource->document) {
+                // Delete the old file
+                if (file_exists(public_path('uploads/resource/' . $resource->document))) {
                     unlink(public_path('uploads/resource/' . $resource->document));
                 }
-        
-                // Upload the new file
-                $fileName = time().'.'.$request->document->extension();  
-                $request->document->move(public_path('uploads/resource'), $fileName);
-                $resource->document = $fileName;
             }
-        
-            $resource->topic = $request->topic;
-            $resource->save();
-            
-            return redirect()->route('resources.index')->with('success', 'Record updated successfully');
+            // Upload the new file
+            $fileName = time() . '.' . $request->document->extension();
+            $request->document->move(public_path('uploads/resource'), $fileName);
+            $resource->document = $fileName;
         }
-        catch(\Exception) {
-            return redirect('resources.index')->with('fail', "Failed to update record! Please try again"); 
-        }
+
+        $resource->topic = $request->topic;
+        $resource->save();
+
+        return redirect()->route('resources.index')->with('success', 'Record updated successfully');
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        return redirect()->route('resources.index')->with('warning', 'Validation failed. Please check your inputs.');
+    } catch (\Exception $e) {
+        return redirect('resources.index')->with('warning', 'Failed to update record! Please try again');
     }
+}
+
 
     public function destroy(Resource $resource)
     {
         // Get the file name from the database
         $fileName = $resource->document;
-
-        // Delete the file from the storage
-        if (file_exists(public_path('uploads/resource/' . $fileName))) {
-            unlink(public_path('uploads/resource/' . $fileName));
-        }
         try{
+            // Delete the file from the storage
+            if (file_exists(public_path('uploads/resource/' . $fileName))) {
+                unlink(public_path('uploads/resource/' . $fileName));
+            }
             // Delete the database record
             $resource->delete();
 

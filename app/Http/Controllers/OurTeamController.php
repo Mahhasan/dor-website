@@ -45,8 +45,8 @@ class OurTeamController extends Controller
             ]);
             return redirect()->route('our-team.index')->with('success', "Record created successfully.");
         }
-        catch (\Exception $e) {
-            return redirect()->route('our-team.index')->with('warning', "Invalid data! Please try again");
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('our-team.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch (\Exception $e) {
             return redirect()->route('our-team.index')->with('fail', "Failed to create record! Please try again");
@@ -84,8 +84,11 @@ class OurTeamController extends Controller
             $ourTeam->update($data);
             return redirect()->route('our-team.index')->with('success', "Record updated successfully.");
         }
-        catch(\Exception) {
-            return redirect('our-team.index')->with('fail', "Failed to update record! Please try again"); 
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('our-team.index')->with('warning', "Validation failed. Please check your inputs.");
+        }
+        catch (\Exception $e) {
+            return redirect()->route('our-team.index')->with('fail', "Failed to create record! Please try again");
         }
     }
 

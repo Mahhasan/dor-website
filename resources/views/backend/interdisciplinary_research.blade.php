@@ -1,17 +1,6 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    @if (Session::has('success'))
-        <div class="alert alert-success mt-3">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-
-    @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">
-            {{ Session::get('error') }}
-        </div>
-    @endif
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
             <h5>Interdisciplinary Research</h5>
@@ -40,10 +29,10 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->link : '') }}" placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="link" class="placeholder">Link</label>
+                        <label for="link" class="placeholder">Link </label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="file" class="form-control border-0" id="picture[]" name="picture[]" accept="image/*" multiple>
+                        <input type="file" class="input border-0 pt-2" id="picture[]" name="picture[]" accept="image/*" multiple placeholder=" ">
                         @if(isset($interdisciplinaryResearch) && $interdisciplinaryResearch->picture)
                             <div class="row existing-pictures float-right mt-3 ml-1 mr-1">
                                 @foreach(json_decode($interdisciplinaryResearch->picture, true) as $picture)
@@ -54,13 +43,15 @@
                                 @endforeach
                             </div>
                         @endif
+                        <div class="cut"></div>
+                        <label for="picture" class="placeholder">Lab Image <small class="font-italic">(size: 416 x 250 px)</small></label>
                     </div>
                 </div>
                 @if(isset($interdisciplinaryResearch))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('interdisciplinary-research.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('interdisciplinary-research.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>
@@ -68,7 +59,7 @@
 
     <div class="row">
         <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mb-5">Interdisciplinary Research Records</h5>
+            <h5 class="text-center mt-5 mb-5">Interdisciplinary Research Records</h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -91,7 +82,7 @@
                                 <td>
                                     @if($interdisciplinaryResearch->picture)
                                         @foreach(json_decode($interdisciplinaryResearch->picture, true) as $picture)
-                                            <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $interdisciplinaryResearch->name }} Image" width="100">
+                                            <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $interdisciplinaryResearch->name }} Image" class="pb-1" width="100">
                                         @endforeach
                                     @else
                                         No Images Available

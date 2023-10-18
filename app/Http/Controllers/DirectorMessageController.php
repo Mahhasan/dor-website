@@ -22,12 +22,13 @@ class DirectorMessageController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'message' => 'required',
-        ]);
         try{
+            $request->validate([
+                'title' => 'required',
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'message' => 'required',
+            ]);
+        
             $imageName = time() . '.' . $request->picture->extension();
             $request->picture->move(public_path('uploads/director_message'), $imageName);
 
@@ -53,15 +54,16 @@ class DirectorMessageController extends Controller
 
     public function update(Request $request, DirectorMessage $directorMessage)
     {
-        $rules = [
-            'title' => 'required',
-            'message' => 'required',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ];
-    
-        $data = $request->only(['title', 'message']);
-
         try{
+            $rules = [
+                'title' => 'required',
+                'message' => 'required',
+                'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ];
+        
+            $data = $request->only(['title', 'message']);
+
+        
             if ($request->hasFile('picture')) {
                 $oldPicturePath = public_path('uploads/director_message/' . $directorMessage->picture);
                 if (file_exists($oldPicturePath)) {

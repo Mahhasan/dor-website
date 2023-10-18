@@ -22,10 +22,10 @@ class WebsiteSliderController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
         try{
+            $request->validate([
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
             $imageName = time() . '.' . $request->picture->extension();
             $request->picture->move(public_path('uploads/website_slider'), $imageName);
 
@@ -34,8 +34,10 @@ class WebsiteSliderController extends Controller
             ]);
             return redirect()->route('website-slider.index')->with('success', "New slider image added successfully."); 
         }
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('website-slider.index')->with('warning', "Validation failed. Please check your inputs.");
+        }
         catch(\Exception $e) {
-            // $msg = $e->getMessage();
             return redirect('website-slider.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
@@ -48,12 +50,13 @@ class WebsiteSliderController extends Controller
 
     public function update(Request $request, WebsiteSlider $websiteSlider)
     {
-        $rules = [
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ];
-    
-        $data = $request->only([]);
         try{
+            $rules = [
+                'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ];
+        
+            $data = $request->only([]);
+        
             if ($request->hasFile('picture')) {
                 $oldPicturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
                 if (file_exists($oldPicturePath)) {
@@ -68,6 +71,9 @@ class WebsiteSliderController extends Controller
             $websiteSlider->update($data);
         
             return redirect()->route('website-slider.index')->with('success', "Slider image updated successfully."); 
+        }
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('website-slider.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch(\Exception) {
             return redirect('website-slider.index')->with('fail', "Failed to update record! Please try again"); 

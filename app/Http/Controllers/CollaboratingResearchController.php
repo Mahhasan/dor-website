@@ -22,13 +22,20 @@ class CollaboratingResearchController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'institute_name' => 'required',
-        ]);
-        
-        CollaboratingResearch::create($request->all());
-        return redirect()->route('collaborating-research.index')
-            ->with('success', 'Record created successfully');
+        try{
+            $request->validate([
+                'institute_name' => 'required|max:255',
+            ]);
+            
+            CollaboratingResearch::create($request->all());
+            return redirect()->route('collaborating-research.index')->with('success', 'Record created successfully');
+        }
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('collaborating-research.index')->with('warning', "Validation failed. Please check your inputs.");
+        }
+        catch (\Exception $e) {
+            return redirect()->route('collaborating-research.index')->with('fail', "Failed to create record! Please try again");
+        }
     }
 
     public function edit(CollaboratingResearch $collaboratingResearch)
@@ -39,21 +46,32 @@ class CollaboratingResearchController extends Controller
 
     public function update(Request $request, CollaboratingResearch $collaboratingResearch)
     {
-        $request->validate([
-            'institute_name' => 'required',
-        ]);
-    
-        $collaboratingResearch->update($request->all());
-        return redirect()->route('collaborating-research.index')
-            ->with('success', 'Record updated successfully');
+        try{  
+            $request->validate([
+                'institute_name' => 'required|max:255',
+            ]);
+        
+            $collaboratingResearch->update($request->all());
+            return redirect()->route('collaborating-research.index')->with('success', 'Record updated successfully');
+        }
+        catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('collaborating-research.index')->with('warning', "Validation failed. Please check your inputs.");
+        }
+        catch (\Exception $e) {
+            return redirect()->route('collaborating-research.index')->with('fail', "Failed to update record! Please try again");
+        }
     }
 
     public function destroy(CollaboratingResearch $collaboratingResearch)
     {
-        // Delete the database record
-        $collaboratingResearch->delete();
+        try{
+            // Delete the database record
+            $collaboratingResearch->delete();
 
-        return redirect()->route('collaborating-research.index')
-            ->with('success', 'Record and file deleted successfully');
+            return redirect()->route('collaborating-research.index')->with('success', 'Record and file deleted successfully');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('collaborating-research.index')->with('fail', "Failed to delete record! Please try again");
+        }
     }
 }

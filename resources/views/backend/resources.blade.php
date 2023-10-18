@@ -20,31 +20,41 @@
                         <label for="topic" class="placeholder">Topic</label>
                     </div>
                     <div class="input-container mb-4">
-                        <input type="file" class="form-control border-0" id="document" name="document" {{ isset($resource) ? '' : 'required' }}>
+                        <input type="file" class="input border-0 pt-2" id="document" name="document" {{ isset($resource) ? '' : 'required' }}>
                         @if(isset($resource) && $resource->document)
-                            <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank">{{ $resource->document }}</a>
-                        @endif                
+                            <div class=" mt-3 float-right">
+                                @if (pathinfo($resource->document, PATHINFO_EXTENSION) == 'pdf')
+                                    <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank"><iframe src="{{ asset('uploads/resource/' . $resource->document) }}" style="width: 100%; height: auto;"></iframe></a>
+                                @else
+                                    <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank"><img src="{{ asset('uploads/resource/' . $resource->document) }}" alt="{{ $resource->topic }}" width="100"></a>
+                                @endif
+                                <!-- <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank">{{ $resource->document }}</a> -->
+                            </div>
+                        @endif    
+                        <div class="cut"></div>
+                        <label for="document" class="placeholder">Rrsource File <small class="font-italic">(Image or pdf)</small></label>            
                     </div>
                 </div>
                 @if(isset($resource))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('resources.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('resources.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>
     </div>
 
     <div class="row">
-        <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mb-5">Resource Records</h5>
+        <div class="mx-auto mt-5 pb-5">
+            <h5 class="text-center mt-5 mb-5">Resource Records</h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>SL</th>
                             <th>Topic</th>
+                            <th>Resource File</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -54,6 +64,13 @@
                             <tr>
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $resource->topic }}</td>
+                                <td>
+                                    @if (pathinfo($resource->document, PATHINFO_EXTENSION) == 'pdf')
+                                        <iframe src="{{ asset('uploads/resource/' . $resource->document) }}" style="width: 100%; height: auto;"></iframe>
+                                    @else
+                                        <img src="{{ asset('uploads/resource/' . $resource->document) }}" alt="{{ $resource->topic }}" width="100">
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank" title="View Document"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     <a href="{{ route('resources.edit', $resource->id) }}" class="btn text-primary" title="Edit {{$resource->topic}}'s information"><i class="fas fa-edit fa-sm"></i></a>

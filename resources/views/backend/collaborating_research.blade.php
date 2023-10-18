@@ -1,17 +1,6 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    @if (Session::has('success'))
-        <div class="alert alert-success mt-3">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-
-    @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">
-            {{ Session::get('error') }}
-        </div>
-    @endif
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
             <h5>Collaborating Research</h5>
@@ -32,18 +21,18 @@
                     </div>
                 </div>
                 @if(isset($collaboratingResearch))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('collaborating-research.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('collaborating-research.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>
     </div>
 
     <div class="row">
-        <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mb-5">Collaborating Research Records</h5>
+        <div class="mx-auto mt-5 pb-5">
+            <h5 class="text-center pt-5 mb-5">Collaborating Research Records</h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>

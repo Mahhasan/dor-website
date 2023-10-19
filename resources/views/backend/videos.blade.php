@@ -1,12 +1,6 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    @if (Session::has('success'))
-        <div class="alert alert-success mt-3">{{ Session::get('success') }}</div>
-    @endif
-    @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">{{ Session::get('error') }}</div>
-    @endif
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
             <h5>Videos</h5>
@@ -36,73 +30,70 @@
                         <div class="video-links">
                             @if(isset($video) && $video->video_links)
                                 @foreach(json_decode($video->video_links, true) as $index => $videoLink)
-                                    <div class="row input-container mb-4">
+                                    <div class="row input-container mb-5">
                                         <div class="col-8 col-sm-10">
                                             <input type="text" class="input" name="video_links[]" value="{{ old('video_links.' . $index, $videoLink) }}" placeholder=" "/>
                                             <div class="cut"></div>
                                             <label for="video_links" class="placeholder">Video Link {{ $index + 1 }}</label>
+                                            <div class="video-iframe mt-3">
+                                                <iframe width="100%" height="300px" src="{{ $videoLink }}" frameborder="0" allowfullscreen></iframe>
+                                            </div>
                                         </div>
                                         <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link">Remove</button>
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-                        <button type="button" class="btn btn-outline-info" id="add-video-link">Insert Video Link</button>
+                        <button type="button" class="btn btn-sm btn-outline-info" id="add-video-link">Insert Video Link</button>
                     </div>
                 </div>
                 @if(isset($video))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('videos.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('videos.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mb-5">Video Gallery</h5>
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Title</th>
-                            <th>Year</th>
-                            <th>videos</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($videos as $key=>$video)
-                            <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $video->year }}</td>
-                                <td>{{ $video->title }}</td>
-                                <td>
-                                    @if($video->video_links)
-                                        @foreach(json_decode($video->video_links, true) as $videoLink)
-                                            <div class="video-iframe">
-                                                <iframe width="200" height="150" src="{{ $videoLink }}" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        @endforeach
-                                    @else
-                                        No Videos Available
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('videos.edit', $video->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('videos.destroy', $video->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    
+    <div class="mx-auto mt-5 mb-5">
+        <h5 class="text-center pt-5">Video Gallery</h5>
+    </div>
+
+    <div class="row mb-5">
+        @foreach($videos as $key=>$video)
+            <div class="col-sm-12 mb-5 mx-auto">
+                <div class="card border-0">
+                    <div class="pt-3 text-center">
+                        <h6 class="font-weight-bold">{{ $video->title }}</h6>
+                        <p>Year: {{ $video->year }}</p>
+                        <a href="{{ route('videos.edit', $video->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                        <form action="{{ route('videos.destroy', $video->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <hr>
+                    @if($video->video_links)
+                        <div class="row">
+                            @foreach(json_decode($video->video_links, true) as $videoLink)
+                                <div class="col-md-6 pb-3 mx-auto">
+                                    <div class="video-iframe">
+                                        <iframe width="100%" height="300px" src="{{ $videoLink }}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        No Videos Available
+                    @endif
+                </div>
             </div>
+        @endforeach
+        <div class="float-right">
+            {!! $videos->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </div>

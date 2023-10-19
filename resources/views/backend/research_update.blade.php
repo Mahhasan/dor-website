@@ -72,48 +72,5 @@
             </div>
         @endforeach
     </div>
-
-<!-- 
-
-    <div class="row">
-        <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mt-5 mb-5">Research Update Records</h5>
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>volume</th>
-                            <th>File</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @if(isset($researchUpdates))
-                        @foreach($researchUpdates as $key=>$researchUpdate)
-                            <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $researchUpdate->volume }}</td>
-                                <td>
-                                    <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" target="_blank" title="View file">
-                                        
-                                    </a>
-                                <td>
-                                    <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" target="_blank" title="View file"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a href="{{ route('research-update.edit', $researchUpdate->id) }}" class="btn text-primary" title="Edit {{$researchUpdate->volume}}'s file"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('research-update.destroy', $researchUpdate->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$researchUpdate->volume}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> -->
 </div>
 @endsection

@@ -72,3 +72,9 @@
   .bg-aliceblue{
     background-color: #f0f8ff;
   }
+
+
+  /* for pagination */
+  .text-muted {
+    margin-right: 8px;
+  }

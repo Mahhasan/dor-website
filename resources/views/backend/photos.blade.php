@@ -1,12 +1,6 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    @if (Session::has('success'))
-        <div class="alert alert-success mt-3">{{ Session::get('success') }}</div>
-    @endif
-    @if (Session::has('error'))
-        <div class="alert alert-danger mt-3">{{ Session::get('error') }}</div>
-    @endif
     <div class="row bg-aliceblue">
         <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
             <h5>Photos</h5>
@@ -36,11 +30,12 @@
                         <div class="additional-links">
                             @if(isset($photo) && $photo->links)
                                 @foreach(json_decode($photo->links, true) as $index => $link)
-                                    <div class="row input-container mb-4">
+                                    <div class="row input-container mb-5">
                                         <div class="col-9 col-lg-10">
                                             <input type="url" class="input" id="link" name="links[]" value="{{ old('links.' . $index, $link) }}" placeholder=" "/>
                                             <div class="cut"></div>
                                             <label for="link" class="placeholder">Image Link {{ $index + 1 }}</label>
+                                            <iframe class="mt-3" src="{{ $link }}" frameborder="0" height="auto" width="100%"></iframe>
                                         </div>
                                         <button type="button" class="col-3 col-lg-2 btn btn-outline-danger remove-link">Remove</button>
                                     </div>
@@ -66,14 +61,22 @@
                     </div>
                 </div>
                 @if(isset($photo))
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{{ route('photos.index') }}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                    <a href="{{ route('photos.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
             </form>
         </div>
     </div>
+
+    <div class="mx-auto mt-5 mb-5">
+        <h5 class="text-center pt-5">Photo Gallery</h5>
+    </div>
+
+
+
+
     <div class="row">
         <div class="mx-auto pt-5 pb-5">
             <h5 class="text-center mb-5">Photo Gallery</h5>
@@ -98,11 +101,18 @@
                                     @if($photo->pictures)
                                         <div class="existing-pictures">
                                             @foreach(json_decode($photo->pictures, true) as $picture)
-                                                <img src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="75px" width="100">
+                                                <img class="mb-2" src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="75px" width="100">
                                             @endforeach
                                         </div>
                                     @else
                                         No Images Available
+                                    @endif
+                                    @if ($photo->links)
+                                        <div class="existing-links">
+                                            @foreach (json_decode($photo->links, true) as $link)
+                                                <iframe src="{{ $link }}" frameborder="0" height="75px" width="100"></iframe>
+                                            @endforeach
+                                        </div>
                                     @endif
                                 </td>
                                 <td>

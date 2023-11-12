@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-container col-sm-6 mb-4">
+                    <div class="input-container col-sm-6 mb-4" placeholder=" ">
                         <select class="input" id="level" name="level" required placeholder=" ">
                             <option value=""></option>
                             <option value="1" {{ (isset($ourTeam) && $ourTeam->level == 1) ? 'selected' : '' }}>1 (Dean/Head)</option>
@@ -114,11 +114,11 @@
                                     <p>{{ $ourTeam->email }}</p>
                                     <p>{{ $ourTeam->cell }}</p>
                                     <div class="float-right">
-                                        <a href="{{ route('our-team.edit', $ourTeam->id) }}" class="btn text-primary"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('our-team.edit', $ourTeam->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
                                         <form action="{{ route('our-team.destroy', $ourTeam->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </div>
                                 </div>

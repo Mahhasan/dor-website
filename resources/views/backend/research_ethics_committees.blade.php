@@ -27,7 +27,6 @@
                 </div>
                 <div class="row">
                     <div class="input-container col-sm-6 mb-4">
-                        <!-- <label for="faculty_name"></label> -->
                         <select class="input bg-white" id="faculty_name" name="faculty_name" required>
                             <option value="">Select Faculty</option>
                             <option value="FSIT Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FSIT Research Ethics Committee' ? 'selected' : '' }}>FSIT Research Ethics Committee</option>

@@ -56,11 +56,11 @@
                     @endif
                     <div class="card-body p-0">
                         <div class="text-center">
-                            <a href="{{ route('website-slider.edit', $websiteSlider->id) }}" class="btn text-primary"><i class="fas fa-edit"></i></a>
+                            <a href="{{ route('website-slider.edit', $websiteSlider->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('website-slider.destroy', $websiteSlider->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
+                                <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
                             </form>
                             <!-- Increment slider number for the next iteration -->
                             <small class="float-right pt-2 pr-2">Slider-{{ $sliderNumber++ }}</small>

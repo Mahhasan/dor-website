@@ -21,12 +21,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-container col-md-4 mb-4">
+                    <div class="input-container col-md-5 mb-4">
                         <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($photo) ? $photo->year : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="year" class="placeholder">Year</label>
                     </div>
-                    <div class="input-container col-md-8 mb-4">
+                    <div class="input-container col-md-7 mb-4">
                         <div class="additional-links">
                             @if(isset($photo) && $photo->links)
                                 @foreach(json_decode($photo->links, true) as $index => $link)
@@ -53,10 +53,11 @@
                                 @foreach(json_decode($photo->pictures, true) as $picture)
                                     <div class="existing-picture mr-2 mb-2">
                                         <input type="checkbox" name="deleted_pictures[]" value="{{ $picture }}">
-                                        <img src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="75px" width="100">
+                                        <img src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="100px" width="150">
                                     </div>
                                 @endforeach
                             </div>
+                            <small class="font-italic">(If you want to remove an image then select it)</small>
                         @endif   
                     </div>
                 </div>
@@ -75,33 +76,29 @@
     </div>
 
 
-
-
     <div class="row">
         <div class="mx-auto pt-5 pb-5">
-            <h5 class="text-center mb-5">Photo Gallery</h5>
+            <!-- <h5 class="text-center mb-5">Photo Gallery</h5> -->
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>SL</th>
-                            <th>Title</th>
-                            <th>Year</th>
-                            <th>Images</th>
-                            <th>Action</th>
+                            <th>Photos</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($photos as $key=>$photo)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $photo->year }}</td>
-                                <td>{{ $photo->title }}</td>
                                 <td>
+                                    <!-- <td>{{ ++$key }}</td> -->
+                                    <div class="p-2">
+                                        <p>{{ $photo->title }} - {{ $photo->year }}</p>
+                                    </div>
+                                
                                     @if($photo->pictures)
                                         <div class="existing-pictures">
                                             @foreach(json_decode($photo->pictures, true) as $picture)
-                                                <img class="mb-2" src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="75px" width="100">
+                                                <img class="mb-2 p-2" src="{{ asset('uploads/photos/' . $picture) }}" alt="{{ $photo->title }} Image" height="180" width="260">
                                             @endforeach
                                         </div>
                                     @else
@@ -110,18 +107,20 @@
                                     @if ($photo->links)
                                         <div class="existing-links">
                                             @foreach (json_decode($photo->links, true) as $link)
-                                                <iframe src="{{ $link }}" frameborder="0" height="75px" width="100"></iframe>
+                                                <iframe class="p-2" src="{{ $link }}" frameborder="0" height="180" width="260"></iframe>
                                             @endforeach
                                         </div>
+                                    @else
+                                        No Images Available
                                     @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('photos.edit', $photo->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('photos.destroy', $photo->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                    </form>
+                                    <div class="text-right">
+                                        <a href="{{ route('photos.edit', $photo->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                        <form action="{{ route('photos.destroy', $photo->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -33,7 +33,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 mt-2 mb-4">
-                        <textarea class="input" id="file-picker" name="message" value="{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }}" placeholder=" ">{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }}</textarea>
+                        <textarea class="input" id="file-picker" name="message" value="{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }}" placeholder=" ">{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }} </textarea>
                         <div class="cut"></div>
                         <label for="message" class="placeholder">Message</label>
                     </div>
@@ -55,11 +55,11 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="text-center flex-grow-1">{{ $directorMessage->title }}</h5>
                         <div>
-                            <a href="{{ route('director-message.edit', $directorMessage->id) }}" class="btn text-primary" title="Edit this message"><i class="fas fa-edit fa-sm"></i></a>
+                            <a href="{{ route('director-message.edit', $directorMessage->id) }}" class="btn btn-sm text-primary" title="Edit this message"><i class="fas fa-edit fa-sm"></i></a>
                             <form action="{{ route('director-message.destroy', $directorMessage->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this message"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this message"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
                             </form>
                         </div>
                     </div>

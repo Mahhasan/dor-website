@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ResearchCoordinator;
-use Illuminate\Support\Facades\Session;
 
 class ResearchCoordinatorController extends Controller
 {
@@ -45,8 +44,7 @@ class ResearchCoordinatorController extends Controller
             'picture' => $imageName,
         ]);
 
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('research-coordinator.index');
+        return redirect()->route('research-coordinator.index')->with('success', 'Record created successfully');
     }
 
     public function edit(ResearchCoordinator $researchCoordinator)
@@ -81,8 +79,7 @@ class ResearchCoordinatorController extends Controller
 
         $researchCoordinator->update($data);
 
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('research-coordinator.index');
+        return redirect()->route('research-coordinator.index')->with('success', 'Record updated successfully');
     }
 
     public function destroy(ResearchCoordinator $researchCoordinator)

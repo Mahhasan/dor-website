@@ -190,7 +190,8 @@
         })
     </script>
     @endif
-
+    
+    <!-- Script for tinymce text editor -->
     <script>
         tinymce.init({
             selector: 'textarea#file-picker',

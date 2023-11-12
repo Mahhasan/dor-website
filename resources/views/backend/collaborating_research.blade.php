@@ -49,11 +49,11 @@
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $collaboratingResearch->institute_name }}</td>
                                 <td>
-                                    <a href="{{ route('collaborating-research.edit', $collaboratingResearch->id) }}" class="btn text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
+                                    <a href="{{ route('collaborating-research.edit', $collaboratingResearch->id) }}" class="btn btn-sm text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
                                     <form action="{{ route('collaborating-research.destroy', $collaboratingResearch->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                        <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
                             </tr>

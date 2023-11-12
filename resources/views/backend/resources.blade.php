@@ -72,12 +72,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ asset('uploads/resource/' . $resource->document) }}" target="_blank" title="View Document"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a href="{{ route('resources.edit', $resource->id) }}" class="btn text-primary" title="Edit {{$resource->topic}}'s information"><i class="fas fa-edit fa-sm"></i></a>
+                                    <a href="{{ asset('uploads/resource/' . $resource->document) }}" class="btn-sm" target="_blank" title="View Document"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="{{ route('resources.edit', $resource->id) }}" class="btn btn-sm text-primary" title="Edit {{$resource->topic}}'s information"><i class="fas fa-edit fa-sm"></i></a>
                                     <form action="{{ route('resources.destroy', $resource->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$resource->topic}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                        <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$resource->topic}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
                             </tr>

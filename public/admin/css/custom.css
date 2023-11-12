@@ -43,7 +43,7 @@
     top: -20px;
     transform: translateY(0);
     transition: transform 200ms;
-    width: 90px;
+    width: 60px;
   }
   .custom-form .input:focus ~ .cut,
   .custom-form .input:not(:placeholder-shown) ~ .cut {

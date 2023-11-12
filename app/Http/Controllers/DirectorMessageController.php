@@ -37,8 +37,6 @@ class DirectorMessageController extends Controller
                 'message' => $request->message,
                 'picture' => $imageName,
             ]);
-
-            Session::flash('success', 'Record created successfully.');
             return redirect()->route('director-message.index')->with('success', 'Record created successfully.'); 
         }
         catch(\Exception) {

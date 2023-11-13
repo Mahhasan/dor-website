@@ -1,14 +1,14 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Website Slider</h5>
-
+    <!-- Button to toggle form visibility -->
+    <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Create New Slider">Create New Slider</button>
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($websiteSlider) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($websiteSlider))
                 <h6>Edit Slider Image</h6>
                 <form method="POST" action="{{ route('website-slider.update', $websiteSlider->id) }}" enctype="multipart/form-data">
-                @method('PATCH')
+                    @method('PATCH')
             @else
                 <h6>Add New Slider Image</h6>
                 <form method="POST" action="{{ route('website-slider.store') }}" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="mx-auto mt-5 mb-5">
+    <div class="mx-auto  mb-5">
         <h5 class="text-center pt-5">Website Slider Records</h5>
         <hr>
     </div>

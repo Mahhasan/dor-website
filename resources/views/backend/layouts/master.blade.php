@@ -239,5 +239,29 @@
         },
         });
     </script>
+    <!-- script for toggle button -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the form container and the toggle button
+            var formContainer = document.getElementById('FormContainer');
+            var toggleButton = document.getElementById('toggleForm');
+
+            // Add a click event listener to the toggle button
+            toggleButton.addEventListener('click', function() {
+                // Toggle the display property of the form container
+                formContainer.style.display = (formContainer.style.display === 'none' || formContainer.style.display === '') ? 'block' : 'none';
+                // Change button text and color dynamically
+                if (formContainer.style.display === 'block') {
+                    toggleButton.innerHTML = '<i class="fas fa-times"></i>';
+                    toggleButton.classList.remove('btn-primary');
+                    toggleButton.classList.add('btn-secondary');
+                } else {
+                    toggleButton.innerHTML = toggleButton.getAttribute('data-original-text');
+                    toggleButton.classList.remove('btn-secondary');
+                    toggleButton.classList.add('btn-primary');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

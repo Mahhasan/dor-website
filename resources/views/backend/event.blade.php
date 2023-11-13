@@ -41,29 +41,28 @@
         <div class="mx-auto pt-5 pb-5">
             <h5 class="text-center mb-5">Events</h5>
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>SL</th>
-                            <th>Event Title</th>
-                            <th>Event Details</th>
-                            <th>Action</th>
+                            <th>Events</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($events as $key=>$event)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <!-- <td>{{ $event->year }}</td> -->
-                                <td>{{ $event->title }}</td>
-                                <td>{!! $event->event_details !!}</td>
                                 <td>
-                                    <a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                    </form>
+                                    <div class="text-right">
+                                        <a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
+                                    <p class="mt-2">{{ ++$key }}. {{ $event->title }}</p>
+                                    <div class="content-justify mt-5">
+                                        {!! $event->event_details !!}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

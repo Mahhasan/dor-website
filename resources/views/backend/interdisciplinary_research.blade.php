@@ -104,7 +104,7 @@
                                         <td>
                                             @if($discipline->picture)
                                                 @foreach(json_decode($discipline->picture, true) as $picture)
-                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="pb-1" width="100">
+                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="125px" width="208px">
                                                 @endforeach
                                             @else
                                                 No Images Available
@@ -147,7 +147,7 @@
                                         <td>
                                             @if($discipline->picture)
                                                 @foreach(json_decode($discipline->picture, true) as $picture)
-                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="pb-1" width="100">
+                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="125px" width="208px">
                                                 @endforeach
                                             @else
                                                 No Images Available

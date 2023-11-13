@@ -57,7 +57,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <small class="font-italic">(If you want to remove an image then select it)</small>
+                            <p><small class="font-italic">(If you want to remove an image then select it)</small></p>
                         @endif   
                     </div>
                 </div>
@@ -91,7 +91,15 @@
                             <tr>
                                 <td>
                                     <!-- <td>{{ ++$key }}</td> -->
-                                    <div class="p-2">
+                                    <div class="text-right">
+                                        <a href="{{ route('photos.edit', $photo->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                        <form action="{{ route('photos.destroy', $photo->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="p-1">
                                         <p>{{ $photo->title }} - {{ $photo->year }}</p>
                                     </div>
                                 
@@ -113,14 +121,6 @@
                                     @else
                                         No Images Available
                                     @endif
-                                    <div class="text-right">
-                                        <a href="{{ route('photos.edit', $photo->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                        <form action="{{ route('photos.destroy', $photo->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                        </form>
-                                    </div>
                                 </td>
                             </tr>
                         @endforeach

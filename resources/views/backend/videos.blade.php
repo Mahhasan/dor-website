@@ -68,11 +68,11 @@
                     <div class="pt-3 text-center">
                         <h6 class="font-weight-bold">{{ $video->title }}</h6>
                         <p>Year: {{ $video->year }}</p>
-                        <a href="{{ route('videos.edit', $video->id) }}" class="btn text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                        <a href="{{ route('videos.edit', $video->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
                         <form action="{{ route('videos.destroy', $video->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                            <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
                         </form>
                     </div>
                     <hr>

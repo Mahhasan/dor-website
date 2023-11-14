@@ -27,7 +27,7 @@
     </div>
     <!-- Nav Item - Website Slider -->
     <li class="nav-item">
-        <a class="nav-link" href="/website-slider">
+        <a class="nav-link" href="{{ route('website.slider.index') }}">
             <i class='fas fa-sliders-h'></i>
             <span>Website Slider</span></a>
     </li>

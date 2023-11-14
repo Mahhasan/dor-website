@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Interdisciplinary Research</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($interdisciplinaryResearch))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Research Lab">Add New Research Lab</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($interdisciplinaryResearch) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($interdisciplinaryResearch))
-                <h6>Edit Record</h6>
+                <h6>Edit <span class="text-success font-weight-bold">{{ $interdisciplinaryResearch->lab_name }}</span> Lab Record</h6>
                 <form method="POST" action="{{ route('interdisciplinary-research.update', $interdisciplinaryResearch->id) }}" enctype="multipart/form-data">
                     @method('PATCH')
                 @else
-                    <h6>Create New Discipline</h6>
+                    <h6>Add New Research Lab</h6>
                     <form method="POST" action="{{ route('interdisciplinary-research.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
@@ -62,18 +65,11 @@
         </div>
     </div>
 
-    <!--  -->
-
-
-
-
-
-
     <!-- Tabs -->
     <section id="tabs">
-        <div class="row">
+        <div class="row d-block">
             <div class="mx-auto pt-5 pb-5">
-                <h5 class="text-center mt-5 mb-5">Interdisciplinary Research Records</h5>
+                <h5 class="text-center mb-5">Interdisciplinary Research Records</h5>
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-fsit-tab" data-toggle="tab" href="#nav-fsit" role="tab" aria-controls="nav-fsit" aria-selected="true">Interdisciplinary Research</a>

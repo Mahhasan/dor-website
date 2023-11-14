@@ -78,3 +78,9 @@
   .text-muted {
     margin-right: 8px;
   }
+
+  /* hover  css for home page */
+  .card-hover:hover h6 {
+    color: #efefef   ; /* Change this to the desired hover text color */
+    transition: transform .3s ease-in-out;
+}

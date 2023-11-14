@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Publication Source</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($sourceOfPublication))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add Publication Source">Add Publication Source</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($sourceOfPublication) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($sourceOfPublication))
             <h6>Edit Record</h6>
             <form method="POST" action="{{ route('source-of-publication.update', $sourceOfPublication->id) }}">
                 @method('PATCH')
             @else
-            <h6>Create New Record</h6>
+            <h6>Add Publication Source</h6>
             <form method="POST" action="{{ route('source-of-publication.store') }}">
             @endif
                 @csrf
@@ -30,7 +33,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row d-block">
         <div class="mx-auto pt-5 pb-5">
             <h5 class="text-center mb-5">Publication Source Records</h5>
             <div class="table-responsive">

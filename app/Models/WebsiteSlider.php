@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WebsiteSlider extends Model
 {
+    public $timestamps = true;
     use HasFactory;
     protected $fillable = [
         'picture',

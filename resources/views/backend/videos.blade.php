@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Videos</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($video))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Upload New Video">Upload New Video</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($video) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($video))
-            <h6>Edit Record</h6>
+            <h6>Edit <span class="text-success font-weight-bold">{{ $video->title }} - {{$video->year}}</span> Record</h6>
             <form method="POST" action="{{ route('videos.update', $video->id) }}" enctype="multipart/form-data">
             @method('PATCH')
             @else
-            <h6>Create New Record</h6>
+            <h6>Upload New Video</h6>
             <form method="POST" action="{{ route('videos.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
@@ -57,7 +60,7 @@
         </div>
     </div>
     
-    <div class="mx-auto mt-5 mb-5">
+    <div class="mx-auto mb-5">
         <h5 class="text-center pt-5">Video Gallery</h5>
     </div>
 

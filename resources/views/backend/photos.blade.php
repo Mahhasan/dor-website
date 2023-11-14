@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Photos</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($photo))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Upload New Photo">Upload New Photo</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($photo) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($photo))
-            <h6>Edit Record</h6>
+            <h6>Edit <span class="text-success font-weight-bold">{{$photo->title}} - {{$photo->year}}</span> Record</h6>
             <form method="POST" action="{{ route('photos.update', $photo->id) }}" enctype="multipart/form-data">
             @method('PATCH')
             @else
-            <h6>Create New Record</h6>
+            <h6>Upload New Photo</h6>
             <form method="POST" action="{{ route('photos.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
@@ -71,13 +74,13 @@
         </div>
     </div>
 
-    <div class="mx-auto mt-5 mb-5">
+    <div class="mx-auto mb-5">
         <h5 class="text-center pt-5">Photo Gallery</h5>
     </div>
 
 
-    <div class="row">
-        <div class="mx-auto pt-5 pb-5">
+    <div class="row d-block">
+        <div class="mx-auto pb-5">
             <!-- <h5 class="text-center mb-5">Photo Gallery</h5> -->
             <div class="table-responsive">
                 <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">

@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Collaborating Research</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($collaboratingResearch))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Institute">Add New Institute</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($collaboratingResearch) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($collaboratingResearch))
             <h6>Edit Record</h6>
             <form method="POST" action="{{ route('collaborating-research.update', $collaboratingResearch->id) }}">
                 @method('PATCH')
             @else
-            <h6>Create New Record</h6>
+            <h6>Add New Institute</h6>
             <form method="POST" action="{{ route('collaborating-research.store') }}">
             @endif
                 @csrf
@@ -30,8 +33,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="mx-auto mt-5 pb-5">
+    <div class="row d-block">
+        <div class="mx-auto pb-5">
             <h5 class="text-center pt-5 mb-5">Collaborating Research Records</h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

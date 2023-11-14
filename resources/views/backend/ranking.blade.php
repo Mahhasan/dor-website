@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>University Ranking</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($ranking))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Ranking">Add New Ranking</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($ranking) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($ranking))
-            <h6>Edit Record</h6>
+            <h6>Edit <span class="text-success font-weight-bold">{{ $ranking->title }} - {{$ranking->year}}</span></h6>
             <form method="POST" action="{{ route('ranking.update', $ranking->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
-                <h6>Create New Record</h6>
+                <h6>Add New Ranking</h6>
             <form method="POST" action="{{ route('ranking.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
@@ -52,7 +55,7 @@
         </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="row d-block">
         <div class="mx-auto pt-5 pb-5">
             <h5 class="text-center mb-5">University Rankings</h5>
             <div class="table-responsive">

@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Research Update</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($researchUpdate))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add Research Update">Add Research Update</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($researchUpdate) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($researchUpdate))
-            <h6>Edit Record</h6>
+            <h6>Edit <span class="text-success font-weight-bold">{{ $researchUpdate->volume}}</span></h6>
             <form method="POST" action="{{ route('research-update.update', $researchUpdate->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
             @else
-            <h6>Create New Record</h6>
+            <h6>Add Research Update</h6>
             <form method="POST" action="{{ route('research-update.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
@@ -29,7 +32,6 @@
                             </div>
                         <div class="cut"></div>
                         <label for="file" class="placeholder">File <small class="font-italic">(pdf only, max size: 10mb)</small></label>
-            
                     </div>
                 </div>
                 @if(isset($researchUpdate))
@@ -56,7 +58,7 @@
                             <iframe src="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" width="100%" height="400px"></iframe>
                         </div>
                     @else
-                            No File Available>
+                            No File Available
                     @endif
                     <div class="card-body">
                         <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" class="" target="_blank" title="View file">{{ $researchUpdate->volume}}</a>

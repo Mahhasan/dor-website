@@ -32,13 +32,13 @@ class WebsiteSliderController extends Controller
             WebsiteSlider::create([
                 'picture' => $imageName,
             ]);
-            return redirect()->route('website-slider.index')->with('success', "New slider image added successfully."); 
+            return redirect()->route('website.slider.index')->with('success', "New slider image added successfully."); 
         }
         catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('website-slider.index')->with('warning', "Validation failed. Please check your inputs.");
+            return redirect()->route('website.slider.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch(\Exception $e) {
-            return redirect('website-slider.index')->with('fail', "Failed to create record! Please try again"); 
+            return redirect('website.slider.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -70,13 +70,13 @@ class WebsiteSliderController extends Controller
     
             $websiteSlider->update($data);
         
-            return redirect()->route('website-slider.index')->with('success', "Slider image updated successfully."); 
+            return redirect()->route('website.slider.index')->with('success', "Slider image updated successfully."); 
         }
         catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('website-slider.index')->with('warning', "Validation failed. Please check your inputs.");
+            return redirect()->route('website.slider.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch(\Exception) {
-            return redirect('website-slider.index')->with('fail', "Failed to update record! Please try again"); 
+            return redirect('website.slider.index')->with('fail', "Failed to update record! Please try again"); 
         } 
     }
     
@@ -92,10 +92,10 @@ class WebsiteSliderController extends Controller
 
             $websiteSlider->delete();
 
-            return redirect()->route('website-slider.index')->with('success', 'Slider image deleted successfully');
+            return redirect()->route('website.slider.index')->with('success', 'Slider image deleted successfully');
         }
         catch(\Exception) {
-            return redirect('website-slider.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('website.slider.index')->with('fail', "Failed to delete record! Please try again"); 
         } 
     }
 }

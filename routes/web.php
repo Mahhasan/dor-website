@@ -30,10 +30,10 @@ use App\Http\Controllers\VideoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'websiteSlider'])->name('welcome');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -396,7 +396,7 @@ Route::get('/research-ethics-committee', [FrontendController::class, 'ResearchEt
 
 
 // Backend
-Route::resource('website-slider', WebsiteSliderController::class);
+Route::resource('website-slider', WebsiteSliderController::class)->names('website.slider');
 Route::resource('director-message', DirectorMessageController::class);
 Route::resource('mission-vision', MissionVisionController::class);
 Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);

@@ -1,15 +1,19 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5" >
+    <!-- Button to toggle form visibility -->
+    @if(!isset($researchEthicsCommittee))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Committee">Add New Committee</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($researchEthicsCommittee) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             <h5>Research Ethics Committee</h5>
             @if(isset($researchEthicsCommittee))
                 <h6>Edit <span class="text-success font-weight-bold">{{$researchEthicsCommittee->name}}'s</span> Record</h6>
                 <form method="POST" action="{{ route('research-ethics-committees.update', $researchEthicsCommittee->id) }}">
                 @method('PATCH')
             @else
-                <h6>Create New Record</h6>
+                <h6>Add New Committee</h6>
                 <form method="POST" action="{{ route('research-ethics-committees.store') }}">
             @endif
                 @csrf
@@ -53,7 +57,7 @@
     </div>
     <!-- Tabs -->
     <section id="tabs">
-        <div class="row">
+        <div class="row d-block">
             <div class="mx-auto pt-5 pb-5">
                 <h5 class="text-center mt-5 mb-5">Research Ethics Committee Records</h5>
                 <nav>

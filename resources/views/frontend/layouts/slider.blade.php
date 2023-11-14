@@ -32,13 +32,13 @@
 <!-- Swiper -->
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="images/slider/slider25.jpg" class="img-fluid" alt="DoR Slider Image"></div>
-    <div class="swiper-slide"><img src="images/slider/slider-11.png" class="img-fluid" alt="DoR Slider Image"></div>
-    <div class="swiper-slide"><img src="images/slider/slider-14.png" class="img-fluid" alt="DoR Slider Image"></div>
-    <div class="swiper-slide"><img src="images/slider/2.JPG" class="img-fluid" alt="DoR Slider Image"></div>
-    <div class="swiper-slide"><img src="images/slider/slider-15.png" class="img-fluid" alt="DoR Slider Image"></div>
-    <div class="swiper-slide"><img src="images/slider/slider-16.png" class="img-fluid" alt="DoR Slider Image"></div>
-    <div class="swiper-slide"><img src="images/slider/slider-12.png" class="img-fluid" alt="DoR Slider Image"></div>
+    @foreach($websiteSliders as $websiteSlider)
+      @if($websiteSlider->picture)
+        <div class="swiper-slide"><img src="{{ asset('uploads/website_slider/' . $websiteSlider->picture) }}" class="img-fluid" alt="DoR Slider Image"></div>
+      @else
+        There Are No Slider Image
+      @endif
+    @endforeach
   </div>
   <div class="swiper-button-next"></div>
   <div class="swiper-button-prev"></div>

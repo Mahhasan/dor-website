@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Resources</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($resource))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Resource">Add New Resource</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($resource) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($resource))
-            <h6>Edit Record</h6>
+            <h6>Edit <span class="text-success font-weight-bold">{{ $resource->topic }}'s</span> Record</h6>
             <form method="POST" action="{{ route('resources.update', $resource->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
             @else
-            <h6>Create New Record</h6>
+            <h6>Add New Resource</h6>
             <form method="POST" action="{{ route('resources.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
@@ -45,9 +48,9 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="mx-auto mt-5 pb-5">
-            <h5 class="text-center mt-5 mb-5">Resource Records</h5>
+    <div class="row d-block">
+        <div class="mx-auto pt-5 pb-5">
+            <h5 class="text-center mb-5">Resource Records</h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>

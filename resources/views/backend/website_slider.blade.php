@@ -2,16 +2,18 @@
 @section('content')
 <div class="container">
     <!-- Button to toggle form visibility -->
-    <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Create New Slider">Create New Slider</button>
+    @if(!isset($websiteSlider))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Create New Slider">Create New Slider</button>
+    @endif
     <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($websiteSlider) ? 'block' : 'none' }};">
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($websiteSlider))
                 <h6>Edit Slider Image</h6>
-                <form method="POST" action="{{ route('website-slider.update', $websiteSlider->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('website.slider.update', $websiteSlider->id) }}" enctype="multipart/form-data">
                     @method('PATCH')
             @else
                 <h6>Add New Slider Image</h6>
-                <form method="POST" action="{{ route('website-slider.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('website.slider.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
                 <div class="row mt-5">
@@ -28,7 +30,7 @@
                 </div>
                 @if(isset($websiteSlider))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('website-slider.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('website.slider.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -56,8 +58,8 @@
                     @endif
                     <div class="card-body p-0">
                         <div class="text-center">
-                            <a href="{{ route('website-slider.edit', $websiteSlider->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
-                            <form action="{{ route('website-slider.destroy', $websiteSlider->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('website.slider.edit', $websiteSlider->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('website.slider.destroy', $websiteSlider->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>

@@ -1,15 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Research Coordinator</h5>
+    <!-- Button to toggle form visibility -->
+    @if(!isset($researchCoordinator))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add Research Coordinator">Add Research Coordinator</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($researchCoordinator) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($researchCoordinator))
-            <h6>Edit Record</h6>
+            <h6>Edit <span class="text-success font-weight-bold">{{ $researchCoordinator->name }}'s</span> Record</h6>
             <form method="POST" action="{{ route('research-coordinator.update', $researchCoordinator->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
-                <h6>Create New Record</h6>
+                <h6>Add Research Coordinator</h6>
             <form method="POST" action="{{ route('research-coordinator.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
@@ -71,7 +74,7 @@
         </div>
     </div>
 
-    <div class="mx-auto mt-5 mb-5">
+    <div class="mx-auto mb-5">
         <h5 class="text-center pt-5">Research Coordinator Records</h5>
         <hr>
     </div>

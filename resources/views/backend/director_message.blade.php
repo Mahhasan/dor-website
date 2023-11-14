@@ -1,16 +1,18 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="container">
-    <div class="row bg-aliceblue">
-        <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
-            <h5>Message from the Director</h5>
-
+    <!-- Button to toggle form visibility -->
+    @if(!isset($directorMessage))
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Message">Add New Message</button>
+    @endif
+    <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($directorMessage) ? 'block' : 'none' }};">
+        <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($directorMessage))
-            <h6>Edit Record</h6>
+            <h6>Edit Message</h6>
             <form method="POST" action="{{ route('director-message.update', $directorMessage->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
-                <h6>Create New Record</h6>
+                <h6>Add New Message</h6>
             <form method="POST" action="{{ route('director-message.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
@@ -48,7 +50,7 @@
         </div>
     </div>
 
-    <div class="row pt-5">
+    <div class="row d-block pt-5">
         @foreach($directorMessages as $key=>$directorMessage)
             <div class="mx-auto mt-5 mb-5">
                 <div class="mb-4">

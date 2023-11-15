@@ -56,9 +56,9 @@
           About
           </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
-                  <li><a class="dropdown-item" href="{{ url('/about') }}">Message from the Director</a></li>
-                  <li><a class="dropdown-item" href="{{ url('/mission-vision') }}">Mission & Vision</a></li>
-                  <li><a class="dropdown-item" href="{{ url('/research-ethics-committee') }}">Research Ethics Committee</a></li>
+                  <li><a class="dropdown-item" href="{{ route('director-message') }}">Message from the Director</a></li>
+                  <li><a class="dropdown-item" href="{{ route('mission-vision') }}">Mission & Vision</a></li>
+                  <li><a class="dropdown-item" href="{{ route('research-ethics-committee') }}">Research Ethics Committee</a></li>
                   <li><a class="dropdown-item" href="{{ url('/our-team') }}">Our Team</a></li>
                   <li><a class="dropdown-item" href="{{ url('/about-resources') }}">Resources</a></li>
             </ul>

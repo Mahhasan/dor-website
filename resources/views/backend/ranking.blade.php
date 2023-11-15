@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($ranking))
             <h6>Edit <span class="text-success font-weight-bold">{{ $ranking->title }} - {{$ranking->year}}</span></h6>
-            <form method="POST" action="{{ route('ranking.update', $ranking->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('rankings.update', $ranking->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
                 <h6>Add New Ranking</h6>
-            <form method="POST" action="{{ route('ranking.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('rankings.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -47,7 +47,7 @@
                 </div>
                 @if(isset($ranking))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('ranking.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('rankings.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -83,8 +83,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('ranking.edit', $ranking->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('ranking.destroy', $ranking->id) }}" method="POST" style="display: inline;">
+                                    <a href="{{ route('rankings.edit', $ranking->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                    <form action="{{ route('rankings.destroy', $ranking->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

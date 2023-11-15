@@ -236,7 +236,7 @@
             };
 
             input.click();
-        },
+            },
         });
     </script>
     <!-- script for toggle button -->

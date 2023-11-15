@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($ourTeam))
             <h6>Edit <span class="text-success font-weight-bold">{{$ourTeam->name}}'s</span> Record</h6>
-            <form method="POST" action="{{ route('our-team.update', $ourTeam->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('our.team.update', $ourTeam->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
                 <h6>Add New Member</h6>
-            <form method="POST" action="{{ route('our-team.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('our.team.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -81,7 +81,7 @@
                 </div>
                 @if(isset($ourTeam))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('our-team.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('our.team.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -117,8 +117,8 @@
                                     <p>{{ $ourTeam->email }}</p>
                                     <p>{{ $ourTeam->cell }}</p>
                                     <div class="float-right">
-                                        <a href="{{ route('our-team.edit', $ourTeam->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ route('our-team.destroy', $ourTeam->id) }}" method="POST" style="display: inline;">
+                                        <a href="{{ route('our.team.edit', $ourTeam->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                        <form action="{{ route('our.team.destroy', $ourTeam->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>

@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($collaboratingResearch))
             <h6>Edit Record</h6>
-            <form method="POST" action="{{ route('collaborating-research.update', $collaboratingResearch->id) }}">
+            <form method="POST" action="{{ route('collaborating.research.update', $collaboratingResearch->id) }}">
                 @method('PATCH')
             @else
             <h6>Add New Institute</h6>
-            <form method="POST" action="{{ route('collaborating-research.store') }}">
+            <form method="POST" action="{{ route('collaborating.research.store') }}">
             @endif
                 @csrf
                 <div class="row mt-5">
@@ -25,7 +25,7 @@
                 </div>
                 @if(isset($collaboratingResearch))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('collaborating-research.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('collaborating.research.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -52,8 +52,8 @@
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $collaboratingResearch->institute_name }}</td>
                                 <td>
-                                    <a href="{{ route('collaborating-research.edit', $collaboratingResearch->id) }}" class="btn btn-sm text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('collaborating-research.destroy', $collaboratingResearch->id) }}" method="POST" style="display: inline;">
+                                    <a href="{{ route('collaborating.research.edit', $collaboratingResearch->id) }}" class="btn btn-sm text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
+                                    <form action="{{ route('collaborating.research.destroy', $collaboratingResearch->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

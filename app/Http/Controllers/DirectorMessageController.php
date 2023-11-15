@@ -37,10 +37,10 @@ class DirectorMessageController extends Controller
                 'message' => $request->message,
                 'picture' => $imageName,
             ]);
-            return redirect()->route('director-message.index')->with('success', 'Record created successfully.'); 
+            return redirect()->route('director.message.index')->with('success', 'Record created successfully.'); 
         }
         catch(\Exception) {
-            return redirect('director-message.index')->with('fail', "Failed to create record! Please try again"); 
+            return redirect('director.message.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -74,10 +74,10 @@ class DirectorMessageController extends Controller
             }
             $directorMessage->update($data);
 
-            return redirect()->route('director-message.index')->with('success', 'Record updated successfully.');
+            return redirect()->route('director.message.index')->with('success', 'Record updated successfully.');
         }
         catch(\Exception) {
-            return redirect('director-message.index')->with('fail', "Failed to update record! Please try again"); 
+            return redirect('director.message.index')->with('fail', "Failed to update record! Please try again"); 
         } 
     }
     
@@ -93,10 +93,10 @@ class DirectorMessageController extends Controller
 
             $directorMessage->delete();
 
-            return redirect()->route('director-message.index')->with('success', 'Record deleted successfully');
+            return redirect()->route('director.message.index')->with('success', 'Record deleted successfully');
         }
         catch(\Exception) {
-            return redirect('director-message.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('director.message.index')->with('fail', "Failed to delete record! Please try again"); 
         } 
     }
 

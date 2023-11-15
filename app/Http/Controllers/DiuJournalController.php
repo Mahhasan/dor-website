@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DiuJournal;
-use Illuminate\Support\Facades\Session;
 
 class DiuJournalController extends Controller
 {
@@ -38,8 +37,7 @@ class DiuJournalController extends Controller
             'picture' => $imageName,
         ]);
 
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('diu-journals.index');
+        return redirect()->route('diu.journals.index')->with('success', 'Record created successfully.');
     }
 
     public function edit(DiuJournal $diuJournal)
@@ -73,8 +71,7 @@ class DiuJournalController extends Controller
     
         $diuJournal->update($data);
     
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('diu-journals.index');
+        return redirect()->route('diu.journals.index')->with('success', 'Record updated successfully.');
     }
     
 
@@ -88,6 +85,6 @@ class DiuJournalController extends Controller
 
         $diuJournal->delete();
 
-        return redirect()->route('diu-journals.index')->with('success', 'Record deleted successfully');
+        return redirect()->route('diu.journals.index')->with('success', 'Record deleted successfully');
     }
 }

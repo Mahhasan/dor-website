@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Event;
-use Illuminate\Support\Facades\Session;
 
 class EventController extends Controller
 {public function index()
@@ -33,8 +32,7 @@ class EventController extends Controller
             'event_details' => $request->event_details,
         ]);
 
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('success', 'Record created successfully');
     }
 
     public function edit(event $event)
@@ -52,8 +50,7 @@ class EventController extends Controller
     
         $event->update($request->all());
     
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('success', 'Record updated successfully');
     }
     
 

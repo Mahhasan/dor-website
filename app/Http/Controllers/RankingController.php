@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ranking;
-use Illuminate\Support\Facades\Session;
 
 class RankingController extends Controller
 {
@@ -40,8 +39,7 @@ class RankingController extends Controller
             'picture' => $imageName,
         ]);
 
-        Session::flash('success', 'Record created successfully.');
-        return redirect()->route('ranking.index');
+        return redirect()->route('rankings.index')->with('success', 'Record created successfully.');
     }
 
     public function edit(Ranking $ranking)
@@ -76,8 +74,7 @@ class RankingController extends Controller
     
         $ranking->update($data);
     
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('ranking.index');
+        return redirect()->route('rankings.index')->with('success', 'Record updated successfully.');
     }
     
 
@@ -91,6 +88,6 @@ class RankingController extends Controller
 
         $ranking->delete();
 
-        return redirect()->route('ranking.index')->with('success', 'Record deleted successfully');
+        return redirect()->route('rankings.index')->with('success', 'Record deleted successfully');
     }
 }

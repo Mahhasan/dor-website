@@ -41,11 +41,11 @@
         <div id="about" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">About Sub Menu:</h6>
-                <a class="collapse-item" href="/director-message">Message from the Director</a>
-                <a class="collapse-item" href="/mission-vision">Mission & Vision</a>
-                <a class="collapse-item" href="/research-ethics-committees">Research Ethics Committee</a>
-                <a class="collapse-item" href="/our-team">Our Team</a>
-                <a class="collapse-item" href="/resources">Resources</a>
+                <a class="collapse-item" href="{{ route('director.message.index') }}">Message from the Director</a>
+                <a class="collapse-item" href="{{ route('mission.vision.index') }}">Mission & Vision</a>
+                <a class="collapse-item" href="{{ route('research.ethics.ommittees.index') }}">Research Ethics Committee</a>
+                <a class="collapse-item" href="{{ route('our.team.index') }}">Our Team</a>
+                <a class="collapse-item" href="{{ route('resources.index') }}">Resources</a>
             </div>
         </div>
     </li>
@@ -60,22 +60,22 @@
         <div id="ResearchNetworking" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
-                <a class="collapse-item" href="/collaborating-research">Collaborating Research</a>
-                <a class="collapse-item" href="/source-of-publication">Source of Publications</a>
+                <a class="collapse-item" href="{{ route('collaborating.research.index') }}">Collaborating Research</a>
+                <a class="collapse-item" href="{{ route('source.of.publication.index') }}">Source of Publications</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Interdisciplinary Research -->
     <li class="nav-item">
-        <a class="nav-link" href="/interdisciplinary-research">
+        <a class="nav-link" href="{{ route('interdisciplinary.research.index') }}">
             <i class="fa fa-list" aria-hidden="true"></i>
             <span>Interdisciplinary Research</span></a>
     </li>
 
     <!-- Nav Item - Research Update -->
     <li class="nav-item">
-        <a class="nav-link" href="/research-update">
+        <a class="nav-link" href="{{ route('research.update.index') }}">
             <i class="fa fa-book" aria-hidden="true"></i>
             <span>Research Update</span></a>
     </li>
@@ -90,29 +90,29 @@
         <div id="Publications" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
-                <a class="collapse-item" href="/scopus-article">Scopus/ISI Article</a>
-                <a class="collapse-item" href="/diu-journals">DIU Journals</a>
+                <a class="collapse-item" href="{{ url('/scopus-article') }}">Scopus/ISI Article</a>
+                <a class="collapse-item" href="{{ route('diu.journals.index') }}">DIU Journals</a>
             </div>
         </div>
     </li>
     
     <!-- Nav Item - Research Co-ordinator -->
     <li class="nav-item">
-        <a class="nav-link" href="/research-coordinator">
+        <a class="nav-link" href="{{ route('research.coordinator.index') }}">
             <i class="fa fa-users" aria-hidden="true"></i>
             <span>Research Co-ordinator</span></a>
     </li>
 
     <!-- Nav Item - Rankings -->
     <li class="nav-item">
-        <a class="nav-link" href="/ranking">
+        <a class="nav-link" href="{{ route('rankings.index') }}">
             <i class="fa fa-star"></i>
             <span>Rankings</span></a>
     </li>
 
     <!-- Nav Item - Events -->
     <li class="nav-item">
-        <a class="nav-link" href="/events">
+        <a class="nav-link" href="{{ route('events.index') }}">
             <i class="fa fad fa-calendar-alt"></i>
             <span>Events</span></a>
     </li>
@@ -127,8 +127,8 @@
         <div id="Gallery" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sub Menu:</h6>
-                <a class="collapse-item" href="/photos">Photo</a>
-                <a class="collapse-item" href="/videos">Video</a>
+                <a class="collapse-item" href="{{ route('photos.index') }}">Photo</a>
+                <a class="collapse-item" href="{{ route('videos.index') }}">Video</a>
             </div>
         </div>
     </li>

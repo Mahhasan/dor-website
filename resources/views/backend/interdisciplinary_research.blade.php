@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($interdisciplinaryResearch))
                 <h6>Edit <span class="text-success font-weight-bold">{{ $interdisciplinaryResearch->lab_name }}</span> Lab Record</h6>
-                <form method="POST" action="{{ route('interdisciplinary-research.update', $interdisciplinaryResearch->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('interdisciplinary.research.update', $interdisciplinaryResearch->id) }}" enctype="multipart/form-data">
                     @method('PATCH')
                 @else
                     <h6>Add New Research Lab</h6>
-                    <form method="POST" action="{{ route('interdisciplinary-research.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('interdisciplinary.research.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -57,7 +57,7 @@
                 </div>
                 @if(isset($interdisciplinaryResearch))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('interdisciplinary-research.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('interdisciplinary.research.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -107,8 +107,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('interdisciplinary-research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('interdisciplinary-research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('interdisciplinary.research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('interdisciplinary.research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
@@ -150,8 +150,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('interdisciplinary-research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('interdisciplinary-research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('interdisciplinary.research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('interdisciplinary.research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

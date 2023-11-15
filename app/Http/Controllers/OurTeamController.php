@@ -43,13 +43,13 @@ class OurTeamController extends Controller
                 'level' => $request->level,
                 'picture' => $imageName,
             ]);
-            return redirect()->route('our-team.index')->with('success', "Record created successfully.");
+            return redirect()->route('our.team.index')->with('success', "Record created successfully.");
         }
         catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('our-team.index')->with('warning', "Validation failed. Please check your inputs.");
+            return redirect()->route('our.team.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch (\Exception $e) {
-            return redirect()->route('our-team.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('our.team.index')->with('fail', "Failed to create record! Please try again");
         }
     }
 
@@ -82,13 +82,13 @@ class OurTeamController extends Controller
             }
 
             $ourTeam->update($data);
-            return redirect()->route('our-team.index')->with('success', "Record updated successfully.");
+            return redirect()->route('our.team.index')->with('success', "Record updated successfully.");
         }
         catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('our-team.index')->with('warning', "Validation failed. Please check your inputs.");
+            return redirect()->route('our.team.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch (\Exception $e) {
-            return redirect()->route('our-team.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('our.team.index')->with('fail', "Failed to create record! Please try again");
         }
     }
 
@@ -102,10 +102,10 @@ class OurTeamController extends Controller
         try{
             $ourTeam->delete();
 
-            return redirect()->route('our-team.index')->with('success', "Record deleted successfully.");
+            return redirect()->route('our.team.index')->with('success', "Record deleted successfully.");
         }
         catch(\Exception) {
-            return redirect('our-team.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('our.team.index')->with('fail', "Failed to delete record! Please try again"); 
         }
     }
 }

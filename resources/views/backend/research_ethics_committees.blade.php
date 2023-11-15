@@ -10,11 +10,11 @@
             <h5>Research Ethics Committee</h5>
             @if(isset($researchEthicsCommittee))
                 <h6>Edit <span class="text-success font-weight-bold">{{$researchEthicsCommittee->name}}'s</span> Record</h6>
-                <form method="POST" action="{{ route('research-ethics-committees.update', $researchEthicsCommittee->id) }}">
+                <form method="POST" action="{{ route('research.ethics.ommittees.update', $researchEthicsCommittee->id) }}">
                 @method('PATCH')
             @else
                 <h6>Add New Committee</h6>
-                <form method="POST" action="{{ route('research-ethics-committees.store') }}">
+                <form method="POST" action="{{ route('research.ethics.ommittees.store') }}">
             @endif
                 @csrf
                 <div class="row mt-5">
@@ -48,7 +48,7 @@
                 </div>
                 @if(isset($researchEthicsCommittee))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('research-ethics-committees.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('research.ethics.ommittees.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -92,8 +92,8 @@
                                         <td>{{ $committee->faculty_name }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
-                                            <a href="{{ route('research-ethics-committees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('research-ethics-committees.destroy', $committee->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('research.ethics.ommittees.destroy', $committee->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$committee->name}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
@@ -127,8 +127,8 @@
                                         <td>{{ $committee->faculty_name }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
-                                            <a href="{{ route('research-ethics-committees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('research-ethics-committees.destroy', $committee->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('research.ethics.ommittees.destroy', $committee->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$committee->name}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
@@ -162,8 +162,8 @@
                                         <td>{{ $committee->faculty_name }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
-                                            <a href="{{ route('research-ethics-committees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('research-ethics-committees.destroy', $committee->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('research.ethics.ommittees.destroy', $committee->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$committee->name}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
@@ -197,8 +197,8 @@
                                         <td>{{ $committee->faculty_name }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
-                                            <a href="{{ route('research-ethics-committees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('research-ethics-committees.destroy', $committee->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('research.ethics.ommittees.destroy', $committee->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$committee->name}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
@@ -232,8 +232,8 @@
                                         <td>{{ $committee->faculty_name }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
-                                            <a href="{{ route('research-ethics-committees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('research-ethics-committees.destroy', $committee->id) }}" method="POST" style="display: inline;">
+                                            <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
+                                            <form action="{{ route('research.ethics.ommittees.destroy', $committee->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$committee->name}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

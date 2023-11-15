@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($directorMessage))
             <h6>Edit Message</h6>
-            <form method="POST" action="{{ route('director-message.update', $directorMessage->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('director.message.update', $directorMessage->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
                 <h6>Add New Message</h6>
-            <form method="POST" action="{{ route('director-message.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('director.message.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -42,7 +42,7 @@
                 </div>
                 @if(isset($directorMessage))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('director-message.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('director.message.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -57,8 +57,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="text-center flex-grow-1">{{ $directorMessage->title }}</h5>
                         <div>
-                            <a href="{{ route('director-message.edit', $directorMessage->id) }}" class="btn btn-sm text-primary" title="Edit this message"><i class="fas fa-edit fa-sm"></i></a>
-                            <form action="{{ route('director-message.destroy', $directorMessage->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('director.message.edit', $directorMessage->id) }}" class="btn btn-sm text-primary" title="Edit this message"><i class="fas fa-edit fa-sm"></i></a>
+                            <form action="{{ route('director.message.destroy', $directorMessage->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this message"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

@@ -28,10 +28,10 @@ class MissionVisionController extends Controller
         ]);
         try{    
             MissionVision::create($request->all());
-            return redirect()->route('mission-vision.index')->with('success', 'Record created successfully');
+            return redirect()->route('mission.vision.index')->with('success', 'Record created successfully');
         }
         catch(\Exception) {
-            return redirect('mission-vision.index')->with('fail', "Failed to create record! Please try again"); 
+            return redirect('mission.vision.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -49,10 +49,10 @@ class MissionVisionController extends Controller
         ]);
         try{
             $missionVision->update($request->all());
-            return redirect()->route('mission-vision.index')->with('success', 'Record updated successfully');
+            return redirect()->route('mission.vision.index')->with('success', 'Record updated successfully');
         }
         catch(\Exception) {
-            return redirect('mission-vision.index')->with('fail', "Failed to update record! Please try again"); 
+            return redirect('mission.vision.index')->with('fail', "Failed to update record! Please try again"); 
         } 
     }
 
@@ -62,10 +62,10 @@ class MissionVisionController extends Controller
         try{
             $missionVision->delete();
 
-            return redirect()->route('mission-vision.index')->with('success', 'Record deleted successfully');
+            return redirect()->route('mission.vision.index')->with('success', 'Record deleted successfully');
         }
         catch(\Exception) {
-            return redirect('mission-vision.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('mission.vision.index')->with('fail', "Failed to delete record! Please try again"); 
         } 
     }
 }

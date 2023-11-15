@@ -44,7 +44,7 @@ class ResearchCoordinatorController extends Controller
             'picture' => $imageName,
         ]);
 
-        return redirect()->route('research-coordinator.index')->with('success', 'Record created successfully');
+        return redirect()->route('research.coordinator.index')->with('success', 'Record created successfully');
     }
 
     public function edit(ResearchCoordinator $researchCoordinator)
@@ -79,7 +79,7 @@ class ResearchCoordinatorController extends Controller
 
         $researchCoordinator->update($data);
 
-        return redirect()->route('research-coordinator.index')->with('success', 'Record updated successfully');
+        return redirect()->route('research.coordinator.index')->with('success', 'Record updated successfully');
     }
 
     public function destroy(ResearchCoordinator $researchCoordinator)
@@ -92,6 +92,6 @@ class ResearchCoordinatorController extends Controller
 
         $researchCoordinator->delete();
 
-        return redirect()->route('research-coordinator.index')->with('success', 'Record deleted successfully');
+        return redirect()->route('research.coordinator.index')->with('success', 'Record deleted successfully');
     }
 }

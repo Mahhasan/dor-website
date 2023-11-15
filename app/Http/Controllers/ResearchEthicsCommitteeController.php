@@ -34,10 +34,10 @@ class ResearchEthicsCommitteeController extends Controller
         ]);
         try{
             ResearchEthicsCommittee::create($request->all());
-            return redirect()->route('research-ethics-committees.index')->with('success', 'Record created successfully');
+            return redirect()->route('research.ethics.ommittees.index')->with('success', 'Record created successfully');
         }
         catch(\Exception) {
-            return redirect('research-ethics-committees.index')->with('fail', "Failed to create record! Please try again"); 
+            return redirect('research.ethics.ommittees.index')->with('fail', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -63,10 +63,10 @@ class ResearchEthicsCommitteeController extends Controller
         ]);
         try{
             $researchEthicsCommittee->update($request->all());
-            return redirect()->route('research-ethics-committees.index')->with('success', 'Record updated successfully');
+            return redirect()->route('research.ethics.ommittees.index')->with('success', 'Record updated successfully');
         }
         catch(\Exception) {
-            return redirect('research-ethics-committees.index')->with('fail', "Failed to update record! Please try again"); 
+            return redirect('research.ethics.ommittees.index')->with('fail', "Failed to update record! Please try again"); 
         } 
     }
 
@@ -75,10 +75,10 @@ class ResearchEthicsCommitteeController extends Controller
         try{
             $researchEthicsCommittee->delete();
 
-            return redirect()->route('research-ethics-committees.index')->with('success', 'Record deleted successfully');
+            return redirect()->route('research.ethics.ommittees.index')->with('success', 'Record deleted successfully');
         }
         catch(\Exception) {
-            return redirect('research-ethics-committees.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('research.ethics.ommittees.index')->with('fail', "Failed to delete record! Please try again"); 
         }     
     }
 }

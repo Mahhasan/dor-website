@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($researchCoordinator))
             <h6>Edit <span class="text-success font-weight-bold">{{ $researchCoordinator->name }}'s</span> Record</h6>
-            <form method="POST" action="{{ route('research-coordinator.update', $researchCoordinator->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('research.coordinator.update', $researchCoordinator->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
                 <h6>Add Research Coordinator</h6>
-            <form method="POST" action="{{ route('research-coordinator.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('research.coordinator.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -66,7 +66,7 @@
                 </div>
                 @if(isset($researchCoordinator))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('research-coordinator.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('research.coordinator.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -97,8 +97,8 @@
                         <p>{{ $researchCoordinator->email }}</p>
                         <p>{{ $researchCoordinator->cell }}</p>
                         <div class="float-right">
-                            <a href="{{ route('research-coordinator.edit', $researchCoordinator->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                            <form action="{{ route('research-coordinator.destroy', $researchCoordinator->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('research.coordinator.edit', $researchCoordinator->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                            <form action="{{ route('research.coordinator.destroy', $researchCoordinator->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

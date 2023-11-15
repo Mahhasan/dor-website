@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($diuJournal))
             <h6>Edit <span class="text-success font-weight-bold">{{ $diuJournal->name }}'s</span> Record</h6>
-            <form method="POST" action="{{ route('diu-journals.update', $diuJournal->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('diu.journals.update', $diuJournal->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @else
                 <h6>Add New Journal</h6>
-            <form method="POST" action="{{ route('diu-journals.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('diu.journals.store') }}" enctype="multipart/form-data">
                 @endif
                 @csrf
                 <div class="row mt-5">
@@ -42,7 +42,7 @@
                 </div>
                 @if(isset($diuJournal))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('diu-journals.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('diu.journals.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -67,8 +67,8 @@
                     <a href="{{ $diuJournal->link }}" target="_blank" class="text-center p-2">{{ $diuJournal->name }}</a>
                     <div class="card-body p-0">
                         <div class="text-center">
-                            <a href="{{ route('diu-journals.edit', $diuJournal->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                            <form action="{{ route('diu-journals.destroy', $diuJournal->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('diu.journals.edit', $diuJournal->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                            <form action="{{ route('diu.journals.destroy', $diuJournal->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

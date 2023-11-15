@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WebsiteSliderController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\DirectorMessageController;
@@ -30,13 +31,21 @@ use App\Http\Controllers\VideoController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [App\Http\Controllers\FrontendController::class, 'websiteSlider'])->name('welcome');
+
+Route::get('/', [FrontendController::class, 'index'])->name('welcome');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('about', [FrontendController::class, 'directorMessage'])->name('director-message');
+Route::get('mission-vision', [FrontendController::class, 'missionVision'])->name('mission-vision');
+Route::get('research-ethics-committee', [FrontendController::class, 'researchEthicsFaculty'])->name('research-ethics-committee');
+Route::get('research-ethics-committee/{id}', [FrontendController::class, 'researchEthicsCommittee'])->name('research-ethics-committee-details');
+Route::get('our-team', [FrontendController::class, 'ourTeam'])->name('our-team');
+Route::get('our-team', [FrontendController::class, 'ourTeam'])->name('our-team');
+Route::get('about-resources', [FrontendController::class, 'resources'])->name('about-resources');
+
+
+
+
 
 // Data viw using API from SmartEdu repository 
 Route::get('/scopus-article', [App\Http\Controllers\DataController::class, 'scopus_article']);
@@ -48,15 +57,10 @@ Route::get('/research-coordinator', function () {
 Route::get('/ranking', function () {
     return view('frontend.ranking');
 });
-Route::get('/about', function () {
-    return view('frontend.about');
-});
 Route::get('/photo', function () {
     return view('frontend.photo');
 });
-Route::get('/our-team', function () {
-    return view('frontend.our-team');
-});
+
 Route::get('/journals',function(){
    return view('frontend.journal'); 
 });
@@ -68,9 +72,6 @@ Route::get('/research-collaboration', function () {
 });
 Route::get('/publication-source', function () {
     return view('frontend.publication-source');
-});
-Route::get('/mission-vision', function () {
-    return view('frontend.mission-vision');
 });
 Route::get('/contact', function () {
     return view('frontend.contact');
@@ -133,21 +134,8 @@ Route::get('/project/two', function (){
     return view('frontend.project.two');
 });
 
-Route::get('/research-ethics-committee-fsit', function () {
-    return view('frontend.research-ethics-committee-fsit');
-});
-Route::get('/research-ethics-committee-fbe', function () {
-    return view('frontend.research-ethics-committee-fbe');
-});
-Route::get('/research-ethics-committee-fe', function () {
-    return view('frontend.research-ethics-committee-fe');
-});
-Route::get('/research-ethics-committee-fhss', function () {
-    return view('frontend.research-ethics-committee-fhss');
-});
-Route::get('/about-resources', function () {
-    return view('frontend.about-resources');
-});
+
+
 Route::get('/diu-governance-meeting', function () {
     return view('frontend.diu-governance-meeting');
 });
@@ -392,23 +380,24 @@ Route::get('/decision-regarding-separate-blc-courses-for-all-lab-classes', funct
 });
 
 
-Route::get('/research-ethics-committee', [FrontendController::class, 'ResearchEthicsFaculty']);
+
 
 
 // Backend
-Route::resource('website-slider', WebsiteSliderController::class)->names('website.slider');
-Route::resource('director-message', DirectorMessageController::class);
-Route::resource('mission-vision', MissionVisionController::class);
-Route::resource('research-ethics-committees', ResearchEthicsCommitteeController::class);
-Route::resource('our-team', OurTeamController::class);
-Route::resource('resources', ResourceController::class);
-Route::resource('research-coordinator', ResearchCoordinatorController::class);
-Route::resource('collaborating-research', CollaboratingResearchController::class);
-Route::resource('source-of-publication', SourceOfPublicationController::class);
-Route::resource('interdisciplinary-research', InterdisciplinaryResearchController::class);
-Route::resource('research-update', ResearchUpdateController::class);
-Route::resource('diu-journals', DiuJournalController::class);
-Route::resource('ranking', RankingController::class);
-Route::resource('events', EventController::class);
-Route::resource('photos', PhotoController::class);
-Route::resource('videos', VideoController::class);
+Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::resource('website_slider', WebsiteSliderController::class)->names('website.slider');
+Route::resource('director_message', DirectorMessageController::class)->names('director.message');
+Route::resource('mission_vision', MissionVisionController::class)->names('mission.vision');
+Route::resource('research_ethics_committees', ResearchEthicsCommitteeController::class)->names('research.ethics.ommittees');
+Route::resource('our_team', OurTeamController::class)->names('our.team');
+Route::resource('resources', ResourceController::class)->names('resources');
+Route::resource('research_coordinator', ResearchCoordinatorController::class)->names('research.coordinator');
+Route::resource('collaborating_research', CollaboratingResearchController::class)->names('collaborating.research');
+Route::resource('source_of_publication', SourceOfPublicationController::class)->names('source.of.publication');
+Route::resource('interdisciplinary-research', InterdisciplinaryResearchController::class)->names('interdisciplinary.research');
+Route::resource('research_update', ResearchUpdateController::class)->names('research.update');
+Route::resource('diu_journals', DiuJournalController::class)->names('diu.journals');
+Route::resource('rankings', RankingController::class)->names('rankings');
+Route::resource('events', EventController::class)->names('events');
+Route::resource('photos', PhotoController::class)->names('photos');
+Route::resource('videos', VideoController::class)->names('videos');

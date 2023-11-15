@@ -6,7 +6,7 @@
             <div class="custom-form col-md-10 mx-auto pt-5 pb-5">
                 <h5>Mission & Vision</h5>
                 <h6>Edit Record</h6>
-                <form method="POST" action="{{ route('mission-vision.update', $missionVision->id) }}">
+                <form method="POST" action="{{ route('mission.vision.update', $missionVision->id) }}">
                     @method('PATCH')  
                     @csrf
                     <div class="row mt-5">
@@ -25,7 +25,7 @@
                     </div>
                     @if(isset($missionVision))
                         <button type="submit" class="btn btn-primary">Save Changes</button>
-                        <a href="{{ route('mission-vision.index') }}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('mission.vision.index') }}" class="btn btn-secondary">Cancel</a>
                     @else
                         <button type="submit" class="btn btn-primary">Submit</button>
                     @endif
@@ -42,8 +42,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="text-center flex-grow-1">Mission & vision</h5>
                         <div>
-                            <a href="{{ route('mission-vision.edit', $missionVision->id) }}" class="btn text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
-                            <!-- <form action="{{ route('mission-vision.destroy', $missionVision->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('mission.vision.edit', $missionVision->id) }}" class="btn text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
+                            <!-- <form action="{{ route('mission.vision.destroy', $missionVision->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

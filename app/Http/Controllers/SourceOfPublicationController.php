@@ -28,13 +28,13 @@ class SourceOfPublicationController extends Controller
             ]);
             
             SourceOfPublication::create($request->all());
-            return redirect()->route('source-of-publication.index')->with('success', 'Record created successfully');
+            return redirect()->route('source.of.publication.index')->with('success', 'Record created successfully');
         }
         catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('source-of-publication.index')->with('warning', "Validation failed. Please check your inputs.");
+            return redirect()->route('source.of.publication.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch (\Exception $e) {
-            return redirect()->route('source-of-publication.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('source.of.publication.index')->with('fail', "Failed to create record! Please try again");
         }
     }
 
@@ -52,13 +52,13 @@ class SourceOfPublicationController extends Controller
             ]);
         
             $sourceOfPublication->update($request->all());
-            return redirect()->route('source-of-publication.index')->with('success', 'Record updated successfully');
+            return redirect()->route('source.of.publication.index')->with('success', 'Record updated successfully');
         }
         catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('source-of-publication.index')->with('warning', "Validation failed. Please check your inputs.");
+            return redirect()->route('source.of.publication.index')->with('warning', "Validation failed. Please check your inputs.");
         }
         catch (\Exception $e) {
-            return redirect()->route('source-of-publication.index')->with('fail', "Failed to update record! Please try again");
+            return redirect()->route('source.of.publication.index')->with('fail', "Failed to update record! Please try again");
         }
     }
 
@@ -68,10 +68,10 @@ class SourceOfPublicationController extends Controller
             // Delete the database record
             $sourceOfPublication->delete();
 
-            return redirect()->route('source-of-publication.index')->with('success', 'Record and file deleted successfully');
+            return redirect()->route('source.of.publication.index')->with('success', 'Record and file deleted successfully');
         }
         catch (\Exception $e) {
-            return redirect()->route('source-of-publication.index')->with('fail', "Failed to delete record! Please try again");
+            return redirect()->route('source.of.publication.index')->with('fail', "Failed to delete record! Please try again");
         }
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\InterdisciplinaryResearch;
-use Illuminate\Support\Facades\Session;
 
 class InterdisciplinaryResearchController extends Controller
 {
@@ -51,8 +50,7 @@ class InterdisciplinaryResearchController extends Controller
         'picture' => json_encode($pictures), // Store filenames as JSON
     ]);
 
-    Session::flash('success', 'Record created successfully.');
-    return redirect()->route('interdisciplinary-research.index');
+    return redirect()->route('interdisciplinary-research.index')->with('success', 'Record Created successfully');
 }
 
     public function edit(InterdisciplinaryResearch $interdisciplinaryResearch)
@@ -103,9 +101,7 @@ class InterdisciplinaryResearchController extends Controller
         $data['picture'] = json_encode($pictures);
 
         $interdisciplinaryResearch->update($data);
-
-        Session::flash('success', 'Record updated successfully.');
-        return redirect()->route('interdisciplinary-research.index');
+        return redirect()->route('interdisciplinary-research.index')->with('success', 'Record Updated successfully');
     }
 
 

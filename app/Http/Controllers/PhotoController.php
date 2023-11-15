@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Photo;
-use Illuminate\Support\Facades\Session;
 
 class PhotoController extends Controller
 {
@@ -62,8 +61,7 @@ class PhotoController extends Controller
         'links' => json_encode($links), // Store links as JSON
     ]);
 
-    Session::flash('success', 'Record created successfully.');
-    return redirect()->route('photos.index');
+    return redirect()->route('photos.index')->with('success', 'Record created successfully');
 }
 
 public function update(Request $request, Photo $photo)
@@ -116,8 +114,7 @@ public function update(Request $request, Photo $photo)
         'links' => json_encode($links), // Store links as JSON
     ]);
 
-    Session::flash('success', 'Record updated successfully.');
-    return redirect()->route('photos.index');
+    return redirect()->route('photos.index')->with('success', 'Record updated successfully');
 }
 
     public function destroy(Photo $photo)

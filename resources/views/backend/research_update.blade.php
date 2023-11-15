@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($researchUpdate))
             <h6>Edit <span class="text-success font-weight-bold">{{ $researchUpdate->volume}}</span></h6>
-            <form method="POST" action="{{ route('research-update.update', $researchUpdate->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('research.update.update', $researchUpdate->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
             @else
             <h6>Add Research Update</h6>
-            <form method="POST" action="{{ route('research-update.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('research.update.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
                 <div class="row mt-5">
@@ -36,7 +36,7 @@
                 </div>
                 @if(isset($researchUpdate))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('research-update.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('research.update.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -62,12 +62,12 @@
                     @endif
                     <div class="card-body">
                         <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" class="" target="_blank" title="View file">{{ $researchUpdate->volume}}</a>
-                        <form action="{{ route('research-update.destroy', $researchUpdate->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('research.update.destroy', $researchUpdate->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="float-right btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete {{$researchUpdate->volume}}'s information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
                         </form>
-                        <a href="{{ route('research-update.edit', $researchUpdate->id) }}" class="float-right btn btn-sm text-primary" title="Edit {{$researchUpdate->volume}}'s file"><i class="fas fa-edit fa-sm"></i></a>
+                        <a href="{{ route('research.update.edit', $researchUpdate->id) }}" class="float-right btn btn-sm text-primary" title="Edit {{$researchUpdate->volume}}'s file"><i class="fas fa-edit fa-sm"></i></a>
                         <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" class="float-right btn btn-sm text-primary" target="_blank" title="View file"><i class="fa fa-eye" aria-hidden="true"></i></a>
                     </div>
                 </div>

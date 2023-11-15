@@ -9,11 +9,11 @@
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">
             @if(isset($sourceOfPublication))
             <h6>Edit Record</h6>
-            <form method="POST" action="{{ route('source-of-publication.update', $sourceOfPublication->id) }}">
+            <form method="POST" action="{{ route('source.of.publication.update', $sourceOfPublication->id) }}">
                 @method('PATCH')
             @else
             <h6>Add Publication Source</h6>
-            <form method="POST" action="{{ route('source-of-publication.store') }}">
+            <form method="POST" action="{{ route('source.of.publication.store') }}">
             @endif
                 @csrf
                 <div class="row mt-5">
@@ -25,7 +25,7 @@
                 </div>
                 @if(isset($sourceOfPublication))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                    <a href="{{ route('source-of-publication.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
+                    <a href="{{ route('source.of.publication.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
                 @else
                     <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                 @endif
@@ -52,8 +52,8 @@
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $sourceOfPublication->source }}</td>
                                 <td>
-                                    <a href="{{ route('source-of-publication.edit', $sourceOfPublication->id) }}" class="btn btn-sm text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
-                                    <form action="{{ route('source-of-publication.destroy', $sourceOfPublication->id) }}" method="POST" style="display: inline;">
+                                    <a href="{{ route('source.of.publication.edit', $sourceOfPublication->id) }}" class="btn btn-sm text-primary" title="Edit this information"><i class="fas fa-edit fa-sm"></i></a>
+                                    <form action="{{ route('source.of.publication.destroy', $sourceOfPublication->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')" title="Delete this information"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>

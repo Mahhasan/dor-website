@@ -7,7 +7,8 @@ use Illuminate\Support\Str;
 use App\Models\Event;
 
 class EventController extends Controller
-{public function index()
+{
+    public function index()
     {
         $events = Event::all();
         return view('backend.event', compact('events'));

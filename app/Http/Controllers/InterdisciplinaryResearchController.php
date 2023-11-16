@@ -50,7 +50,7 @@ class InterdisciplinaryResearchController extends Controller
         'picture' => json_encode($pictures), // Store filenames as JSON
     ]);
 
-    return redirect()->route('interdisciplinary-research.index')->with('success', 'Record Created successfully');
+    return redirect()->route('interdisciplinary.research.index')->with('success', 'Record Created successfully');
 }
 
     public function edit(InterdisciplinaryResearch $interdisciplinaryResearch)
@@ -101,7 +101,7 @@ class InterdisciplinaryResearchController extends Controller
         $data['picture'] = json_encode($pictures);
 
         $interdisciplinaryResearch->update($data);
-        return redirect()->route('interdisciplinary-research.index')->with('success', 'Record Updated successfully');
+        return redirect()->route('interdisciplinary.research.index')->with('success', 'Record Updated successfully');
     }
 
 
@@ -122,7 +122,7 @@ class InterdisciplinaryResearchController extends Controller
 
     $interdisciplinaryResearch->delete();
 
-    return redirect()->route('interdisciplinary-research.index')->with('success', 'Record deleted successfully');
+    return redirect()->route('interdisciplinary.research.index')->with('success', 'Record deleted successfully');
     }
 
 }

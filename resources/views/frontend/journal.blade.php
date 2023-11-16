@@ -14,40 +14,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <p></p>
-                                <a href="http://diujst.daffodilvarsity.edu.bd" target="_blank">DIU Journal of Science and Technology</a>
-                            </td>
-                            <td>
-                                <a href="http://diujst.daffodilvarsity.edu.bd" target="_blank"><img src="images/diujst.jpg" style="display: block;margin-left: auto;margin-right: auto;max-width: 300px;"></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>
-                                <p></p>
-                                <a href="http://diujbe.daffodilvarsity.edu.bd" target="_blank">DIU Journal of Business & Entrepreneurship</a>
-                            </td>
-                            <td><a href="http://diujbe.daffodilvarsity.edu.bd/" target="_blank"><img src="images/diujbe.png" style="display: block;margin-left: auto;margin-right: auto;max-width: 300px;"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>
-                                <p></p>
-                                <a href="http://diujhss.daffodilvarsity.edu.bd" target="_blank">DIU Journal of Humanities & Social Science</a>
-                            </td>
-                            <td><a href="http://diujhss.daffodilvarsity.edu.bd" target="_blank"><img src="images/diujhss.jpg" style="display: block;margin-left: auto;margin-right: auto;max-width: 300px;"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>
-                                <p></p>
-                                <a href="https://diujahs.daffodilvarsity.edu.bd" target="_blank">DIU Journal of Allied Health Sciences</a>
-                            </td>
-                            <td><a href="https://diujahs.daffodilvarsity.edu.bd" target="_blank"><img src="images/diujahs.jpg" style="display: block;margin-left: auto;margin-right: auto;max-width: 300px;"></a></td>
-                        </tr>
+                        @foreach($diuJournals as $key=>$diuJournal)
+                            <tr>
+                                <th scope="row">{{++$key}}</th>
+                                <td>
+                                    <p></p>
+                                    <a href="{{ $diuJournal->link }}" target="_blank">{{ $diuJournal->name }}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ $diuJournal->link }}" target="_blank">
+                                    @if($diuJournal->picture)
+                                        <img src="{{ asset('uploads/diu_journal/' . $diuJournal->picture) }}" alt="Image" style="display: block;margin-left: auto;margin-right: auto;max-width: 300px;">
+                                    @else
+                                        No Image Available
+                                    @endif
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach 
                     </tbody>
                 </table>
             </div>

@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\ResearchUpdate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -16,8 +17,8 @@ class DataController extends Controller
         $responseBody = json_decode($response->getBody());
           
         //dd($responseBody);
-
-		return view('frontend.scopus_article',compact('responseBody'));
+        $researchUpdates = ResearchUpdate::all();
+		return view('frontend.scopus_article',compact('responseBody', 'researchUpdates'));
     }
     public function scopus_article_details($id)
     {
@@ -27,7 +28,8 @@ class DataController extends Controller
             'verify'  => false,
         ]);
         $responseBody = json_decode($response->getBody());
-          
-		return view('frontend.scopus_article_details',compact('responseBody'));
+
+        $researchUpdates = ResearchUpdate::all();
+		return view('frontend.scopus_article_details',compact('responseBody', 'researchUpdates'));
     }
 }

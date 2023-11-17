@@ -50,7 +50,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12 mb-4">
-                        <input type="file" class="form-control border-0" id="pictures" name="pictures[]" accept="image/*" multiple>
+                        <input type="file" class="input border-0 pt-2" id="pictures" name="pictures[]" accept="image/*" multiple>
                         @if(isset($photo) && $photo->pictures)
                             <div class="row existing-pictures float-right mt-3 ml-1 mr-1">
                                 @foreach(json_decode($photo->pictures, true) as $picture)
@@ -62,6 +62,8 @@
                             </div>
                             <p><small class="font-italic">(If you want to remove an image then select it)</small></p>
                         @endif   
+                        <div class="cut"></div>
+                        <label for="pictures" class="placeholder">Gallery Image<small class="font-italic"> (size: 1000 x 665 px)</small></label>
                     </div>
                 </div>
                 @if(isset($photo))
@@ -81,7 +83,6 @@
 
     <div class="row d-block">
         <div class="mx-auto pb-5">
-            <!-- <h5 class="text-center mb-5">Photo Gallery</h5> -->
             <div class="table-responsive">
                 <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>

@@ -8,7 +8,7 @@
               </figure>
         </div>
         <div class="right-side">
-              <ul class="contact-info">
+              <!-- <ul class="contact-info">
                     <li class="item">
                           <div class="">
                                 <i class=""></i>
@@ -27,7 +27,7 @@
                           <br>
                           <span></span>
                     </li>
-              </ul>
+              </ul> -->
               <div class="link-btn">
                    <figure>
                     <a href="{{ url('/') }}">
@@ -114,8 +114,8 @@
           Gallery
           </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
-                  <li><a class="dropdown-item" href="{{ url('/photo') }}">Photo</a></li>
-                  <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
+                  <li><a class="dropdown-item" href="{{ route('photo') }}">Photo</a></li>
+                  <li><a class="dropdown-item" href="{{ route('video') }}">Video</a></li>
             </ul>
         </li>
       </ul>

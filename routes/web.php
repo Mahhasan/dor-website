@@ -24,11 +24,6 @@ use App\Http\Controllers\VideoController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 // Frontend
@@ -47,13 +42,9 @@ Route::get('research-collaboration', [FrontendController::class, 'researchCollab
 Route::get('publication-source', [FrontendController::class, 'publicationSource'])->name('publication-source');
 Route::get('interdisciplinary_research', [FrontendController::class, 'interdisciplinaryResearch'])->name('interdisciplinary-research');
 Route::get('interdisciplinary_research/{id}', [FrontendController::class, 'interdisciplinaryResearchDetails'])->name('interdisciplinary-research-details');
-
-Route::get('/Policy-on-Faculty-Promotion-System-that-Recognizes-Interdisciplinary-Research', function () {return view('frontend.promotion-policy');});
-
 Route::get('science-discipline', [FrontendController::class, 'scienceDiscipline'])->name('science-discipline');
 Route::get('science-discipline/{id}', [FrontendController::class, 'scienceDisciplineDetails'])->name('science-discipline-details');
 Route::get('research-update/{id}', [FrontendController::class, 'researchUpdate'])->name('research-update');
-
 // Data viw using API from SmartEdu repository 
 Route::get('/scopus-article', [DataController::class, 'scopus_article']);
 Route::get('/scopus-article/{id}', [DataController::class, 'scopus_article_details']);
@@ -63,24 +54,11 @@ Route::get('research-coordinator', [FrontendController::class, 'researchCoordina
 Route::get('ranking', [FrontendController::class, 'ranking'])->name('ranking');
 Route::get('event', [FrontendController::class, 'event'])->name('event');
 Route::get('event/{id}', [FrontendController::class, 'eventDetails'])->name('event-details');
+Route::get('photo', [FrontendController::class, 'photo'])->name('photo');
+Route::get('video', [FrontendController::class, 'video'])->name('video');
 
-
-
-
-
-
-Route::get('/photo', function () {
-    return view('frontend.photo');
-});
-
-Route::get('/video', function(){
-    return view('frontend.video');
-});
-
-Route::get('/diu-governance-meeting', function () {
-    return view('frontend.diu-governance-meeting');
-});
-
+Route::get('/Policy-on-Faculty-Promotion-System-that-Recognizes-Interdisciplinary-Research', function () {return view('frontend.promotion-policy');});
+Route::get('/diu-governance-meeting', function () {return view('frontend.diu-governance-meeting');});
 
 // Backend
 Route::get('home', [HomeController::class, 'index'])->name('home');

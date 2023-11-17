@@ -161,5 +161,17 @@ class FrontendController extends Controller
         return view('frontend.event_details', compact('events', 'id', 'researchUpdates'));
     }
 
+    public function photo()
+    {
+        $photos = Photo::all();
+        $researchUpdates = ResearchUpdate::all();
+        return view('frontend.photo', compact('photos', 'researchUpdates'));
+    }
 
+    public function video()
+    {
+        $videos = Video::paginate(3);
+        $researchUpdates = ResearchUpdate::all();
+        return view('frontend.video', compact('videos', 'researchUpdates'));
+    }
 }

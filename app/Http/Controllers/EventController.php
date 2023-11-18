@@ -25,27 +25,30 @@ class EventController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'year' => 'required',
             'event_details' => 'required',
         ]);
 
         Event::create([
             'title' => $request->title,
+            'year' => $request->year,
             'event_details' => $request->event_details,
         ]);
 
         return redirect()->route('events.index')->with('success', 'Record created successfully');
     }
 
-    public function edit(event $event)
+    public function edit(Event $event)
     {
         $events = Event::all();
         return view('backend.event', compact('event', 'events'));
     }
 
-    public function update(Request $request, event $event)
+    public function update(Request $request, Event $event)
     {
         $request->validate([
             'title' => 'required',
+            'year' => 'required',
             'event_details' => 'required',
         ]);
     
@@ -55,7 +58,7 @@ class EventController extends Controller
     }
     
 
-    public function destroy(event $event)
+    public function destroy(Event $event)
     {
         $event->delete();
 

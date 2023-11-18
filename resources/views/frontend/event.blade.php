@@ -14,7 +14,7 @@
                     @foreach($events as $key=>$event)
                         <tr>
                             <!--<th scope="row">1</th>-->
-                            <td><a href="{{route('event-details', $event->id)}}" target="_blank">{{ $event->title }}</a></td>
+                            <td><a href="{{route('event-details', $event->id)}}" target="_blank">{{ $event->title }} - {{ $event->year }}</a></td>
                         </tr>
                     @endforeach
                 </tbody>

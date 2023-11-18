@@ -17,10 +17,15 @@
                 @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="input-container col-sm-12 mb-4">
+                    <div class="input-container col-md-8 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($event) ? $event->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="title" class="placeholder">Event Title</label>
+                    </div>
+                    <div class="input-container col-md-4 mb-4">
+                        <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($event) ? $event->year : '') }}" required placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="year" class="placeholder">Year</label>
                     </div>
                 </div>
                 <div class="row">
@@ -62,7 +67,7 @@
                                             <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
                                         </form>
                                     </div>
-                                    <p class="mt-2">{{ ++$key }}. {{ $event->title }}</p>
+                                    <p class="mt-2">{{ ++$key }}. {{ $event->title }} - {{ $event->year }}</p>
                                     <div class="content-justify mt-5">
                                         {!! $event->event_details !!}
                                     </div>

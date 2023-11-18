@@ -41,10 +41,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-container col-sm-6 mb-4">
+                    <!-- <div class="input-container col-sm-6 mb-4">
                         <input type="department" class="input" id="department" name="department" value="{{ old('department', isset($researchCoordinator) ? $researchCoordinator->department : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="department" class="placeholder">Department</label>
+                    </div> -->
+                    <div class="input-container col-sm-6 mb-4">
+                        <select class="input bg-white" id="department" name="department" required placeholder=" ">
+                            <option value="">Select a department</option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->id }}">{{ $department->full_name }}</option>
+                                <!-- Replace 'name' with the actual field you want to display in the dropdown -->
+                            @endforeach
+                        </select>
+                        <div class="cut"></div>
+                        <label for="department" class="placeholder">department Name</label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="faculty" name="faculty" value="{{ old('faculty', isset($researchCoordinator) ? $researchCoordinator->faculty : '') }}" required placeholder=" "/>

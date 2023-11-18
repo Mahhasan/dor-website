@@ -17,8 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('discipline');
             $table->string('lab_name');
+            $table->string('lab_number')->nullable();
             $table->string('link')->nullable();
             $table->json('picture')->nullable();
+            $table->string('person_name')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('cell')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

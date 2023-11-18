@@ -27,18 +27,25 @@
                         <label for="discipline" class="placeholder">Discipline Name</label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="text" class="input" id="lab_name" name="lab_name" value="{{ old('lab_name', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->lab_name : '') }}" required placeholder=" "/>
-                        <div class="cut"></div>
-                        <label for="lab_name" class="placeholder">Lab Name</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-container col-sm-6 mb-4">
                         <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->link : '') }}" placeholder=" "/>
                         <div class="cut"></div>
                         <label for="link" class="placeholder">Website Link</label>
                     </div>
+                </div>
+                <div class="row">
                     <div class="input-container col-sm-6 mb-4">
+                        <input type="text" class="input" id="lab_name" name="lab_name" value="{{ old('lab_name', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->lab_name : '') }}" required placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="lab_name" class="placeholder">Lab Name</label>
+                    </div>
+                    <div class="input-container col-sm-6 mb-4">
+                        <input type="text" class="input" id="lab_number" name="lab_number" value="{{ old('lab_number', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->lab_number : '') }}" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="lab_number" class="placeholder">Lab Number</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-container col-md-12 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture[]" name="picture[]" accept="image/*" multiple placeholder=" ">
                         @if(isset($interdisciplinaryResearch) && $interdisciplinaryResearch->picture)
                             <div class="row existing-pictures float-right mt-3 ml-1 mr-1">
@@ -53,6 +60,31 @@
                         @endif
                         <div class="cut"></div>
                         <label for="picture" class="placeholder">Lab Image <small class="font-italic">(size: 416 x 250 px)</small></label>
+                    </div>
+                </div>
+                <label class="text-muted">Assigned Person Details</label>
+                <div class="row mt-3">
+                    <div class="input-container col-sm-6 mb-4">
+                        <input type="text" class="input" id="person_name" name="person_name" value="{{ old('person_name', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->person_name : '') }}" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="person_name" class="placeholder">Person Name</label>
+                    </div>
+                    <div class="input-container col-sm-6 mb-4">
+                        <input type="text" class="input" id="designation" name="designation" value="{{ old('designation', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->designation : '') }}" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="designation" class="placeholder">Designation</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-container col-sm-6 mb-4">
+                        <input type="number" class="input" id="cell" name="cell" value="{{ old('cell', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->cell : '') }}" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="cell" class="placeholder">Mobile No</label>
+                    </div>
+                    <div class="input-container col-sm-6 mb-4">
+                        <input type="email" class="input" id="email" name="email" value="{{ old('email', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->email : '') }}" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="email" class="placeholder">Email</label>
                     </div>
                 </div>
                 @if(isset($interdisciplinaryResearch))
@@ -86,6 +118,7 @@
                                         <!-- <th>Discipline</th> -->
                                         <th>Lab Name</th>
                                         <th>Website Link</th>
+                                        <th>Assigned Person</th>
                                         <th>Images</th>
                                         <th>Action</th>
                                     </tr>
@@ -97,10 +130,11 @@
                                         <!-- <td>{{ $discipline->discipline }}</td> -->
                                         <td>{{ $discipline->lab_name }}</td>
                                         <td>{{ $discipline->link }}</td>
+                                        <td>{{ $discipline->person_name }} <br> {{ $discipline->designation }} <br> {{ $discipline->cell }} <br> {{ $discipline->email }}</td>
                                         <td>
                                             @if($discipline->picture)
                                                 @foreach(json_decode($discipline->picture, true) as $picture)
-                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="125px" width="208px">
+                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="120px" width="180px">
                                                 @endforeach
                                             @else
                                                 No Images Available

@@ -12,7 +12,12 @@ class InterdisciplinaryResearch extends Model
     protected $fillable = [
         'discipline',
         'lab_name',
+        'lab_number',
         'link',
         'picture',
+        'person_name',
+        'designation',
+        'cell',
+        'email',
     ];
 }

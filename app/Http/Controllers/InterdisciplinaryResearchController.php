@@ -27,9 +27,14 @@ class InterdisciplinaryResearchController extends Controller
     $request->validate([
         'discipline' => 'required',
         'lab_name' => 'required',
+        'lab_number' => 'nullable',
         'link' => 'nullable',
         'picture' => 'nullable|array',
         'picture.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'person_name' => 'nullable',
+        'designation' => 'nullable',
+        'cell' => 'nullable',
+        'email' => 'nullable',
     ]);
 
     $pictures = [];
@@ -46,8 +51,12 @@ class InterdisciplinaryResearchController extends Controller
     InterdisciplinaryResearch::create([
         'discipline' => $request->discipline,
         'lab_name' => $request->lab_name,
-        'link' => $request->link,
+        'lab_number' => $request->lab_number,
         'picture' => json_encode($pictures), // Store filenames as JSON
+        'person_name' => $request->person_name,
+        'designation' => $request->designation,
+        'cell' => $request->cell,
+        'email' => $request->email,
     ]);
 
     return redirect()->route('interdisciplinary.research.index')->with('success', 'Record Created successfully');
@@ -71,7 +80,7 @@ class InterdisciplinaryResearchController extends Controller
             'picture.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->only(['discipline', 'lab_name', 'link']);
+        $data = $request->only(['discipline', 'lab_name', 'lab_number', 'link', 'person_name', 'designation', 'cell', 'email']);
         $pictures = json_decode($interdisciplinaryResearch->picture, true) ?? [];
 
         // Upload new pictures and merge them with existing ones

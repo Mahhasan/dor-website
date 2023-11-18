@@ -19,6 +19,8 @@ use App\Http\Controllers\RankingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +48,8 @@ Route::get('science-discipline', [FrontendController::class, 'scienceDiscipline'
 Route::get('science-discipline/{id}', [FrontendController::class, 'scienceDisciplineDetails'])->name('science-discipline-details');
 Route::get('research-update/{id}', [FrontendController::class, 'researchUpdate'])->name('research-update');
 // Data viw using API from SmartEdu repository 
-Route::get('/scopus-article', [DataController::class, 'scopus_article']);
-Route::get('/scopus-article/{id}', [DataController::class, 'scopus_article_details']);
+Route::get('scopus-article', [DataController::class, 'scopus_article'])->name('scopus-article');
+Route::get('scopus-article/{id}', [DataController::class, 'scopus_article_details'])->name('scopus-article-details');
 
 Route::get('journals', [FrontendController::class, 'journals'])->name('journals');
 Route::get('research-coordinator', [FrontendController::class, 'researchCoordinator'])->name('research-coordinator');
@@ -78,3 +80,5 @@ Route::resource('rankings', RankingController::class)->names('rankings');
 Route::resource('events', EventController::class)->names('events');
 Route::resource('photos', PhotoController::class)->names('photos');
 Route::resource('videos', VideoController::class)->names('videos');
+Route::resource('faculty', FacultyController::class)->names('faculty');
+Route::resource('department', DepartmentController::class)->names('department');

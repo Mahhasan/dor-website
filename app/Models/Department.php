@@ -9,6 +9,7 @@ class Department extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'faculty_id',
         'full_name',
         'short_name',
         'slug',
@@ -21,8 +22,8 @@ class Department extends Model
             $model->slug = Str::slug($model->full_name); // Generate the slug based on the title
         });
     }
-    public function researchCoordinator()
+    public function faculties()
     {
-        return $this->hasMany(ResearchCoordinator::class);
+        return $this->belongsTo('App\Models\Faculty', 'faculty_id');
     }
 }

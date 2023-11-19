@@ -82,3 +82,7 @@ Route::resource('photos', PhotoController::class)->names('photos');
 Route::resource('videos', VideoController::class)->names('videos');
 Route::resource('faculty', FacultyController::class)->names('faculty');
 Route::resource('department', DepartmentController::class)->names('department');
+
+//Dependent for department & faculty
+Route::get('myform/ajax/{id}', [App\Http\Controllers\ResearchCoordinatorController::class, 'getTopic'])
+    ->name('myform.ajax');

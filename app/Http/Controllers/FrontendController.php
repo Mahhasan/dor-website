@@ -17,6 +17,8 @@ use App\Models\Ranking;
 use App\Models\Event;
 use App\Models\Photo;
 use App\Models\Video;
+use App\Models\Department;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -134,12 +136,41 @@ class FrontendController extends Controller
         return view('frontend.journal', compact('diuJournals', 'researchUpdates'));
     }
 
+    // public function researchCoordinator()
+    // {
+    //     $researchCoordinators = ResearchCoordinator::all();
+    //     $researchUpdates = ResearchUpdate::all();
+    //     return view('frontend.research_coordinator', compact('researchCoordinators', 'researchUpdates'));
+    // }
+
+    // public function researchCoordinator()
+    // {
+    //     $researchCoordinators = ResearchCoordinator::with('departments', 'faculties')->get();
+    //     $groupedCoordinators = $researchCoordinators->groupBy(['department_id', 'faculty_id']);
+    
+    //     $researchUpdates = ResearchUpdate::all();
+    
+    //     return view('frontend.research_coordinator', compact('groupedCoordinators', 'researchUpdates'));
+    // }
     public function researchCoordinator()
     {
-        $researchCoordinators = ResearchCoordinator::all();
+        $researchCoordinators = ResearchCoordinator::with('departments', 'faculties')->get();
+        $groupedCoordinators = $researchCoordinators->groupBy('faculty_id');
+    
         $researchUpdates = ResearchUpdate::all();
-        return view('frontend.research_coordinator', compact('researchCoordinators', 'researchUpdates'));
+    
+        return view('frontend.research_coordinator', compact('groupedCoordinators', 'researchUpdates'));
     }
+    
+
+
+
+    
+    
+
+
+
+
 
     public function ranking()
     {

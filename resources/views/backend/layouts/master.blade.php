@@ -263,5 +263,28 @@
             });
         });
     </script>
+    <!-- For  dependency field (Research_coordinator blade)-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="faculty_id"]').on('change', function() {
+                var facultyID = $(this).val();
+                if(facultyID) {
+                    $.ajax({
+                        url: '/myform/ajax/'+facultyID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            $('select[name="department_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="department_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('select[name="department_id"]').empty();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

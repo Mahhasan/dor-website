@@ -157,6 +157,24 @@
                 </div>
             </a>
         </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <a class="text-decoration-none" href="{{ route('faculty.index') }}">
+                <div class="card card-hover bg-info text-white shadow">
+                    <div class="card-body mx-auto">
+                        <h6 class="text-center mb-0">Faculty</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <a class="text-decoration-none" href="{{ route('department.index') }}">
+                <div class="card card-hover bg-info text-white shadow">
+                    <div class="card-body mx-auto">
+                        <h6 class="text-center mb-0">Department</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 @endsection

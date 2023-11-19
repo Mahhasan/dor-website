@@ -3,7 +3,7 @@
 <div class="container">
     <!-- Button to toggle form visibility -->
     @if(!isset($faculty))
-        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Department">Add New Department</button>
+        <button class="float-right btn btn-sm btn-primary" id="toggleForm" data-original-text="Add New Faculty">Add New Faculty</button>
     @endif
     <div class="row bg-aliceblue" id="FormContainer" style="display: {{ isset($faculty) ? 'block' : 'none' }};">
         <div class="custom-form col-md-10 mx-auto pt-5 mb-5 pb-5">

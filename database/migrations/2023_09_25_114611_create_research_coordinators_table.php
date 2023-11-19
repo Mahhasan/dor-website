@@ -15,14 +15,24 @@ return new class extends Migration
     {
         Schema::create('research_coordinators', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('faculty_id');
+            $table->unsignedBigInteger('department_id');
             $table->string('name');
             $table->string('designation');
             $table->string('email');
             $table->string('cell');
-            $table->string('department');
-            $table->string('faculty');
             $table->string('picture');
             $table->timestamps();
+            // Add the foreign key with onDelete('cascade')
+            $table->foreign('faculty_id')
+            ->references('id')
+            ->on('faculties')
+            ->onDelete('cascade');
+            // Add the foreign key with onDelete('cascade')
+            $table->foreign('department_id')
+            ->references('id')
+            ->on('departments')
+            ->onDelete('cascade');
         });
     }
 

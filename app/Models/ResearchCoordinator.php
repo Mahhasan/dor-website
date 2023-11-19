@@ -13,13 +13,16 @@ class ResearchCoordinator extends Model
         'designation',
         'email',
         'cell',
-        'department',
-        'faculty',
+        'department_id',
+        'faculty_id',
         'picture',
     ];
-    public function department()
+    public function departments()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo('App\Models\Department', 'department_id');
     }
-   
+    public function faculties()
+    {
+        return $this->belongsTo('App\Models\Faculty', 'faculty_id');
+    }
 }

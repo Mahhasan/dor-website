@@ -28,6 +28,18 @@
                         <label for="short_name" class="placeholder">Department Short Name</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-container col-sm-12 mb-4">
+                        <select class="input bg-white" id="faculty_id" name="faculty_id" required placeholder=" ">
+                            <option value="">Select a Faculty</option>
+                            @foreach ($faculties as $faculty)
+                                <option value="{{ $faculty->id }}" {{ isset($department) && $department->faculty_id == $faculty->id ? 'selected' : '' }}>{{ $faculty->full_name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="cut"></div>
+                        <label for="faculty_id" class="placeholder">Faculty Name</label>
+                    </div>
+                </div>
                 @if(isset($department))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                     <a href="{{ route('department.index') }}" class="btn btn-sm btn-secondary">Cancel</a>

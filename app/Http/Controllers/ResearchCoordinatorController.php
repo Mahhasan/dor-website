@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ResearchCoordinator;
+use App\Models\Department;
+use App\Models\Faculty;
+use Illuminate\Support\Facades\DB;
 
 class ResearchCoordinatorController extends Controller
 {
     public function index()
     {
         $researchCoordinators = ResearchCoordinator::all();
-        return view('backend.research_coordinator', compact('researchCoordinators'));
+        $departments = Department::all();
+        $faculties = Faculty::all();
+        return view('backend.research_coordinator', compact('researchCoordinators', 'departments', 'faculties'));
     }
 
     public function create()
@@ -26,8 +31,8 @@ class ResearchCoordinatorController extends Controller
             'name' => 'required',
             'designation' => 'required',
             'email' => 'required|email',
-            'department' => 'required',
-            'faculty' => 'required',
+            'department_id' => 'required',
+            'faculty_id' => 'required',
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -39,8 +44,8 @@ class ResearchCoordinatorController extends Controller
             'designation' => $request->designation,
             'email' => $request->email,
             'cell' => $request->cell,
-            'department' => $request->department,
-            'faculty' => $request->faculty,
+            'department_id' => $request->department_id,
+            'faculty_id' => $request->faculty_id,
             'picture' => $imageName,
         ]);
 
@@ -49,8 +54,10 @@ class ResearchCoordinatorController extends Controller
 
     public function edit(ResearchCoordinator $researchCoordinator)
     {
+        $departments = Department::all();
+        $faculties = Faculty::all();
         $researchCoordinators = ResearchCoordinator::all();
-        return view('backend.research_coordinator', compact('researchCoordinator', 'researchCoordinators'));
+        return view('backend.research_coordinator', compact('researchCoordinator', 'researchCoordinators', 'departments', 'faculties'));
     }
 
     public function update(Request $request, ResearchCoordinator $researchCoordinator)
@@ -59,12 +66,12 @@ class ResearchCoordinatorController extends Controller
             'name' => 'required',
             'designation' => 'required',
             'email' => 'required|email',
-            'department' => 'required',
-            'faculty' => 'required',
+            'department_id' => 'required',
+            'faculty_id' => 'required',
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->only(['name', 'designation', 'email', 'cell', 'department', 'faculty']);
+        $data = $request->only(['name', 'designation', 'email', 'cell', 'department_id', 'faculty_id']);
 
         if ($request->hasFile('picture')) {
             $oldPicturePath = public_path('uploads/research_coordinator/' . $researchCoordinator->picture);
@@ -94,4 +101,11 @@ class ResearchCoordinatorController extends Controller
 
         return redirect()->route('research.coordinator.index')->with('success', 'Record deleted successfully');
     }
+
+    //Get topic in manuscript submission
+    public function getTopic($id){
+        $departments = DB::table("departments")->where("faculty_id",$id)->pluck("full_name","id");
+        return json_encode($departments);
+    }
+
 }

@@ -41,26 +41,25 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- <div class="input-container col-sm-6 mb-4">
-                        <input type="department" class="input" id="department" name="department" value="{{ old('department', isset($researchCoordinator) ? $researchCoordinator->department : '') }}" required placeholder=" "/>
-                        <div class="cut"></div>
-                        <label for="department" class="placeholder">Department</label>
-                    </div> -->
                     <div class="input-container col-sm-6 mb-4">
-                        <select class="input bg-white" id="department" name="department" required placeholder=" ">
-                            <option value="">Select a department</option>
-                            @foreach ($departments as $department)
-                                <option value="{{ $department->id }}">{{ $department->full_name }}</option>
-                                <!-- Replace 'name' with the actual field you want to display in the dropdown -->
+                        <select id="faculty_id" class="input bg-white"name="faculty_id" required placeholder=" ">
+                            <option value="">Select a Faculty</option>
+                            @foreach ($faculties as $faculty)
+                                <option value="{{ $faculty->id }}" {{ isset($researchCoordinator) && $researchCoordinator->faculty_id == $faculty->id ? 'selected' : '' }}>{{ $faculty->full_name }}</option>
                             @endforeach
                         </select>
                         <div class="cut"></div>
-                        <label for="department" class="placeholder">department Name</label>
+                        <label for="faculty_id" class="placeholder">Faculty Name</label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="text" class="input" id="faculty" name="faculty" value="{{ old('faculty', isset($researchCoordinator) ? $researchCoordinator->faculty : '') }}" required placeholder=" "/>
+                        <select id="department_id" class="input bg-white"  name="department_id" required placeholder=" ">
+                            <option selected disabled>Select a Department</option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->id }}" {{ isset($researchCoordinator) && $researchCoordinator->department_id == $department->id ? 'selected' : '' }}>{{ $department->full_name }}</option>
+                            @endforeach
+                        </select>
                         <div class="cut"></div>
-                        <label for="faculty" class="placeholder">Faculty</label>
+                        <label for="department_id" class="placeholder">Department Name</label>
                     </div>
                 </div>
                 <div class="row">
@@ -103,8 +102,8 @@
                     @endif
                     <div class="text-center p-1">
                         <h5>{{ $researchCoordinator->name }}</h5>
-                        <p>{{ $researchCoordinator->designation }}, {{ $researchCoordinator->department }}</p>
-                        <p>{{ $researchCoordinator->faculty }}</p>
+                        <p>{{ $researchCoordinator->designation }}, {{ $researchCoordinator->departments->short_name ?? ''}}</p>
+                        <p>{{ $researchCoordinator->faculties->short_name ?? ''}}</p>
                         <p>{{ $researchCoordinator->email }}</p>
                         <p>{{ $researchCoordinator->cell }}</p>
                         <div class="float-right">

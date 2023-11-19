@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\Department;
+use App\Models\Faculty;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::all();
-        return view('backend.department', compact('departments'));
+        $faculties = Faculty::all();
+        return view('backend.department', compact('departments', 'faculties'));
     }
 
     public function create()
@@ -26,9 +28,11 @@ class DepartmentController extends Controller
             $request->validate([
                 'full_name' => 'required',
                 'short_name' => 'required',
+                'faculty_id' => 'required',
             ]);
 
             Department::create([
+                'faculty_id' => $request->faculty_id,
                 'full_name' => $request->full_name,
                 'short_name' => $request->short_name,
                 'slug' => Str::slug($request->full_name),
@@ -44,7 +48,8 @@ class DepartmentController extends Controller
     public function edit(Department $department)
     {
         $departments = Department::all();
-        return view('backend.department', compact('department', 'departments'));
+        $faculties = Faculty::all();
+        return view('backend.department', compact('department', 'departments', 'faculties'));
     }
 
     public function update(Request $request, Department $department)
@@ -53,9 +58,12 @@ class DepartmentController extends Controller
             $request->validate([
                 'full_name' => 'required',
                 'short_name' => 'required',
+                'faculty_id' => 'required',
+
             ]);
 
             $department->update([
+                'faculty_id' => $request->faculty_id,
                 'full_name' => $request->full_name,
                 'short_name' => $request->short_name,
                 'slug' => Str::slug($request->full_name), // Generate slug here

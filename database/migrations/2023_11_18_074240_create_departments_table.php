@@ -15,10 +15,16 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('faculty_id');
             $table->string('full_name');
             $table->string('short_name');
             $table->string('slug')->unique();
             $table->timestamps();
+             // Add the foreign key with onDelete('cascade')
+             $table->foreign('faculty_id')
+             ->references('id')
+             ->on('faculties')
+             ->onDelete('cascade');
         });
     }
 

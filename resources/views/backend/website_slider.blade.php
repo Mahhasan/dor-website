@@ -17,7 +17,12 @@
             @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="input-container col-sm-12 mb-4">
+                    <div class="input-container col-md-6 mb-4">
+                        <input type="number" class="input" id="slider_serial" name="slider_serial" value="{{ old('slider_serial', isset($websiteSlider) ? $websiteSlider->slider_serial : '') }}" required placeholder=" ">
+                        <div class="cut"></div>
+                        <label for="slider_serial" class="placeholder">Slider Serial</label>
+                    </div>
+                    <div class="input-container col-md-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" {{ isset($websiteSlider) ? '' : 'required' }} placeholder=" ">
                         @if(isset($websiteSlider) && $websiteSlider->picture)
                             <div class="mr-2 mt-3 float-right">
@@ -44,10 +49,6 @@
     </div>
 
     <div class="row mb-5">
-        <!-- Initialize the slider number -->
-        @php
-            $sliderNumber = 1;
-        @endphp
         @foreach($websiteSliders as $websiteSlider)
             <div class="col-md-6 mb-4 mx-auto">
                 <div class="card">
@@ -64,8 +65,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
                             </form>
-                            <!-- Increment slider number for the next iteration -->
-                            <small class="float-right pt-2 pr-2">Slider-{{ $sliderNumber++ }}</small>
+                            <small class="float-right pt-2 pr-2">Slider-{{ $websiteSlider->slider_serial }}</small>
                         </div>
                     </div>
                 </div>

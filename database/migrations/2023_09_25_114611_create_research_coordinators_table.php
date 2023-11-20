@@ -23,12 +23,12 @@ return new class extends Migration
             $table->string('cell');
             $table->string('picture');
             $table->timestamps();
-            // Add the foreign key with onDelete('cascade')
+            //foreign key with onDelete('cascade')
             $table->foreign('faculty_id')
             ->references('id')
             ->on('faculties')
             ->onDelete('cascade');
-            // Add the foreign key with onDelete('cascade')
+            //foreign key with onDelete('cascade')
             $table->foreign('department_id')
             ->references('id')
             ->on('departments')

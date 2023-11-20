@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\SourceOfPublication;
-use Illuminate\Support\Facades\Session;
 class SourceOfPublicationController extends Controller
 {
     public function index()

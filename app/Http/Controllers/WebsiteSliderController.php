@@ -9,7 +9,7 @@ class WebsiteSliderController extends Controller
 {
     public function index()
     {
-        $websiteSliders = WebsiteSlider::all();
+        $websiteSliders = WebsiteSlider::orderBy('slider_serial')->get();
         return view('backend.website_slider', compact('websiteSliders'));
     }
 
@@ -25,12 +25,14 @@ class WebsiteSliderController extends Controller
         try{
             $request->validate([
                 'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'slider_serial' => 'required|integer|unique:website_sliders,slider_serial',
             ]);
             $imageName = time() . '.' . $request->picture->extension();
             $request->picture->move(public_path('uploads/website_slider'), $imageName);
 
             WebsiteSlider::create([
                 'picture' => $imageName,
+                'slider_serial' => $request->slider_serial,
             ]);
             return redirect()->route('website.slider.index')->with('success', "New slider image added successfully."); 
         }
@@ -53,9 +55,10 @@ class WebsiteSliderController extends Controller
         try{
             $rules = [
                 'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'slider_serial' => 'required|integer|unique:website_sliders,slider_serial,' . $websiteSlider->id,
             ];
         
-            $data = $request->only([]);
+            $data = $request->only(['slider_serial']);
         
             if ($request->hasFile('picture')) {
                 $oldPicturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
@@ -68,7 +71,7 @@ class WebsiteSliderController extends Controller
                 $data['picture'] = $imageName;
             }
     
-            $websiteSlider->update($data);
+            $websiteSlider->update($data);    
         
             return redirect()->route('website.slider.index')->with('success', "Slider image updated successfully."); 
         }

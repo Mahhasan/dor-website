@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ResearchUpdate;
-use Illuminate\Support\Facades\Session;
 class ResearchUpdateController extends Controller
 {
     public function index()

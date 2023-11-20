@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="input-container col-sm-6 mb-4">
                         <select class="input bg-white" id="faculty_name" name="faculty_name" required>
-                            <option value="">Select Faculty</option>
+                            <option value="">Select Committee</option>
                             <option value="FSIT Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FSIT Research Ethics Committee' ? 'selected' : '' }}>FSIT Research Ethics Committee</option>
                             <option value="FBE Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FBE Research Ethics Committee' ? 'selected' : '' }}>FBE Research Ethics Committee</option>
                             <option value="FAHS Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FAHS Research Ethics Committee' ? 'selected' : '' }}>FAHS Research Ethics Committee</option>
@@ -78,7 +78,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation & Department</th>
-                                        <th>Faculty Name</th>
+                                        <!-- <th>Committee Name</th> -->
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -89,7 +89,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <td>{{ $committee->faculty_name }}</td>
+                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -113,7 +113,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <th>Faculty Name</th>
+                                        <!-- <th>Committee Name</th> -->
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -124,7 +124,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <td>{{ $committee->faculty_name }}</td>
+                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -148,7 +148,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <th>Faculty Name</th>
+                                        <!-- <th>Committee Name</th> -->
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -159,7 +159,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <td>{{ $committee->faculty_name }}</td>
+                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -183,7 +183,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <th>Faculty Name</th>
+                                        <!-- <th>Committee Name</th> -->
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -194,7 +194,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <td>{{ $committee->faculty_name }}</td>
+                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -218,7 +218,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <th>Faculty Name</th>
+                                        <!-- <th>Committee Name</th> -->
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -229,7 +229,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <td>{{ $committee->faculty_name }}</td>
+                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>

@@ -25,7 +25,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $websiteSliders = WebsiteSlider::orderBy('created_at', 'desc')->get();
+        $websiteSliders = WebsiteSlider::orderBy('slider_serial')->get();
         $researchUpdates = ResearchUpdate::all();
         return view('welcome', compact('websiteSliders', 'researchUpdates'));
     }
@@ -143,15 +143,6 @@ class FrontendController extends Controller
     //     return view('frontend.research_coordinator', compact('researchCoordinators', 'researchUpdates'));
     // }
 
-    // public function researchCoordinator()
-    // {
-    //     $researchCoordinators = ResearchCoordinator::with('departments', 'faculties')->get();
-    //     $groupedCoordinators = $researchCoordinators->groupBy(['department_id', 'faculty_id']);
-    
-    //     $researchUpdates = ResearchUpdate::all();
-    
-    //     return view('frontend.research_coordinator', compact('groupedCoordinators', 'researchUpdates'));
-    // }
     public function researchCoordinator()
     {
         $researchCoordinators = ResearchCoordinator::with('departments', 'faculties')->get();
@@ -162,16 +153,6 @@ class FrontendController extends Controller
         return view('frontend.research_coordinator', compact('groupedCoordinators', 'researchUpdates'));
     }
     
-
-
-
-    
-    
-
-
-
-
-
     public function ranking()
     {
         $rankings = Ranking::all();

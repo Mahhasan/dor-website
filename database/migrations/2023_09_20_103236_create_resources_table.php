@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
             $table->string('topic');
+            $table->string('slug')->unique();
             $table->string('document');
             $table->timestamps();
         });

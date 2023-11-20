@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('website_sliders', function (Blueprint $table) {
             $table->id();
+            $table->string('slider_serial');
             $table->string('picture');
             $table->timestamps();
         });

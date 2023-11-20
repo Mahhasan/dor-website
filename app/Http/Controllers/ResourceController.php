@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Resource;
 class ResourceController extends Controller
@@ -33,15 +33,13 @@ class ResourceController extends Controller
             Resource::create([
                 'topic' => $request->topic,
                 'document' => $fileName,
+                'slug' => Str::slug($request->topic),
             ]);
 
             return redirect()->route('resources.index')->with('success', 'Record created successfully');
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('resources.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
-        catch(\Exception) {
-            return redirect('resources.index')->with('fail', "Failed to create record! Please try again"); 
+        catch (\Exception $e) {
+            return redirect()->route('resources.index')->with('warning', "Failed to create record! Please try again");
         }
     }
 
@@ -74,13 +72,13 @@ class ResourceController extends Controller
         }
 
         $resource->topic = $request->topic;
+        $resource->slug = Str::slug($request->topic); // Generate slug here
         $resource->save();
 
         return redirect()->route('resources.index')->with('success', 'Record updated successfully');
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        return redirect()->route('resources.index')->with('warning', 'Validation failed. Please check your inputs.');
-    } catch (\Exception $e) {
-        return redirect('resources.index')->with('warning', 'Failed to update record! Please try again');
+    }
+    catch (\Exception $e) {
+        return redirect()->route('resources.index')->with('warning', "Failed to update record! Please try again");
     }
 }
 
@@ -100,7 +98,7 @@ class ResourceController extends Controller
             return redirect()->route('resources.index')->with('success', 'Record deleted successfully');
         }
         catch(\Exception) {
-            return redirect('resources.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('resources.index')->with('warning', "Failed to delete record! Please try again"); 
         }
     }
 }

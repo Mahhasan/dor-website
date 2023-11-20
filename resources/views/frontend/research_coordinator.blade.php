@@ -4,37 +4,41 @@
     <div class="container">
         <div class="row">
             <h5 class="text-center mt-5 mb-5">Research Coordinator</h5>
-            @foreach($groupedCoordinators as $facultyId => $facultyCoordinators)
-                <h6>Faculty: {{ $facultyCoordinators->first()->faculties->short_name }}</h6>
-                @foreach($facultyCoordinators->groupBy('department_id') as $departmentId => $departmentCoordinators)
-                    <h6>Department: {{ $departmentCoordinators->first()->departments->short_name }}</h6>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Sl.</th>
-                                <th scope="col">Research Coordinator</th>
-                                <th scope="col">Particulars</th>
-                                <th scope="col">Department</th>
-                                <th scope="col">Faculty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Sl.</th>
+                        <th scope="col">Research Coordinator</th>
+                        <th scope="col">Particulars</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Faculty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $serialNumber = 1; @endphp
+                    @foreach($groupedCoordinators as $facultyId => $facultyCoordinators)
+                        @foreach($facultyCoordinators->groupBy('department_id') as $departmentId => $departmentCoordinators)
+                            @php
+                                $departmentRowCount = count($departmentCoordinators);
+                            @endphp
                             @foreach($departmentCoordinators as $key => $researchCoordinator)
                                 <tr>
-                                    <th scope="row">{{ ++$key }}</th>
+                                    <td scope="row">{{ $serialNumber++ }}</td>
                                     <td>{{ $researchCoordinator->name }}</td>
                                     <td>{{ $researchCoordinator->designation }}<br>
                                         {{ $researchCoordinator->email }}<br>
                                         {{ $researchCoordinator->cell }}
                                     </td>
-                                    <td>{{ $researchCoordinator->name }}</td>
-                                    <td>{{ $researchCoordinator->name }}</td>
+                                    @if($key === 0)
+                                        <td rowspan="{{ $departmentRowCount }}">{{ $researchCoordinator->departments->short_name }}</td>
+                                        <td rowspan="{{ $departmentRowCount }}">{{ $researchCoordinator->faculties->short_name }}</td>
+                                    @endif
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
-                @endforeach
-            @endforeach
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

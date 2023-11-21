@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('short_name');
             $table->string('slug')->unique();
             $table->timestamps();
-             // Add the foreign key with onDelete('cascade')
+             // foreign key with onDelete('cascade')
              $table->foreign('faculty_id')
              ->references('id')
              ->on('faculties')

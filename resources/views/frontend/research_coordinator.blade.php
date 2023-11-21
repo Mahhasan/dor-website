@@ -30,8 +30,8 @@
                                         {{ $researchCoordinator->cell }}
                                     </td>
                                     @if($key === 0)
-                                        <td rowspan="{{ $departmentRowCount }}">{{ $researchCoordinator->departments->short_name }}</td>
-                                        <td rowspan="{{ $departmentRowCount }}">{{ $researchCoordinator->faculties->short_name }}</td>
+                                        <td rowspan="{{ $departmentRowCount }}">{{ $researchCoordinator->departments->short_name ?? '' }}</td>
+                                        <td rowspan="{{ $departmentRowCount }}">{{ $researchCoordinator->faculties->short_name ?? '' }}</td>
                                     @endif
                                 </tr>
                             @endforeach

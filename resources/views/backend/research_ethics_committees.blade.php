@@ -21,29 +21,43 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="name" name="name" value="{{ old('name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="name" class="placeholder">Name</label>
+                        <label for="name" class="placeholder">Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="designation" name="designation" value="{{ old('designation', isset($researchEthicsCommittee) ? $researchEthicsCommittee->designation : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="designation" class="placeholder">Designation & Department</label>
+                        <label for="designation" class="placeholder">Designation <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container col-sm-6 mb-4">
-                        <select class="input bg-white" id="faculty_name" name="faculty_name" required>
-                            <option value="">Select Committee</option>
-                            <option value="FSIT Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FSIT Research Ethics Committee' ? 'selected' : '' }}>FSIT Research Ethics Committee</option>
-                            <option value="FBE Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FBE Research Ethics Committee' ? 'selected' : '' }}>FBE Research Ethics Committee</option>
-                            <option value="FAHS Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FAHS Research Ethics Committee' ? 'selected' : '' }}>FAHS Research Ethics Committee</option>
-                            <option value="FE Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FE Research Ethics Committee' ? 'selected' : '' }}>FE Research Ethics Committee</option>
-                            <option value="FHSS Research Ethics Committee" {{ old('faculty_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->faculty_name : '') === 'FHSS Research Ethics Committee' ? 'selected' : '' }}>FHSS Research Ethics Committee</option>
+                        <select id="department_id" class="input bg-white"  name="department_id" required placeholder=" ">
+                            <option selected disabled>Select a Department</option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->id }}" {{ isset($researchEthicsCommittee) && $researchEthicsCommittee->department_id == $department->id ? 'selected' : '' }}>{{ $department->full_name }}</option>
+                            @endforeach
                         </select>
+                        <div class="cut"></div>
+                        <label for="department_id" class="placeholder">Department Name <span class="text-danger">*</span></label>
                     </div>
-                    <div class=" input-container col-sm-6 mb-4">
+                    <div class="input-container col-sm-6 mb-4">
+                        <select class="input bg-white" id="committee_name" name="committee_name" required>
+                            <option value="">Select Committee</option>
+                            <option value="FSIT Research Ethics Committee" {{ old('committee_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->committee_name : '') === 'FSIT Research Ethics Committee' ? 'selected' : '' }}>FSIT Research Ethics Committee</option>
+                            <option value="FBE Research Ethics Committee" {{ old('committee_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->committee_name : '') === 'FBE Research Ethics Committee' ? 'selected' : '' }}>FBE Research Ethics Committee</option>
+                            <option value="FAHS Research Ethics Committee" {{ old('committee_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->committee_name : '') === 'FAHS Research Ethics Committee' ? 'selected' : '' }}>FAHS Research Ethics Committee</option>
+                            <option value="FE Research Ethics Committee" {{ old('committee_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->committee_name : '') === 'FE Research Ethics Committee' ? 'selected' : '' }}>FE Research Ethics Committee</option>
+                            <option value="FHSS Research Ethics Committee" {{ old('committee_name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->committee_name : '') === 'FHSS Research Ethics Committee' ? 'selected' : '' }}>FHSS Research Ethics Committee</option>
+                        </select>
+                        <div class="cut"></div>
+                        <label for="committee_name" class="placeholder">Committee Name <span class="text-danger">*</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" input-container col-sm-12 mb-4">
                         <input type="text" class="input" id="position" name="position" value="{{ old('position', isset($researchEthicsCommittee) ? $researchEthicsCommittee->position : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="position" class="placeholder">Position</label>
+                        <label for="position" class="placeholder">Position <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($researchEthicsCommittee))
@@ -77,8 +91,8 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Name</th>
-                                        <th>Designation & Department</th>
-                                        <!-- <th>Committee Name</th> -->
+                                        <th>Designation</th>
+                                        <th>Department</th>
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -89,7 +103,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
+                                        <td>{{ $committee->departments->short_name ?? '' }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -113,7 +127,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <!-- <th>Committee Name</th> -->
+                                        <th>Department</th>
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -124,7 +138,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
+                                        <td>{{ $committee->departments->short_name ?? '' }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -148,7 +162,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <!-- <th>Committee Name</th> -->
+                                        <th>Department</th>
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -159,7 +173,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
+                                        <td>{{ $committee->departments->short_name ?? '' }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -183,7 +197,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <!-- <th>Committee Name</th> -->
+                                        <th>Department</th>
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -194,7 +208,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
+                                        <td>{{ $committee->departments->short_name ?? '' }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>
@@ -218,7 +232,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <!-- <th>Committee Name</th> -->
+                                        <th>Department</th>
                                         <th>Position</th>
                                         <th>Action</th>
                                     </tr>
@@ -229,7 +243,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $committee->name }}</td>
                                         <td>{{ $committee->designation }}</td>
-                                        <!-- <td>{{ $committee->faculty_name }}</td> -->
+                                        <td>{{ $committee->departments->short_name ?? '' }}</td>
                                         <td>{{ $committee->position }}</td>
                                         <td>
                                             <a href="{{ route('research.ethics.ommittees.edit', $committee->id) }}" class="btn text-primary" title="Edit {{$committee->name}}'s information"><i class="fas fa-edit fa-sm"></i></a>

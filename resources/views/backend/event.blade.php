@@ -20,19 +20,19 @@
                     <div class="input-container col-md-8 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($event) ? $event->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="title" class="placeholder">Event Title</label>
+                        <label for="title" class="placeholder">Event Title <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-md-4 mb-4">
                         <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($event) ? $event->year : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="year" class="placeholder">Year</label>
+                        <label for="year" class="placeholder">Year <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 mb-4">
-                    <textarea class="input" id="file-picker" name="event_details" value="{{ old('event_details', isset($event) ? $event->event_details : '') }}" placeholder=" ">{{ old('event_details', isset($event) ? $event->event_details : '') }}</textarea>
+                    <textarea class="input" id="file-picker" name="event_details" value="{{ old('event_details', isset($event) ? $event->event_details : '') }}" required placeholder=" ">{{ old('event_details', isset($event) ? $event->event_details : '') }}</textarea>
                     <div class="cut"></div>
-                    <label for="event_details" class="placeholder">Event Details</label>    
+                    <label for="event_details" class="placeholder">Event Details <span class="text-danger">*</span></label>    
                 </div>
                 </div>
                 @if(isset($event))

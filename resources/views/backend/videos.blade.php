@@ -20,12 +20,12 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($video) ? $video->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="title" class="placeholder">Title</label>
+                        <label for="title" class="placeholder">Title <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($video) ? $video->year : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="year" class="placeholder">Year</label>
+                        <label for="year" class="placeholder">Year <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
@@ -35,7 +35,7 @@
                                 @foreach(json_decode($video->video_links, true) as $index => $videoLink)
                                     <div class="row input-container mb-5">
                                         <div class="col-8 col-sm-10">
-                                            <input type="text" class="input" name="video_links[]" value="{{ old('video_links.' . $index, $videoLink) }}" placeholder=" "/>
+                                            <input type="url" class="input" name="video_links[]" value="{{ old('video_links.' . $index, $videoLink) }}" required placeholder=" "/>
                                             <div class="cut"></div>
                                             <label for="video_links" class="placeholder">Video Link {{ $index + 1 }}</label>
                                             <div class="video-iframe mt-3">
@@ -47,7 +47,7 @@
                                 @endforeach
                             @endif
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-info" id="add-video-link">Insert Video Link</button>
+                        <button type="button" class="btn btn-sm btn-outline-info" id="add-video-link">Insert Video Link <span class="text-danger">*</span></button>
                     </div>
                 </div>
                 @if(isset($video))
@@ -103,25 +103,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Add Link button click event
-        $('#add-video-link').click(function () {
-            var linkField = `
-                <div class="row input-container mb-4">
-                    <div class="col-8 col-sm-10">
-                        <input type="url" class="input" name="video_links[]" placeholder=" "/>
-                        <div class="cut"></div>
-                        <label for="video_links" class="placeholder">Video Link</label>
-                    </div>
-                    <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link">Remove</button>
+    // Add Link button click event
+    $('#add-video-link').click(function () {
+        var linkField = `
+            <div class="row input-container mb-4">
+                <div class="col-8 col-sm-10">
+                    <input type="url" class="input" name="video_links[]" required placeholder=" "/>
+                    <div class="cut"></div>
+                    <label for="video_links" class="placeholder">Video Link</label>
                 </div>
-            `;
-            $('.video-links').append(linkField);
-        });
-
-        // Remove Link button click event
-        $('.video-links').on('click', '.remove-video-link', function () {
-            $(this).closest('.input-container').remove();
-        });
+                <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link">Remove</button>
+            </div>
+        `;
+        $('.video-links').append(linkField);
     });
+
+    // Remove Link button click event
+    $('.video-links').on('click', '.remove-video-link', function () {
+        $(this).closest('.row').remove();
+    });
+});
+
 </script>
 @endsection

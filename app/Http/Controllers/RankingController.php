@@ -22,24 +22,29 @@ class RankingController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'year' => 'required',
-            'link' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'title' => 'required',
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'year' => 'required',
+                'link' => 'required',
+            ]);
 
-        $imageName = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('uploads/ranking'), $imageName);
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/ranking'), $imageName);
 
-        Ranking::create([
-            'title' => $request->title,
-            'year' => $request->year,
-            'link' => $request->link,
-            'picture' => $imageName,
-        ]);
+            Ranking::create([
+                'title' => $request->title,
+                'year' => $request->year,
+                'link' => $request->link,
+                'picture' => $imageName,
+            ]);
 
-        return redirect()->route('rankings.index')->with('success', 'Record created successfully.');
+            return redirect()->route('rankings.index')->with('success', 'Record created successfully.');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('rankings.index')->with('warning', "Failed to create record! Please try again");
+        }
     }
 
     public function edit(Ranking $ranking)
@@ -50,44 +55,52 @@ class RankingController extends Controller
 
     public function update(Request $request, Ranking $ranking)
     {
-        $rules = [
-            'title' => 'required',
-            'year' => 'required',
-            'link' => 'required',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ];
-    
+        try{
+            $rules = [
+                'title' => 'required',
+                'year' => 'required',
+                'link' => 'required',
+                'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ];
         
-    
-        $data = $request->only(['title', 'year', 'link']);
-    
-        if ($request->hasFile('picture')) {
-            $oldPicturePath = public_path('uploads/ranking/' . $ranking->picture);
-            if (file_exists($oldPicturePath)) {
-                unlink($oldPicturePath);
+            $data = $request->only(['title', 'year', 'link']);
+        
+            if ($request->hasFile('picture')) {
+                $oldPicturePath = public_path('uploads/ranking/' . $ranking->picture);
+                if (file_exists($oldPicturePath)) {
+                    unlink($oldPicturePath);
+                }
+        
+                $imageName = time() . '.' . $request->picture->extension();
+                $request->picture->move(public_path('uploads/ranking'), $imageName);
+                $data['picture'] = $imageName;
             }
-    
-            $imageName = time() . '.' . $request->picture->extension();
-            $request->picture->move(public_path('uploads/ranking'), $imageName);
-            $data['picture'] = $imageName;
+        
+            $ranking->update($data);
+        
+            return redirect()->route('rankings.index')->with('success', 'Record updated successfully.');
         }
-    
-        $ranking->update($data);
-    
-        return redirect()->route('rankings.index')->with('success', 'Record updated successfully.');
+        catch (\Exception $e) {
+            return redirect()->route('rankings.index')->with('warning', "Failed to update record! Please try again");
+        }
     }
     
 
     public function destroy(Ranking $ranking)
     {
-        // Delete the associated picture file
-        $picturePath = public_path('uploads/ranking/' . $ranking->picture);
-        if (file_exists($picturePath)) {
-            unlink($picturePath);
+        try{
+            // Delete the associated picture file
+            $picturePath = public_path('uploads/ranking/' . $ranking->picture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
+
+            $ranking->delete();
+
+            return redirect()->route('rankings.index')->with('success', 'Record deleted successfully');
         }
-
-        $ranking->delete();
-
-        return redirect()->route('rankings.index')->with('success', 'Record deleted successfully');
+        catch (\Exception $e) {
+            return redirect()->route('rankings.index')->with('warning', "Failed to delete record! Please try again");
+        }
     }
 }

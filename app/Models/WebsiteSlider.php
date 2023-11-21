@@ -11,5 +11,6 @@ class WebsiteSlider extends Model
     protected $fillable = [
         'picture',
         'slider_serial',
+        'is_visible',
     ];
 }

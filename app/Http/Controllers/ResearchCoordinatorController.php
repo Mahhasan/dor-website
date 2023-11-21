@@ -27,29 +27,34 @@ class ResearchCoordinatorController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'designation' => 'required',
-            'email' => 'required|email',
-            'department_id' => 'required',
-            'faculty_id' => 'required',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        try{
+            $request->validate([
+                'name' => 'required',
+                'designation' => 'required',
+                'email' => 'required|email',
+                'department_id' => 'required',
+                'faculty_id' => 'required',
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
 
-        $imageName = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('uploads/research_coordinator'), $imageName);
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/research_coordinator'), $imageName);
 
-        ResearchCoordinator::create([
-            'name' => $request->name,
-            'designation' => $request->designation,
-            'email' => $request->email,
-            'cell' => $request->cell,
-            'department_id' => $request->department_id,
-            'faculty_id' => $request->faculty_id,
-            'picture' => $imageName,
-        ]);
+            ResearchCoordinator::create([
+                'name' => $request->name,
+                'designation' => $request->designation,
+                'email' => $request->email,
+                'cell' => $request->cell,
+                'department_id' => $request->department_id,
+                'faculty_id' => $request->faculty_id,
+                'picture' => $imageName,
+            ]);
 
-        return redirect()->route('research.coordinator.index')->with('success', 'Record created successfully');
+            return redirect()->route('research.coordinator.index')->with('success', 'Record created successfully');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('research.coordinator.index')->with('warning', "Failed to create record! Please try again");
+        }
     }
 
     public function edit(ResearchCoordinator $researchCoordinator)
@@ -62,47 +67,57 @@ class ResearchCoordinatorController extends Controller
 
     public function update(Request $request, ResearchCoordinator $researchCoordinator)
     {
-        $request->validate([
-            'name' => 'required',
-            'designation' => 'required',
-            'email' => 'required|email',
-            'department_id' => 'required',
-            'faculty_id' => 'required',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        try{
+            $request->validate([
+                'name' => 'required',
+                'designation' => 'required',
+                'email' => 'required|email',
+                'department_id' => 'required',
+                'faculty_id' => 'required',
+                'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
 
-        $data = $request->only(['name', 'designation', 'email', 'cell', 'department_id', 'faculty_id']);
+            $data = $request->only(['name', 'designation', 'email', 'cell', 'department_id', 'faculty_id']);
 
-        if ($request->hasFile('picture')) {
-            $oldPicturePath = public_path('uploads/research_coordinator/' . $researchCoordinator->picture);
-            if (file_exists($oldPicturePath)) {
-                unlink($oldPicturePath);
+            if ($request->hasFile('picture')) {
+                $oldPicturePath = public_path('uploads/research_coordinator/' . $researchCoordinator->picture);
+                if (file_exists($oldPicturePath)) {
+                    unlink($oldPicturePath);
+                }
+
+                $imageName = time() . '.' . $request->picture->extension();
+                $request->picture->move(public_path('uploads/research_coordinator'), $imageName);
+                $data['picture'] = $imageName;
             }
 
-            $imageName = time() . '.' . $request->picture->extension();
-            $request->picture->move(public_path('uploads/research_coordinator'), $imageName);
-            $data['picture'] = $imageName;
+            $researchCoordinator->update($data);
+
+            return redirect()->route('research.coordinator.index')->with('success', 'Record updated successfully');
         }
-
-        $researchCoordinator->update($data);
-
-        return redirect()->route('research.coordinator.index')->with('success', 'Record updated successfully');
+        catch (\Exception $e) {
+            return redirect()->route('research.coordinator.index')->with('warning', "Failed to update record! Please try again");
+        }
     }
 
     public function destroy(ResearchCoordinator $researchCoordinator)
     {
-        // Delete the associated picture file
-        $picturePath = public_path('uploads/research_coordinator/' . $researchCoordinator->picture);
-        if (file_exists($picturePath)) {
-            unlink($picturePath);
+        try{
+            // Delete the associated picture file
+            $picturePath = public_path('uploads/research_coordinator/' . $researchCoordinator->picture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
+
+            $researchCoordinator->delete();
+
+            return redirect()->route('research.coordinator.index')->with('success', 'Record deleted successfully');
         }
-
-        $researchCoordinator->delete();
-
-        return redirect()->route('research.coordinator.index')->with('success', 'Record deleted successfully');
+        catch (\Exception $e) {
+            return redirect()->route('research.coordinator.index')->with('warning', "Failed to delete record! Please try again");
+        }
     }
 
-    //Get topic in manuscript submission
+    //Get Department depend on faculty
     public function getTopic($id){
         $departments = DB::table("departments")->where("faculty_id",$id)->pluck("full_name","id");
         return json_encode($departments);

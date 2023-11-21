@@ -20,14 +20,14 @@
                     <div class="input-container col-sm-12 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($photo) ? $photo->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="title" class="placeholder">Title</label>
+                        <label for="title" class="placeholder">Title <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container col-md-5 mb-4">
                         <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($photo) ? $photo->year : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="year" class="placeholder">Year</label>
+                        <label for="year" class="placeholder">Year <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-md-7 mb-4">
                         <div class="additional-links">

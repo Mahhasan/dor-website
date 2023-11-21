@@ -18,7 +18,7 @@ class Resource extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = Str::slug($model->topic); // Generate the slug based on the title
+            $model->slug = Str::slug($model->topic); // Generate the slug
         });
     }
 }

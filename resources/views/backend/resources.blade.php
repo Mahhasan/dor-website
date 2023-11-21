@@ -20,10 +20,10 @@
                     <div class="input-container mb-4">
                         <input type="text" class="input" id="topic" name="topic" value="{{ old('topic', isset($resource) ? $resource->topic : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="topic" class="placeholder">Topic</label>
+                        <label for="topic" class="placeholder">Topic <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container mb-4">
-                        <input type="file" class="input border-0 pt-2" id="document" name="document" {{ isset($resource) ? '' : 'required' }}>
+                        <input type="file" class="input border-0 pt-2" id="document" name="document" {{ isset($resource) ? '' : 'required' }} accept="application/pdf">
                         @if(isset($resource) && $resource->document)
                             <div class=" mt-3 float-right">
                                 @if (pathinfo($resource->document, PATHINFO_EXTENSION) == 'pdf')
@@ -35,7 +35,7 @@
                             </div>
                         @endif    
                         <div class="cut"></div>
-                        <label for="document" class="placeholder">Rrsource File <small class="font-italic">(Image or pdf)</small></label>            
+                        <label for="document" class="placeholder">Rrsource File <small class="font-italic">(Image or pdf)</small> <span class="text-danger">*</span></label>            
                     </div>
                 </div>
                 @if(isset($resource))

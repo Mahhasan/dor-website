@@ -20,19 +20,19 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($ranking) ? $ranking->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="title" class="placeholder">Title</label>
+                        <label for="title" class="placeholder">Title <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($ranking) ? $ranking->year : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="year" class="placeholder">Year</label>
+                        <label for="year" class="placeholder">Year <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container col-sm-6 mb-4">
                         <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($ranking) ? $ranking->link : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="link" class="placeholder">Website Link</label>
+                        <label for="link" class="placeholder">Website Link <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" {{ isset($ranking) ? '' : 'required' }}>
@@ -42,7 +42,7 @@
                             </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Ranking Image<small class="font-italic"> (size: 300 x 150 px)</small></label>
+                        <label for="picture" class="placeholder">Ranking Image<small class="font-italic"> (size: 300 x 150 px)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($ranking))

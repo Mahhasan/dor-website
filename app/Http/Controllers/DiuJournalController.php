@@ -22,22 +22,28 @@ class DiuJournalController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'link' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'name' => 'required',
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'link' => 'required',
+            ]);
 
-        $imageName = time() . '.' . $request->picture->extension();
-        $request->picture->move(public_path('uploads/diu_journal'), $imageName);
+            $imageName = time() . '.' . $request->picture->extension();
+            $request->picture->move(public_path('uploads/diu_journal'), $imageName);
 
-        DiuJournal::create([
-            'name' => $request->name,
-            'link' => $request->link,
-            'picture' => $imageName,
-        ]);
+            DiuJournal::create([
+                'name' => $request->name,
+                'link' => $request->link,
+                'picture' => $imageName,
+                'slug' => Str::slug($request->name),
+            ]);
 
-        return redirect()->route('diu.journals.index')->with('success', 'Record created successfully.');
+            return redirect()->route('diu.journals.index')->with('success', 'Record created successfully.');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('diu.journals.index')->with('warning', "Failed to create record! Please try again");
+        }
     }
 
     public function edit(DiuJournal $diuJournal)
@@ -48,43 +54,54 @@ class DiuJournalController extends Controller
 
     public function update(Request $request, DiuJournal $diuJournal)
     {
-        $rules = [
-            'name' => 'required',
-            'link' => 'required',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ];
-    
+        try{
+            $rules = [
+                'name' => 'required',
+                'link' => 'required',
+                'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ];
         
-    
-        $data = $request->only(['name', 'link']);
-    
-        if ($request->hasFile('picture')) {
-            $oldPicturePath = public_path('uploads/diu_journal/' . $diuJournal->picture);
-            if (file_exists($oldPicturePath)) {
-                unlink($oldPicturePath);
+            $data = $request->only(['name', 'link']);
+            
+            // Add slug to data
+            $data['slug'] = Str::slug($request->name);
+        
+            if ($request->hasFile('picture')) {
+                $oldPicturePath = public_path('uploads/diu_journal/' . $diuJournal->picture);
+                if (file_exists($oldPicturePath)) {
+                    unlink($oldPicturePath);
+                }
+        
+                $imageName = time() . '.' . $request->picture->extension();
+                $request->picture->move(public_path('uploads/diu_journal'), $imageName);
+                $data['picture'] = $imageName;
             }
-    
-            $imageName = time() . '.' . $request->picture->extension();
-            $request->picture->move(public_path('uploads/diu_journal'), $imageName);
-            $data['picture'] = $imageName;
+        
+            $diuJournal->update($data);
+        
+            return redirect()->route('diu.journals.index')->with('success', 'Record updated successfully.');
         }
-    
-        $diuJournal->update($data);
-    
-        return redirect()->route('diu.journals.index')->with('success', 'Record updated successfully.');
+        catch (\Exception $e) {
+            return redirect()->route('diu.journals.index')->with('warning', "Failed to update record! Please try again");
+        }
     }
     
 
     public function destroy(DiuJournal $diuJournal)
     {
-        // Delete the associated picture file
-        $picturePath = public_path('uploads/diu_journal/' . $diuJournal->picture);
-        if (file_exists($picturePath)) {
-            unlink($picturePath);
+        try{
+            // Delete the associated picture file
+            $picturePath = public_path('uploads/diu_journal/' . $diuJournal->picture);
+            if (file_exists($picturePath)) {
+                unlink($picturePath);
+            }
+
+            $diuJournal->delete();
+
+            return redirect()->route('diu.journals.index')->with('success', 'Record deleted successfully');
         }
-
-        $diuJournal->delete();
-
-        return redirect()->route('diu.journals.index')->with('success', 'Record deleted successfully');
+        catch (\Exception $e) {
+            return redirect()->route('diu.journals.index')->with('warning', "Failed to delete record! Please try again");
+        }
     }
 }

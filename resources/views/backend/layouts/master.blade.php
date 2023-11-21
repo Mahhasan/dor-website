@@ -120,7 +120,8 @@
 
     <!-- toastr message cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    
+    <!-- For Slider visible or invisible in welcome page -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- JavaScript to store and retrieve the active tab using cookies -->
     <script>
         $(document).ready(function () {
@@ -285,6 +286,28 @@
                 }
             });
         });
+    </script>
+    <!-- For Slider visible or invisible in welcome page -->
+    <script>
+        function toggleVisibility(sliderId) {
+            axios.post(`/website/slider/toggle-visibility/${sliderId}`)
+                .then(response => {
+                    if (response.data.success) {
+                        // Update the button text and style
+                        const button = document.querySelector(`#visibilityButton${sliderId}`);
+                        const buttonText = response.data.is_visible ? 'Visible' : 'Invisible';
+                        const buttonClass = response.data.is_visible ? 'btn-success' : 'btn-danger';
+
+                        button.textContent = buttonText;
+                        button.className = `btn btn-sm ${buttonClass}`;
+                    } else {
+                        alert('Failed to toggle visibility. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error toggling visibility:', error);
+                });
+        }
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
             <!-- <i class="fas fa-laugh-wink"></i> -->
-            <img class="p-2" src="images/dor-logo.png" alt="" style="max-width: 80px;">
+            <img class="p-2" src="{{asset('images/dor-logo.png')}}" alt="" style="max-width: 80px;">
         </div>
         <div class="sidebar-brand-text mx-3">DoR</div>
     </a>

@@ -36,11 +36,12 @@ class DirectorMessageController extends Controller
                 'title' => $request->title,
                 'message' => $request->message,
                 'picture' => $imageName,
+                'slug' => Str::slug($request->title), // Generate slug here
             ]);
             return redirect()->route('director.message.index')->with('success', 'Record created successfully.'); 
         }
-        catch(\Exception) {
-            return redirect('director.message.index')->with('fail', "Failed to create record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('director.message.index')->with('warning', "Failed to create record! Please try again"); 
         } 
     }
 
@@ -61,6 +62,8 @@ class DirectorMessageController extends Controller
         
             $data = $request->only(['title', 'message']);
 
+            // Add slug to data
+            $data['slug'] = Str::slug($request->title);
         
             if ($request->hasFile('picture')) {
                 $oldPicturePath = public_path('uploads/director_message/' . $directorMessage->picture);
@@ -76,8 +79,8 @@ class DirectorMessageController extends Controller
 
             return redirect()->route('director.message.index')->with('success', 'Record updated successfully.');
         }
-        catch(\Exception) {
-            return redirect('director.message.index')->with('fail', "Failed to update record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('director.message.index')->with('warning', "Failed to update record! Please try again"); 
         } 
     }
     
@@ -95,8 +98,8 @@ class DirectorMessageController extends Controller
 
             return redirect()->route('director.message.index')->with('success', 'Record deleted successfully');
         }
-        catch(\Exception) {
-            return redirect('director.message.index')->with('fail', "Failed to delete record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('director.message.index')->with('warning', "Failed to delete record! Please try again"); 
         } 
     }
 

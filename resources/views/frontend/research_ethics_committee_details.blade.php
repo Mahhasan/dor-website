@@ -3,7 +3,7 @@
 <section class="cta">
     <div class="container">
         <div class="row">
-            <h3 class="text-center mb-3">{{ $faculty_name }}</h3>
+            <h3 class="text-center mb-3">{{ $committee_name }}</h3>
             @if($researchEthicsCommittee->isNotEmpty())
                 <table class="table table-bordered">
                     <thead>

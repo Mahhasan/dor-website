@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ResearchEthicsCommittee;
-use Illuminate\Support\Facades\Session;
+use App\Models\Department;
+
 class ResearchEthicsCommitteeController extends Controller
 {
     public function index()
     {
-        // $researchEthicsCommittees = ResearchEthicsCommittee::all();
-        $fsit = ResearchEthicsCommittee::WHERE('faculty_name', 'FSIT Research Ethics Committee')->get();
-        $fbe = ResearchEthicsCommittee::WHERE('faculty_name', 'FBE Research Ethics Committee')->get();
-        $fahs = ResearchEthicsCommittee::WHERE('faculty_name', 'FAHS Research Ethics Committee')->get();
-        $fe = ResearchEthicsCommittee::WHERE('faculty_name', 'FE Research Ethics Committee')->get();
-        $fhss = ResearchEthicsCommittee::WHERE('faculty_name', 'FHSS Research Ethics Committee')->get();
-        return view('backend.research_ethics_committees', compact('fsit', 'fbe', 'fahs', 'fe', 'fhss'));
+
+        $departments = Department::all();
+        $fsit = ResearchEthicsCommittee::WHERE('committee_name', 'FSIT Research Ethics Committee')->get();
+        $fbe = ResearchEthicsCommittee::WHERE('committee_name', 'FBE Research Ethics Committee')->get();
+        $fahs = ResearchEthicsCommittee::WHERE('committee_name', 'FAHS Research Ethics Committee')->get();
+        $fe = ResearchEthicsCommittee::WHERE('committee_name', 'FE Research Ethics Committee')->get();
+        $fhss = ResearchEthicsCommittee::WHERE('committee_name', 'FHSS Research Ethics Committee')->get();
+        return view('backend.research_ethics_committees', compact('departments', 'fsit', 'fbe', 'fahs', 'fe', 'fhss'));
     }
 
     public function create()
@@ -26,47 +28,52 @@ class ResearchEthicsCommitteeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'designation' => 'required',
-            'faculty_name' => 'required',
-            'position' => 'required',
-        ]);
         try{
+            $request->validate([
+                'name' => 'required',
+                'designation' => 'required',
+                'department_id' => 'required',
+                'committee_name' => 'required',
+                'position' => 'required',
+            ]);
+        
             ResearchEthicsCommittee::create($request->all());
             return redirect()->route('research.ethics.ommittees.index')->with('success', 'Record created successfully');
         }
-        catch(\Exception) {
-            return redirect('research.ethics.ommittees.index')->with('fail', "Failed to create record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('research.ethics.ommittees.index')->with('warning', "Failed to create record! Please try again"); 
         } 
     }
 
 
     public function edit(ResearchEthicsCommittee $researchEthicsCommittee)
     {
+        $departments = Department::all();
         // $researchEthicsCommittees = ResearchEthicsCommittee::all();
-        $fsit = ResearchEthicsCommittee::WHERE('faculty_name', 'FSIT Research Ethics Committee')->get();
-        $fbe = ResearchEthicsCommittee::WHERE('faculty_name', 'FBE Research Ethics Committee')->get();
-        $fahs = ResearchEthicsCommittee::WHERE('faculty_name', 'FAHS Research Ethics Committee')->get();
-        $fe = ResearchEthicsCommittee::WHERE('faculty_name', 'FE Research Ethics Committee')->get();
-        $fhss = ResearchEthicsCommittee::WHERE('faculty_name', 'FHSS Research Ethics Committee')->get();
-        return view('backend.research_ethics_committees', compact('researchEthicsCommittee', 'fsit', 'fbe', 'fahs', 'fe', 'fhss'));
+        $fsit = ResearchEthicsCommittee::WHERE('committee_name', 'FSIT Research Ethics Committee')->get();
+        $fbe = ResearchEthicsCommittee::WHERE('committee_name', 'FBE Research Ethics Committee')->get();
+        $fahs = ResearchEthicsCommittee::WHERE('committee_name', 'FAHS Research Ethics Committee')->get();
+        $fe = ResearchEthicsCommittee::WHERE('committee_name', 'FE Research Ethics Committee')->get();
+        $fhss = ResearchEthicsCommittee::WHERE('committee_name', 'FHSS Research Ethics Committee')->get();
+        return view('backend.research_ethics_committees', compact('departments', 'researchEthicsCommittee', 'fsit', 'fbe', 'fahs', 'fe', 'fhss'));
     }
 
     public function update(Request $request, ResearchEthicsCommittee $researchEthicsCommittee)
     {
-        $request->validate([
-            'name' => 'required',
-            'designation' => 'required',
-            'faculty_name' => 'required',
-            'position' => 'required',
-        ]);
         try{
+            $request->validate([
+                'name' => 'required',
+                'designation' => 'required',
+                'department_id' => 'required',
+                'committee_name' => 'required',
+                'position' => 'required',
+            ]);
+        
             $researchEthicsCommittee->update($request->all());
             return redirect()->route('research.ethics.ommittees.index')->with('success', 'Record updated successfully');
         }
-        catch(\Exception) {
-            return redirect('research.ethics.ommittees.index')->with('fail', "Failed to update record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('research.ethics.ommittees.index')->with('warning', "Failed to update record! Please try again"); 
         } 
     }
 
@@ -77,8 +84,8 @@ class ResearchEthicsCommitteeController extends Controller
 
             return redirect()->route('research.ethics.ommittees.index')->with('success', 'Record deleted successfully');
         }
-        catch(\Exception) {
-            return redirect('research.ethics.ommittees.index')->with('fail', "Failed to delete record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('research.ethics.ommittees.index')->with('warning', "Failed to delete record! Please try again"); 
         }     
     }
 }

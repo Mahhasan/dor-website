@@ -20,10 +20,10 @@
                     <div class="input-container mb-4">
                         <input type="text" class="input" id="volume" name="volume" value="{{ old('volume', isset($researchUpdate) ? $researchUpdate->volume : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="volume" class="placeholder">Volume</label>
+                        <label for="volume" class="placeholder">Volume <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container mb-4">
-                        <input type="file" class="input border-0 pt-2" id="file" name="file" {{ isset($researchUpdate) ? '' : 'required' }} placeholder=" ">
+                        <input type="file" class="input border-0 pt-2" id="file" name="file" {{ isset($researchUpdate) ? '' : 'required' }} placeholder=" " accept="application/pdf">
                             <div class=" mt-3 float-right">
                                 @if(isset($researchUpdate) && $researchUpdate->file)
                                     <!-- <a href="{{ asset('uploads/research_update/' . $researchUpdate->file) }}" target="_blank">{{ $researchUpdate->file }}</a> -->
@@ -31,7 +31,7 @@
                                 @endif
                             </div>
                         <div class="cut"></div>
-                        <label for="file" class="placeholder">File <small class="font-italic">(pdf only, max size: 10mb)</small></label>
+                        <label for="file" class="placeholder">File <small class="font-italic">(pdf only, max size: 10mb)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($researchUpdate))

@@ -23,19 +23,24 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'year' => 'required',
-            'event_details' => 'required',
-        ]);
+        try{
+            $request->validate([
+                'title' => 'required',
+                'year' => 'required',
+                'event_details' => 'required',
+            ]);
 
-        Event::create([
-            'title' => $request->title,
-            'year' => $request->year,
-            'event_details' => $request->event_details,
-        ]);
+            Event::create([
+                'title' => $request->title,
+                'year' => $request->year,
+                'event_details' => $request->event_details,
+            ]);
 
-        return redirect()->route('events.index')->with('success', 'Record created successfully');
+            return redirect()->route('events.index')->with('success', 'Record created successfully');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('events.index')->with('warning', "Failed to create record! Please try again");
+        }
     }
 
     public function edit(Event $event)
@@ -46,23 +51,33 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-        $request->validate([
-            'title' => 'required',
-            'year' => 'required',
-            'event_details' => 'required',
-        ]);
-    
-        $event->update($request->all());
-    
-        return redirect()->route('events.index')->with('success', 'Record updated successfully');
+        try{
+            $request->validate([
+                'title' => 'required',
+                'year' => 'required',
+                'event_details' => 'required',
+            ]);
+        
+            $event->update($request->all());
+        
+            return redirect()->route('events.index')->with('success', 'Record updated successfully');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('events.index')->with('warning', "Failed to update record! Please try again");
+        }
     }
     
 
     public function destroy(Event $event)
     {
-        $event->delete();
+        try{
+            $event->delete();
 
-        return redirect()->route('events.index')->with('success', 'Record deleted successfully');
+            return redirect()->route('events.index')->with('success', 'Record deleted successfully');
+        }
+        catch (\Exception $e) {
+            return redirect()->route('events.index')->with('warning', "Failed to delete record! Please try again");
+        }
     }
 
 }

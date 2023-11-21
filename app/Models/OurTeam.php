@@ -14,8 +14,12 @@ class OurTeam extends Model
         'email',
         'cell',
         'department',
-        'faculty',
+        'faculty_id',
         'picture',
         'level',
     ];
+    public function faculties()
+    {
+        return $this->belongsTo('App\Models\Faculty', 'faculty_id');
+    }
 }

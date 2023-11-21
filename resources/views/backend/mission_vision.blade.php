@@ -10,17 +10,17 @@
                     @method('PATCH')  
                     @csrf
                     <div class="row mt-5">
-                        <div class="form-group col-sm-12 mb-5">
-                            <textarea class="input" id="file-picker" name="mission" value="{{ old('mission', isset($missionVision) ? $missionVision->mission : '') }}" placeholder=" ">{{ old('mission', isset($missionVision) ? $missionVision->mission : '') }}</textarea>
+                        <div class="form-group col-sm-12 mb-4">
+                            <textarea class="input" id="file-picker" name="vision" value="{{ old('vision', isset($missionVision) ? $missionVision->vision : '') }}" required placeholder=" ">{{ old('vision', isset($missionVision) ? $missionVision->vision : '') }}</textarea>
                             <div class="cut"></div>
-                            <label for="mission" class="placeholder">Mission</label>
+                            <label for="vision" class="placeholder">Vision <span class="text-danger">*</span></label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-sm-12 mb-4">
-                            <textarea class="input" id="file-picker" name="vision" value="{{ old('vision', isset($missionVision) ? $missionVision->vision : '') }}" placeholder=" ">{{ old('vision', isset($missionVision) ? $missionVision->vision : '') }}</textarea>
+                        <div class="form-group col-sm-12 mb-5">
+                            <textarea class="input" id="file-picker" name="mission" value="{{ old('mission', isset($missionVision) ? $missionVision->mission : '') }}" required placeholder=" ">{{ old('mission', isset($missionVision) ? $missionVision->mission : '') }}</textarea>
                             <div class="cut"></div>
-                            <label for="vision" class="placeholder">Vision</label>
+                            <label for="mission" class="placeholder">Mission <span class="text-danger">*</span></label>
                         </div>
                     </div>
                     @if(isset($missionVision))

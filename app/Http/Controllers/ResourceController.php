@@ -77,7 +77,7 @@ class ResourceController extends Controller
 
         return redirect()->route('resources.index')->with('success', 'Record updated successfully');
     }
-    catch (\Exception $e) {
+    catch(\Exception $e) {
         return redirect()->route('resources.index')->with('warning', "Failed to update record! Please try again");
     }
 }
@@ -97,8 +97,8 @@ class ResourceController extends Controller
 
             return redirect()->route('resources.index')->with('success', 'Record deleted successfully');
         }
-        catch(\Exception) {
-            return redirect('resources.index')->with('warning', "Failed to delete record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('resources.index')->with('warning', "Failed to delete record! Please try again"); 
         }
     }
 }

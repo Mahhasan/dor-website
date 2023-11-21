@@ -11,10 +11,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($faculty_name as $key=>$faculty)
+                    @foreach($committee_name as $key=>$committee)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td><a href="{{ route('research-ethics-committee-details', $faculty) }}">{{ $faculty }}</a></td>
+                            <td><a href="{{ route('research-ethics-committee-details', $committee) }}">{{ $committee }}</a></td>
                         </tr>
                     @endforeach
                 </tbody>

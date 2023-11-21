@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('collaborating_researches', function (Blueprint $table) {
             $table->id();
             $table->string('institute_name');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

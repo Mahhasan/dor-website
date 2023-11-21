@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('director_messages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('picture');
             $table->longText('message');
             $table->timestamps();

@@ -20,12 +20,12 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="name" name="name" value="{{ old('name', isset($diuJournal) ? $diuJournal->name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="name" class="placeholder">Name</label>
+                        <label for="name" class="placeholder">Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($diuJournal) ? $diuJournal->link : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="link" class="placeholder">Website Link</label>
+                        <label for="link" class="placeholder">Website Link <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
                             </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Journal Banner<small class="font-italic"> (size: 300 x 150 px)</small></label>
+                        <label for="picture" class="placeholder">Journal Banner<small class="font-italic"> (size: 300 x 150 px)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($diuJournal))

@@ -86,3 +86,5 @@ Route::resource('department', DepartmentController::class)->names('department');
 //Dependent for department & faculty
 Route::get('myform/ajax/{id}', [App\Http\Controllers\ResearchCoordinatorController::class, 'getTopic'])
     ->name('myform.ajax');
+// For Slider visible or invisible in welcome page
+Route::post('/website/slider/toggle-visibility/{slider}', [WebsiteSliderController::class, 'toggleVisibility']);

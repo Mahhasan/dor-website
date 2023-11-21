@@ -19,7 +19,7 @@ class Department extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = Str::slug($model->full_name); // Generate the slug based on the title
+            $model->slug = Str::slug($model->full_name);
         });
     }
     public function faculties()

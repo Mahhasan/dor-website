@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('source_of_publications', function (Blueprint $table) {
             $table->id();
             $table->string('source');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

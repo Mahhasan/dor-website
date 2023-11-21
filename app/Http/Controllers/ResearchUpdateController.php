@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ResearchUpdate;
+
 class ResearchUpdateController extends Controller
 {
     public function index()
@@ -33,15 +34,13 @@ class ResearchUpdateController extends Controller
             ResearchUpdate::create([
                 'volume' => $request->volume,
                 'file' => $fileName,
+                'slug' => Str::slug($request->volume),
             ]);
 
             return redirect()->route('research.update.index')->with('success', 'Record created successfully');
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('research.update.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('research.update.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('research.update.index')->with('warning', "Failed to create record! Please try again");
         }
     }
 
@@ -75,15 +74,13 @@ class ResearchUpdateController extends Controller
             }
         
             $researchUpdate->volume = $request->volume;
+            $researchUpdate->slug = Str::slug($request->volume); // Generate slug here
             $researchUpdate->save();
             
             return redirect()->route('research.update.index')->with('success', 'Record updated successfully');
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('research.update.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('research.update.index')->with('fail', "Failed to update record! Please try again");
+            return redirect()->route('research.update.index')->with('warning', "Failed to update record! Please try again");
         }
     }
 
@@ -103,11 +100,8 @@ class ResearchUpdateController extends Controller
 
             return redirect()->route('research.update.index')->with('success', 'Record and file deleted successfully');
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('research.update.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('research.update.index')->with('fail', "Failed to delete record! Please try again");
+            return redirect()->route('research.update.index')->with('warning', "Failed to delete record! Please try again");
         }
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('diu_journals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('picture');
             $table->string('link');
             $table->timestamps();

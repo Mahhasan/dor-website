@@ -10,8 +10,13 @@ class ResearchEthicsCommittee extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'department_id',
         'designation',
-        'faculty_name',
+        'committee_name',
         'position',
     ];
+    public function departments()
+    {
+        return $this->belongsTo('App\Models\Department', 'department_id');
+    }
 }

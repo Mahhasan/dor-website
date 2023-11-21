@@ -64,8 +64,8 @@ class PhotoController extends Controller
 
             return redirect()->route('photos.index')->with('success', 'Record created successfully');
         }
-        catch(\Exception) {
-            return redirect()->route('photos.index')->with('fail', 'Failed to create record! Please try again');
+        catch(\Exception $e) {
+            return redirect()->route('photos.index')->with('warning', 'Failed to create record! Please try again');
         }
     }
 
@@ -122,8 +122,8 @@ class PhotoController extends Controller
 
             return redirect()->route('photos.index')->with('success', 'Record updated successfully');
         }
-        catch(\Exception) {
-            return redirect()->route('photos.index')->with('fail', 'Failed to update record! Please try again');
+        catch(\Exception $e) {
+            return redirect()->route('photos.index')->with('warning', 'Failed to update record! Please try again');
         }
     }
 
@@ -146,8 +146,8 @@ class PhotoController extends Controller
 
             return redirect()->route('photos.index')->with('success', 'Record deleted successfully');
         }
-        catch(\Exception) {
-            return redirect()->route('photos.index')->with('fail', 'Failed to delete record! Please try again');
+        catch(\Exception $e) {
+            return redirect()->route('photos.index')->with('warning', 'Failed to delete record! Please try again');
         }
     }
 }

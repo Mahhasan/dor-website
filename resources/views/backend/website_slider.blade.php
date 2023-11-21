@@ -20,7 +20,7 @@
                     <div class="input-container col-md-6 mb-4">
                         <input type="number" class="input" id="slider_serial" name="slider_serial" value="{{ old('slider_serial', isset($websiteSlider) ? $websiteSlider->slider_serial : '') }}" required placeholder=" ">
                         <div class="cut"></div>
-                        <label for="slider_serial" class="placeholder">Slider Serial</label>
+                        <label for="slider_serial" class="placeholder">Slider Serial <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-md-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" {{ isset($websiteSlider) ? '' : 'required' }} placeholder=" ">
@@ -30,7 +30,7 @@
                             </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Slider Image <small class="font-italic">(size: 1920 x 650 px)</small></label>
+                        <label for="picture" class="placeholder">Slider Image <small class="font-italic">(size: 1920 x 650 px)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($websiteSlider))
@@ -57,7 +57,7 @@
                     @else
                         <img src="{{ asset('path_to_default_image.jpg') }}" class="card-img-top" alt="No Image Available">
                     @endif
-                    <div class="card-body p-0">
+                    <div class="card-body p-1">
                         <div class="text-center">
                             <a href="{{ route('website.slider.edit', $websiteSlider->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('website.slider.destroy', $websiteSlider->id) }}" method="POST" style="display: inline;">
@@ -65,6 +65,9 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i></button>
                             </form>
+                            <button type="button" class="btn btn-sm {{ $websiteSlider->is_visible ? 'btn-success' : 'btn-danger' }}" id="visibilityButton{{ $websiteSlider->id }}" onclick="toggleVisibility({{ $websiteSlider->id }})">
+                                {{ $websiteSlider->is_visible ? 'Visible' : 'Invisible' }}
+                            </button>
                             <small class="float-right pt-2 pr-2">Slider-{{ $websiteSlider->slider_serial }}</small>
                         </div>
                     </div>

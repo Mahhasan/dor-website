@@ -31,7 +31,7 @@ class VideoController extends Controller
             $request->validate([
                 'title' => 'required',
                 'year' => 'required',
-                'video_links' => 'nullable|array',
+                'video_links' => 'required|array',
                 'video_links.*' => 'url', // Validate video_links as URLs
             ]);
 
@@ -51,8 +51,8 @@ class VideoController extends Controller
 
             return redirect()->route('videos.index')->with('success', 'Video Uploaded successfully');
         } 
-        catch (\Exception $e) {
-            return redirect('videos.index')->with('error', 'Failed to Create! Please try again');
+        catch(\Exception $e) {
+            return redirect()->route('videos.index')->with('warning', 'Failed to Create! Please try again');
         }
     }
 
@@ -62,7 +62,7 @@ class VideoController extends Controller
             $request->validate([
                 'title' => 'required',
                 'year' => 'required',
-                'video_links' => 'nullable|array',
+                'video_links' => 'required|array',
                 'video_links.*' => 'url', // Validate video_links as URLs
             ]);
 
@@ -82,8 +82,8 @@ class VideoController extends Controller
 
         return redirect()->route('videos.index')->with('success', 'Video Updated successfully');
         } 
-        catch (\Exception $e) {
-            return redirect('videos.index')->with('error', 'Failed to Update! Please try again');
+        catch(\Exception $e) {
+            return redirect()->route('videos.index')->with('warning', 'Failed to Update! Please try again');
         }
     }
 
@@ -95,8 +95,8 @@ class VideoController extends Controller
 
             return redirect()->route('videos.index')->with('success', 'Video deleted successfully');
         } 
-        catch (\Exception $e) {
-            return redirect('videos.index')->with('error', 'Failed to delete! Please try again');
+        catch(\Exception $e) {
+            return redirect()->route('videos.index')->with('warning', 'Failed to delete! Please try again');
         }
     }
 }

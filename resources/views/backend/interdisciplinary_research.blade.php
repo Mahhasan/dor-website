@@ -24,7 +24,7 @@
                             <option value="Science Discipline" {{ old('discipline', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->discipline : '') === 'Science Discipline' ? 'selected' : '' }}>Science Discipline</option>
                         </select>
                         <div class="cut"></div>
-                        <label for="discipline" class="placeholder">Discipline Name</label>
+                        <label for="discipline" class="placeholder">Discipline Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->link : '') }}" placeholder=" "/>
@@ -36,7 +36,7 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="lab_name" name="lab_name" value="{{ old('lab_name', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->lab_name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="lab_name" class="placeholder">Lab Name</label>
+                        <label for="lab_name" class="placeholder">Lab Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="lab_number" name="lab_number" value="{{ old('lab_number', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->lab_number : '') }}" placeholder=" "/>

@@ -20,19 +20,19 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="name" name="name" value="{{ old('name', isset($researchCoordinator) ? $researchCoordinator->name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="name" class="placeholder">Name</label>
+                        <label for="name" class="placeholder">Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="designation" name="designation" value="{{ old('designation', isset($researchCoordinator) ? $researchCoordinator->designation : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="designation" class="placeholder">Designation</label>
+                        <label for="designation" class="placeholder">Designation <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container col-sm-6 mb-4">
                         <input type="email" class="input" id="email" name="email" value="{{ old('email', isset($researchCoordinator) ? $researchCoordinator->email : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="email" class="placeholder">Email</label>
+                        <label for="email" class="placeholder">Email <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="number" class="input" id="cell" name="cell" value="{{ old('cell', isset($researchCoordinator) ? $researchCoordinator->cell : '') }}" placeholder=" "/>
@@ -49,7 +49,7 @@
                             @endforeach
                         </select>
                         <div class="cut"></div>
-                        <label for="faculty_id" class="placeholder">Faculty Name</label>
+                        <label for="faculty_id" class="placeholder">Faculty Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <select id="department_id" class="input bg-white"  name="department_id" required placeholder=" ">
@@ -59,7 +59,7 @@
                             @endforeach
                         </select>
                         <div class="cut"></div>
-                        <label for="department_id" class="placeholder">Department Name</label>
+                        <label for="department_id" class="placeholder">Department Name <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
@@ -71,7 +71,7 @@
                         </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Image<small class="font-italic"> (size: 150 x 150 px)</small></label>
+                        <label for="picture" class="placeholder">Image<small class="font-italic"> (size: 150 x 150 px)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($researchCoordinator))

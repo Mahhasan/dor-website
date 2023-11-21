@@ -33,15 +33,13 @@ class WebsiteSliderController extends Controller
             WebsiteSlider::create([
                 'picture' => $imageName,
                 'slider_serial' => $request->slider_serial,
+                'is_visible' => true,
             ]);
             return redirect()->route('website.slider.index')->with('success', "New slider image added successfully."); 
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('website.slider.index')->with('warning', "Validation failed. Please check your inputs.");
+        catch (\Exception $e) {
+            return redirect()->route('website.slider.index')->with('warning', "Failed to create record! Please try again");
         }
-        catch(\Exception $e) {
-            return redirect('website.slider.index')->with('fail', "Failed to create record! Please try again"); 
-        } 
     }
 
     public function edit(WebsiteSlider $websiteSlider)
@@ -58,8 +56,8 @@ class WebsiteSliderController extends Controller
                 'slider_serial' => 'required|integer|unique:website_sliders,slider_serial,' . $websiteSlider->id,
             ];
         
-            $data = $request->only(['slider_serial']);
-        
+            $data = $request->only(['slider_serial', 'is_visible']);
+
             if ($request->hasFile('picture')) {
                 $oldPicturePath = public_path('uploads/website_slider/' . $websiteSlider->picture);
                 if (file_exists($oldPicturePath)) {
@@ -75,12 +73,9 @@ class WebsiteSliderController extends Controller
         
             return redirect()->route('website.slider.index')->with('success', "Slider image updated successfully."); 
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('website.slider.index')->with('warning', "Validation failed. Please check your inputs.");
+        catch (\Exception $e) {
+            return redirect()->route('website.slider.index')->with('warning', "Failed to update record! Please try again");
         }
-        catch(\Exception) {
-            return redirect('website.slider.index')->with('fail', "Failed to update record! Please try again"); 
-        } 
     }
     
 
@@ -98,7 +93,20 @@ class WebsiteSliderController extends Controller
             return redirect()->route('website.slider.index')->with('success', 'Slider image deleted successfully');
         }
         catch(\Exception) {
-            return redirect('website.slider.index')->with('fail', "Failed to delete record! Please try again"); 
+            return redirect('website.slider.index')->with('warning', "Failed to delete record! Please try again"); 
         } 
     }
+
+    public function toggleVisibility($sliderId)
+    {
+        try {
+            $slider = WebsiteSlider::findOrFail($sliderId);
+            $slider->update(['is_visible' => !$slider->is_visible]);
+
+            return response()->json(['success' => true, 'is_visible' => $slider->is_visible]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to toggle visibility.']);
+        }
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OurTeam;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
 
 class OurTeamController extends Controller
@@ -10,8 +11,8 @@ class OurTeamController extends Controller
     public function index()
     {
         $ourTeams = OurTeam::all();
-
-    return view('backend.our_team', compact('ourTeams'));
+        $faculties = Faculty::all();
+    return view('backend.our_team', compact('faculties', 'ourTeams'));
     }
 
     public function create()
@@ -39,24 +40,22 @@ class OurTeamController extends Controller
                 'email' => $request->email,
                 'cell' => $request->cell,
                 'department' => $request->department,
-                'faculty' => $request->faculty,
+                'faculty_id' => $request->faculty_id,
                 'level' => $request->level,
                 'picture' => $imageName,
             ]);
             return redirect()->route('our.team.index')->with('success', "Record created successfully.");
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('our.team.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('our.team.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('our.team.index')->with('warning', "Failed to create record! Please try again");
         }
     }
 
     public function edit(OurTeam $ourTeam)
     {
         $ourTeams = OurTeam::all();
-        return view('backend.our_team', compact('ourTeam', 'ourTeams'));
+        $faculties = Faculty::all();
+        return view('backend.our_team', compact('ourTeam', 'faculties', 'ourTeams'));
     }
 
     public function update(Request $request, OurTeam $ourTeam)
@@ -68,8 +67,9 @@ class OurTeamController extends Controller
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->only(['name', 'designation', 'email', 'cell', 'department', 'faculty', 'level']);
         try{
+            $data = $request->only(['name', 'designation', 'email', 'cell', 'department', 'faculty_id', 'level']);
+        
             if ($request->hasFile('picture')) {
                 $oldPicturePath = public_path('uploads/our_team/' . $ourTeam->picture);
                 if (file_exists($oldPicturePath)) {
@@ -84,11 +84,8 @@ class OurTeamController extends Controller
             $ourTeam->update($data);
             return redirect()->route('our.team.index')->with('success', "Record updated successfully.");
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('our.team.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('our.team.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('our.team.index')->with('warning', "Failed to update record! Please try again");
         }
     }
 
@@ -104,8 +101,8 @@ class OurTeamController extends Controller
 
             return redirect()->route('our.team.index')->with('success', "Record deleted successfully.");
         }
-        catch(\Exception) {
-            return redirect('our.team.index')->with('fail', "Failed to delete record! Please try again"); 
+        catch(\Exception $e) {
+            return redirect()->route('our.team.index')->with('warning', "Failed to delete record! Please try again"); 
         }
     }
 }

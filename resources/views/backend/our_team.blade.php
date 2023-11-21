@@ -20,12 +20,12 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="name" name="name" value="{{ old('name', isset($ourTeam) ? $ourTeam->name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="name" class="placeholder">Name</label>
+                        <label for="name" class="placeholder">Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="designation" name="designation" value="{{ old('designation', isset($ourTeam) ? $ourTeam->designation : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="designation" class="placeholder">Designation</label>
+                        <label for="designation" class="placeholder">Designation <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
@@ -47,9 +47,14 @@
                         <label for="department" class="placeholder">Department</label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="text" class="input" id="faculty" name="faculty" value="{{ old('faculty', isset($ourTeam) ? $ourTeam->faculty : '') }}" placeholder=" "/>
+                        <select class="input bg-white" id="faculty_id" name="faculty_id" placeholder=" ">
+                            <option value="">Select a Faculty</option>
+                            @foreach ($faculties as $faculty)
+                                <option value="{{ $faculty->id }}" {{ isset($ourTeam) && $ourTeam->faculty_id == $faculty->id ? 'selected' : '' }}>{{ $faculty->full_name }}</option>
+                            @endforeach
+                        </select>
                         <div class="cut"></div>
-                        <label for="faculty" class="placeholder">Faculty</label>
+                        <label for="faculty_id" class="placeholder">Faculty Name</label>
                     </div>
                 </div>
                 <div class="row">
@@ -66,7 +71,7 @@
                             <option value="8" {{ (isset($ourTeam) && $ourTeam->level == 8) ? 'selected' : '' }}>8 (Officer/Others)</option>
                         </select>
                         <div class="cut"></div>
-                        <label for="level" class="placeholder">Priority Level</label>
+                        <label for="level" class="placeholder">Priority Level <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" placeholder=" "{{ isset($ourTeam) ? '' : 'required' }}>
@@ -76,7 +81,7 @@
                             </div>
                         @endif
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Image <small class="font-italic">(size: 150 x 150 px)</small></label>
+                        <label for="picture" class="placeholder">Image <small class="font-italic">(size: 150 x 150 px)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($ourTeam))
@@ -113,7 +118,7 @@
                                 <div class="text-center p-1">
                                     <h5>{{ $ourTeam->name }}</h5>
                                     <p>{{ $ourTeam->designation }}, {{ $ourTeam->department }}</p>
-                                    <p>{{ $ourTeam->faculty }}</p>
+                                    <p>{{ $ourTeam->faculties->short_name ?? ''}}</p>
                                     <p>{{ $ourTeam->email }}</p>
                                     <p>{{ $ourTeam->cell }}</p>
                                     <div class="float-right">

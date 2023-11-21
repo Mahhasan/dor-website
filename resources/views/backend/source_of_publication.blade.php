@@ -20,7 +20,7 @@
                     <div class="input-container mb-4">
                         <input type="text" class="input" id="source" name="source" value="{{ old('source', isset($sourceOfPublication) ? $sourceOfPublication->source : '') }}" required placeholder=" "/>
                         <div class="cut" style="width: 144px"></div>
-                        <label for="source" class="placeholder">Source of Publication</label>
+                        <label for="source" class="placeholder">Source of Publication <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($sourceOfPublication))

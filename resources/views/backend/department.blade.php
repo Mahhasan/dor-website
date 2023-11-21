@@ -17,18 +17,6 @@
                 @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="input-container col-md-8 mb-4">
-                        <input type="text" class="input" id="full_name" name="full_name" value="{{ old('full_name', isset($department) ? $department->full_name : '') }}" required placeholder=" "/>
-                        <div class="cut"></div>
-                        <label for="full_name" class="placeholder">Department Name</label>
-                    </div>
-                    <div class="input-container col-md-4 mb-4">
-                        <input type="text" class="input" id="short_name" name="short_name" value="{{ old('short_name', isset($department) ? $department->short_name : '') }}" required placeholder=" "/>
-                        <div class="cut"></div>
-                        <label for="short_name" class="placeholder">Department Short Name</label>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="input-container col-sm-12 mb-4">
                         <select class="input bg-white" id="faculty_id" name="faculty_id" required placeholder=" ">
                             <option value="">Select a Faculty</option>
@@ -38,6 +26,18 @@
                         </select>
                         <div class="cut"></div>
                         <label for="faculty_id" class="placeholder">Faculty Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-container col-md-8 mb-4">
+                        <input type="text" class="input" id="full_name" name="full_name" value="{{ old('full_name', isset($department) ? $department->full_name : '') }}" required placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="full_name" class="placeholder">Department Name</label>
+                    </div>
+                    <div class="input-container col-md-4 mb-4">
+                        <input type="text" class="input" id="short_name" name="short_name" value="{{ old('short_name', isset($department) ? $department->short_name : '') }}" required placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="short_name" class="placeholder">Department Short Name</label>
                     </div>
                 </div>
                 @if(isset($department))

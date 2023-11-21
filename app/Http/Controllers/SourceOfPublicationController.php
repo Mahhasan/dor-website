@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\SourceOfPublication;
+
 class SourceOfPublicationController extends Controller
 {
     public function index()
@@ -26,14 +27,15 @@ class SourceOfPublicationController extends Controller
                 'source' => 'required|max:255',
             ]);
             
-            SourceOfPublication::create($request->all());
+            SourceOfPublication::create([
+                'source' => $request->source,
+                'slug' => Str::slug($request->source),
+            ]);
+
             return redirect()->route('source.of.publication.index')->with('success', 'Record created successfully');
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('source.of.publication.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('source.of.publication.index')->with('fail', "Failed to create record! Please try again");
+            return redirect()->route('source.of.publication.index')->with('warning', "Failed to create record! Please try again");
         }
     }
 
@@ -50,14 +52,15 @@ class SourceOfPublicationController extends Controller
                 'source' => 'required|max:255',
             ]);
         
-            $sourceOfPublication->update($request->all());
+            $sourceOfPublication->update([
+                'source' => $request->source,
+                'slug' => Str::slug($request->source), // Generate slug here
+            ]);
+
             return redirect()->route('source.of.publication.index')->with('success', 'Record updated successfully');
         }
-        catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('source.of.publication.index')->with('warning', "Validation failed. Please check your inputs.");
-        }
         catch (\Exception $e) {
-            return redirect()->route('source.of.publication.index')->with('fail', "Failed to update record! Please try again");
+            return redirect()->route('source.of.publication.index')->with('warning', "Failed to update record! Please try again");
         }
     }
 
@@ -70,7 +73,7 @@ class SourceOfPublicationController extends Controller
             return redirect()->route('source.of.publication.index')->with('success', 'Record and file deleted successfully');
         }
         catch (\Exception $e) {
-            return redirect()->route('source.of.publication.index')->with('fail', "Failed to delete record! Please try again");
+            return redirect()->route('source.of.publication.index')->with('warning', "Failed to delete record! Please try again");
         }
     }
 }

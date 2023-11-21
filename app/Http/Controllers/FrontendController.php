@@ -25,7 +25,8 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $websiteSliders = WebsiteSlider::orderBy('slider_serial')->get();
+        // $websiteSliders = WebsiteSlider::orderBy('slider_serial')->get();
+        $websiteSliders = WebsiteSlider::where('is_visible', true)->orderBy('slider_serial')->get();
         $researchUpdates = ResearchUpdate::all();
         return view('welcome', compact('websiteSliders', 'researchUpdates'));
     }
@@ -46,16 +47,16 @@ class FrontendController extends Controller
 
     public function researchEthicsFaculty()
     {
-        $faculty_name = ResearchEthicsCommittee::distinct()->pluck('faculty_name');
+        $committee_name = ResearchEthicsCommittee::distinct()->pluck('committee_name');
         $researchUpdates = ResearchUpdate::all();
-        return view('frontend.research_ethics_committees', compact('faculty_name', 'researchUpdates'));
+        return view('frontend.research_ethics_committees', compact('committee_name', 'researchUpdates'));
     }
 
-    public function researchEthicsCommittee($faculty_name)
+    public function researchEthicsCommittee($committee_name)
     {
-        $researchEthicsCommittee = ResearchEthicsCommittee::where('faculty_name', $faculty_name)->get();
+        $researchEthicsCommittee = ResearchEthicsCommittee::where('committee_name', $committee_name)->get();
         $researchUpdates = ResearchUpdate::all();
-        return view('frontend.research_ethics_committee_details', compact('faculty_name', 'researchEthicsCommittee', 'researchUpdates'));
+        return view('frontend.research_ethics_committee_details', compact('committee_name', 'researchEthicsCommittee', 'researchUpdates'));
     }
 
     public function ourTeam()

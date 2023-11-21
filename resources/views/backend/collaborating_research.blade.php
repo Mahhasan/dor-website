@@ -20,7 +20,7 @@
                     <div class="input-container mb-4">
                         <input type="text" class="input" id="institute_name" name="institute_name" value="{{ old('institute_name', isset($collaboratingResearch) ? $collaboratingResearch->institute_name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="institute_name" class="placeholder">Institute Name</label>
+                        <label for="institute_name" class="placeholder">Institute Name <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($collaboratingResearch))

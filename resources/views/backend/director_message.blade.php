@@ -20,7 +20,7 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($directorMessage) ? $directorMessage->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="title" class="placeholder">Title</label>
+                        <label for="title" class="placeholder">Title <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture" name="picture" accept="image/*" {{ isset($directorMessage) ? '' : 'required' }} placeholder=" ">
@@ -30,14 +30,14 @@
                             </div>
                         @endif   
                         <div class="cut"></div>
-                        <label for="picture" class="placeholder">Image <small class="font-italic">(size: 150 x 150 px)</small></label>
+                        <label for="picture" class="placeholder">Image <small class="font-italic">(size: 150 x 150 px)</small> <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 mt-2 mb-4">
-                        <textarea class="input" id="file-picker" name="message" value="{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }}" placeholder=" ">{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }} </textarea>
+                        <textarea class="input" id="file-picker" name="message" value="{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }}" placeholder=" " required>{{ old('message', isset($directorMessage) ? $directorMessage->message : '') }} </textarea>
                         <div class="cut"></div>
-                        <label for="message" class="placeholder">Message</label>
+                        <label for="message" class="placeholder">Message <span class="text-danger">*</span></label>
                     </div>
                 </div>
                 @if(isset($directorMessage))

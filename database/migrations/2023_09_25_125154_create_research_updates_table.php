@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('research_updates', function (Blueprint $table) {
             $table->id();
             $table->string('volume');
+            $table->string('slug')->unique();
             $table->string('file');
             $table->timestamps();
         });

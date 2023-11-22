@@ -17,13 +17,22 @@
                 @endif
                 @csrf
                 <div class="row mt-5">
-                    <div class="input-container col-sm-6 mb-4">
+                    <div class="input-container col-md-6 mb-4">
                         <input type="text" class="input" id="title" name="title" value="{{ old('title', isset($video) ? $video->title : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
                         <label for="title" class="placeholder">Title <span class="text-danger">*</span></label>
                     </div>
-                    <div class="input-container col-sm-6 mb-4">
-                        <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($video) ? $video->year : '') }}" required placeholder=" "/>
+                    <div class="input-container col-md-6 mb-4">
+                        <select class="input" id="year" name="year" required>
+                            <option value="">Select Year</option>
+                            @php
+                                $currentYear = date('Y');
+                            @endphp
+                            
+                            @for ($i = $currentYear; $i >= ($currentYear - 40); $i--)
+                                <option value="{{ $i }}" {{ old('year', isset($video) && $video->year == $i ? 'selected' : '') }}>{{ $i }}</option>
+                            @endfor
+                        </select>
                         <div class="cut"></div>
                         <label for="year" class="placeholder">Year <span class="text-danger">*</span></label>
                     </div>
@@ -31,25 +40,32 @@
                 <div class="row">
                     <div class="form-group col-sm-12 mb-4">
                         <div class="video-links">
+                            <div class="row input-container mb-4">
+                                <div class="col-8 col-sm-10">
+                                    <input type="url" class="input" name="video_links[]" value="{{ old('video_links.0', isset($video) ? json_decode($video->video_links, true)[0] : '') }}" required placeholder=" "/>
+                                    <div class="cut"></div>
+                                    <label for="video_links" class="placeholder">Video Link 1 <span class="text-danger">*</span></label>
+                                </div>
+                                <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link" style="display: none;">Remove</button>
+                            </div>
+
                             @if(isset($video) && $video->video_links)
-                                @foreach(json_decode($video->video_links, true) as $index => $videoLink)
+                                @foreach(array_slice(json_decode($video->video_links, true), 1) as $index => $videoLink)
                                     <div class="row input-container mb-5">
                                         <div class="col-8 col-sm-10">
-                                            <input type="url" class="input" name="video_links[]" value="{{ old('video_links.' . $index, $videoLink) }}" required placeholder=" "/>
+                                            <input type="url" class="input" name="video_links[]" value="{{ old('video_links.' . $index, $videoLink) }}" placeholder=" "/>
                                             <div class="cut"></div>
-                                            <label for="video_links" class="placeholder">Video Link {{ $index + 1 }}</label>
-                                            <div class="video-iframe mt-3">
-                                                <iframe width="100%" height="300px" src="{{ $videoLink }}" frameborder="0" allowfullscreen></iframe>
-                                            </div>
+                                            <label for="video_links" class="placeholder">Video Link {{ $index + 2 }}</label>
                                         </div>
                                         <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link">Remove</button>
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-info" id="add-video-link">Insert Video Link <span class="text-danger">*</span></button>
+                        <button type="button" class="btn btn-sm btn-outline-info" id="add-video-link">Add More Video Link</button>
                     </div>
                 </div>
+
                 @if(isset($video))
                     <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                     <a href="{{ route('videos.index') }}" class="btn btn-sm btn-secondary">Cancel</a>
@@ -103,26 +119,39 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-    // Add Link button click event
-    $('#add-video-link').click(function () {
-        var linkField = `
-            <div class="row input-container mb-4">
-                <div class="col-8 col-sm-10">
-                    <input type="url" class="input" name="video_links[]" required placeholder=" "/>
-                    <div class="cut"></div>
-                    <label for="video_links" class="placeholder">Video Link</label>
+        // Initial setup to keep at least one input field
+        toggleRemoveButtonVisibility();
+
+        // Add Link button click event
+        $('#add-video-link').click(function () {
+            var linkField = `
+                <div class="row input-container mb-4">
+                    <div class="col-8 col-sm-10">
+                        <input type="url" class="input" name="video_links[]" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="video_links" class="placeholder">Video Link</label>
+                    </div>
+                    <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link">Remove</button>
                 </div>
-                <button type="button" class="col-4 col-sm-2 btn btn-outline-danger remove-video-link">Remove</button>
-            </div>
-        `;
-        $('.video-links').append(linkField);
-    });
+            `;
+            $('.video-links').append(linkField);
 
-    // Remove Link button click event
-    $('.video-links').on('click', '.remove-video-link', function () {
-        $(this).closest('.row').remove();
-    });
-});
+            // After adding a new field, update remove button visibility
+            toggleRemoveButtonVisibility();
+        });
 
+        // Remove Link button click event
+        $('.video-links').on('click', '.remove-video-link', function () {
+            $(this).closest('.row').remove();
+
+            // After removing a field, update remove button visibility
+            toggleRemoveButtonVisibility();
+        });
+
+        function toggleRemoveButtonVisibility() {
+            // Show the remove button only if there are more than one input fields
+            $('.remove-video-link').toggle($('.video-links .row').length > 1);
+        }
+    });
 </script>
 @endsection

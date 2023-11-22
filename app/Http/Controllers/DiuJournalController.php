@@ -7,6 +7,11 @@ use App\Models\DiuJournal;
 
 class DiuJournalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $diuJournals = DiuJournal::all();

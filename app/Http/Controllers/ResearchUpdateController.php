@@ -7,9 +7,14 @@ use App\Models\ResearchUpdate;
 
 class ResearchUpdateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        $researchUpdates = ResearchUpdate::all();
+        $researchUpdates = ResearchUpdate::orderByDesc('id')->get();
         return view('backend.research_update', compact('researchUpdates'));
     }
 

@@ -7,6 +7,11 @@ use App\Models\CollaboratingResearch;
 
 class CollaboratingResearchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $collaboratingResearches = CollaboratingResearch::all();

@@ -23,7 +23,16 @@
                         <label for="title" class="placeholder">Title <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="number" class="input" id="year" name="year" value="{{ old('year', isset($ranking) ? $ranking->year : '') }}" required placeholder=" "/>
+                        <select class="input" id="year" name="year" required>
+                            <option value="">Select Year</option>
+                            @php
+                                $currentYear = date('Y');
+                            @endphp
+                            
+                            @for ($i = $currentYear; $i >= ($currentYear - 40); $i--)
+                                <option value="{{ $i }}" {{ old('year', isset($ranking) && $ranking->year == $i ? 'selected' : '') }}>{{ $i }}</option>
+                            @endfor
+                        </select>
                         <div class="cut"></div>
                         <label for="year" class="placeholder">Year <span class="text-danger">*</span></label>
                     </div>

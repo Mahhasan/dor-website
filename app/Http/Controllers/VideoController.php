@@ -6,9 +6,14 @@ use App\Models\Video;
 
 class VideoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        $videos = Video::paginate(3);
+        $videos = Video::orderByDesc('year')->orderByDesc('id')->paginate(20);
         return view('backend.videos', compact('videos'));
     }
 

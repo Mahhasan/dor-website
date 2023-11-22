@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class ResearchCoordinatorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $researchCoordinators = ResearchCoordinator::all();

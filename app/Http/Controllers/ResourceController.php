@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Resource;
 class ResourceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        $resources = Resource::all();
+        $resources = Resource::orderByDesc('id')->get();
         return view('backend.resources', compact('resources'));
     }
 

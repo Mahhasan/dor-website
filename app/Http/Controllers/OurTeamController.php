@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class OurTeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $ourTeams = OurTeam::all();

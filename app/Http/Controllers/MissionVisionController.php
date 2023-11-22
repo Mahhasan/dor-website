@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class MissionVisionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $missionVisions = MissionVision::all();

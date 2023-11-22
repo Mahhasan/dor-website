@@ -69,7 +69,7 @@ class FrontendController extends Controller
 
     public function resources()
     {
-        $resources = Resource::all();
+        $resources = Resource::orderByDesc('id')->get();
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.resources', compact('resources', 'researchUpdates'));
     }
@@ -156,14 +156,14 @@ class FrontendController extends Controller
     
     public function ranking()
     {
-        $rankings = Ranking::all();
+        $rankings = Ranking::orderByDesc('year')->orderByDesc('id')->get();
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.ranking', compact('rankings', 'researchUpdates'));
     }
 
     public function event()
     {
-        $events = Event::all();
+        $events = Event::orderByDesc('year')->orderByDesc('id')->get();
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.event', compact('events', 'researchUpdates'));
     }
@@ -176,14 +176,14 @@ class FrontendController extends Controller
 
     public function photo()
     {
-        $photos = Photo::all();
+        $photos = Photo::orderByDesc('year')->orderByDesc('id')->get();
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.photo', compact('photos', 'researchUpdates'));
     }
 
     public function video()
     {
-        $videos = Video::paginate(3);
+        $videos = Video::orderByDesc('year')->orderByDesc('id')->paginate(20);
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.video', compact('videos', 'researchUpdates'));
     }

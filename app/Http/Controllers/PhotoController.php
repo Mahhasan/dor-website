@@ -6,9 +6,14 @@ use App\Models\Photo;
 
 class PhotoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        $photos = Photo::all();
+        $photos = Photo::orderByDesc('year')->orderByDesc('id')->get();
         return view('backend.photos', compact('photos'));
     }
 

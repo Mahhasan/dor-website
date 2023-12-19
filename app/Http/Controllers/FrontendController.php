@@ -97,7 +97,7 @@ class FrontendController extends Controller
 
     public function interdisciplinaryResearch()
     {
-        $interdiscipline = InterdisciplinaryResearch::WHERE('discipline', 'Interdisciplinary Research')->get();
+        $interdiscipline = InterdisciplinaryResearch::all();
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.interdisciplinary_research', compact('interdiscipline', 'researchUpdates'));
     }

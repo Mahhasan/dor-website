@@ -9,7 +9,9 @@
                     <thead>
                         <tr>
                             <th scope="col">Sl. No</th>
-                            <th scope="col">Name & Designation</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Department</th>
                             <th scope="col">Position</th>
                         </tr>
                     </thead>
@@ -17,14 +19,16 @@
                         @foreach($researchEthicsCommittee as $key => $committee)
                             <tr>
                                 <th scope="row">{{ ++$key }}</th>
-                                <td>{{ $committee->name }}, {{ $committee->designation }}</td>
+                                <td>{{ $committee->name }}</td>
+                                <td>{{ $committee->designation }}</td>
+                                <td>{{ $committee->departments->short_name ?? '' }}</td>
                                 <td>{{ $committee->position }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             @else
-                <p>No data available</p>
+                <p>No Committee available</p>
             @endif
         </div>
     </div>

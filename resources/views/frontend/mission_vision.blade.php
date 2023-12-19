@@ -7,13 +7,11 @@
                 <h3 class="text-center pt-5 pb-4">Vision</h3>
                 <div class="cta-block">
                     <h3 style="text-align:justify;font-family: Century Gothic">
-                    {!! $missionVision->vision !!}
+                        {!! $missionVision->vision !!}
                     </h3>
                 </div>
                 <h3 class="text-center pt-5 pb-4">Mission</h3>
-                <div class="cta-block">
                 {!! $missionVision->mission !!}
-                </div>
             </div>
         @endforeach
     </div>

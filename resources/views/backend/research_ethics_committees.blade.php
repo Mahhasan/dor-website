@@ -21,7 +21,7 @@
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="name" name="name" value="{{ old('name', isset($researchEthicsCommittee) ? $researchEthicsCommittee->name : '') }}" required placeholder=" "/>
                         <div class="cut"></div>
-                        <label for="name" class="placeholder">Name <span class="text-danger">*</span></label>
+                        <label for="name" class="placeholder">Person Name <span class="text-danger">*</span></label>
                     </div>
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="designation" name="designation" value="{{ old('designation', isset($researchEthicsCommittee) ? $researchEthicsCommittee->designation : '') }}" required placeholder=" "/>

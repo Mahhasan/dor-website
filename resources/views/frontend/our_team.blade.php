@@ -28,6 +28,15 @@
 
         <div class="row justify-content-center">
             <p class="text-center mb-4"><span>Discipline Wise Research Coordinator</span></p>
+            <!-- This section will be deleted -->
+            <div class="col-10 col-sm-6 col-lg-4 col-xl-3 user_one">
+                <div class="team-person">
+                    <img src="images/team/bikash-swe.jpeg" alt="..." class="mx-auto">
+                    <h6>Ms. Bikash Kumar Paul</h6>
+                    <h6>Research Mentor</h6>
+                </div>
+            </div>
+            <!-- end section -->
             @foreach($researchCoordinators as $key=>$researchCoordinator)
                 <div class="col-10 col-sm-6 col-lg-4 col-xl-3 user_one">
                     <div class="team-person">
@@ -37,7 +46,7 @@
                             No Image Available
                         @endif
                         <h6>{{ $researchCoordinator->name }}</h6>
-                        <h6>{{ $researchCoordinator->designation }},</h6>
+                        <h6>{{ $researchCoordinator->designation }}, {{ $researchCoordinator->departments->short_name ?? '' }}</h6>
                     </div>
                 </div>
             @endforeach

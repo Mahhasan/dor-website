@@ -15,7 +15,7 @@ class InterdisciplinaryResearchController extends Controller
     public function index()
     {
         // $interdisciplinaryResearches = InterdisciplinaryResearch::all();
-        $interdiscipline = InterdisciplinaryResearch::WHERE('discipline', 'Interdisciplinary Research')->get();
+        $interdiscipline = InterdisciplinaryResearch::all();
         $sciencediscipline = InterdisciplinaryResearch::WHERE('discipline', 'Science Discipline')->get();
         return view('backend.interdisciplinary_research', compact('interdiscipline', 'sciencediscipline'));
     }
@@ -75,7 +75,7 @@ class InterdisciplinaryResearchController extends Controller
     public function edit(InterdisciplinaryResearch $interdisciplinaryResearch)
     {
         // $interdisciplinaryResearches = InterdisciplinaryResearch::all();
-        $interdiscipline = InterdisciplinaryResearch::WHERE('discipline', 'Interdisciplinary Research')->get();
+        $interdiscipline = InterdisciplinaryResearch::all();
         $sciencediscipline = InterdisciplinaryResearch::WHERE('discipline', 'Science Discipline')->get();
         return view('backend.interdisciplinary_research', compact('interdisciplinaryResearch', 'interdiscipline', 'sciencediscipline'));
     }

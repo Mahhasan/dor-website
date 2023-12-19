@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('designation');
             $table->string('email');
-            $table->string('cell');
+            $table->string('cell')->nullable();
             $table->string('picture');
             $table->timestamps();
             //foreign key with onDelete('cascade')

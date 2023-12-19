@@ -163,6 +163,7 @@
                                         <!-- <th>Discipline</th> -->
                                         <th>Lab Name</th>
                                         <th>Website Link</th>
+                                        <th>Assigned Person</th>
                                         <th>Images</th>
                                         <th>Action</th>
                                     </tr>
@@ -174,6 +175,7 @@
                                         <!-- <td>{{ $discipline->discipline }}</td> -->
                                         <td>{{ $discipline->lab_name }}</td>
                                         <td>{{ $discipline->link }}</td>
+                                        <td>{{ $discipline->person_name }} <br> {{ $discipline->designation }} <br> {{ $discipline->cell }} <br> {{ $discipline->email }}</td>
                                         <td>
                                             @if($discipline->picture)
                                                 @foreach(json_decode($discipline->picture, true) as $picture)

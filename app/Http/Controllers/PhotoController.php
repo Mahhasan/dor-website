@@ -37,7 +37,7 @@ class PhotoController extends Controller
                 'title' => 'required',
                 'year' => 'required',
                 'pictures' => 'nullable|array',
-                'pictures.*' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
+                'pictures.*' => 'image|mimes:jpeg,png,jpg,svg|max:10240',
                 'links' => 'nullable|array',
                 'links.*' => 'url', // Validate links as URLs
             ]);
@@ -81,7 +81,7 @@ class PhotoController extends Controller
                 'title' => 'required',
                 'year' => 'required',
                 'pictures' => 'nullable|array',
-                'pictures.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'pictures.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
                 'links' => 'nullable|array',
                 'links.*' => 'url', // Validate links as URLs
             ]);

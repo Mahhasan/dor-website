@@ -72,7 +72,7 @@
                             <p><small class="font-italic">(If you want to remove an image then select it)</small></p>
                         @endif   
                         <div class="cut"></div>
-                        <label for="pictures" class="placeholder">Gallery Image<small class="font-italic"> (size: 1000 x 665 px)</small></label>
+                        <label for="pictures" class="placeholder">Gallery Image<small class="font-italic"> (size: 1000 x 665 px, Max 150 KB, Max 20 image at a time)</small></label>
                     </div>
                 </div>
                 @if(isset($photo))

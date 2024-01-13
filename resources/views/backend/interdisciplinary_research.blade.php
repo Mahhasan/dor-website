@@ -62,6 +62,24 @@
                         <label for="picture" class="placeholder">Lab Image <small class="font-italic">(size: 416 x 250 px)</small></label>
                     </div>
                 </div>
+                <div class="input-container col-md-12 mb-4 pr-0 pl-0">
+                    <div class="additional-links">
+                        @if(isset($interdisciplinaryResearch) && $interdisciplinaryResearch->image_links)
+                            @foreach(json_decode($interdisciplinaryResearch->image_links, true) as $index => $link)
+                                <div class="row input-container mb-5">
+                                    <div class="col-9 col-lg-10">
+                                        <input type="url" class="input" id="link" name="image_links[]" value="{{ old('image_links.' . $index, $link) }}" placeholder=" "/>
+                                        <div class="cut"></div>
+                                        <label for="link" class="placeholder">Image Link {{ $index + 1 }}</label>
+                                        <iframe class="mt-3" src="{{ $link }}" frameborder="0" height="auto" width="100%"></iframe>
+                                    </div>
+                                    <button type="button" class="col-3 col-lg-2 btn btn-outline-danger remove-link">Remove</button>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <button type="button" class="btn btn-outline-info" id="add-link">Insert Lab Image Link  (if any)</button>
+                </div>
                 <label class="text-muted">Assigned Person Details</label>
                 <div class="row mt-3">
                     <div class="input-container col-sm-6 mb-4">
@@ -114,39 +132,47 @@
                             <table class="table table-bordered table-hover table-striped" id="" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>SL</th>
-                                        <!-- <th>Discipline</th> -->
-                                        <th>Lab Name</th>
-                                        <th>Website Link</th>
-                                        <th>Assigned Person</th>
-                                        <th>Images</th>
-                                        <th>Action</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($interdiscipline as $key=>$discipline)
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <!-- <td>{{ $discipline->discipline }}</td> -->
-                                        <td>{{ $discipline->lab_name }}</td>
-                                        <td>{{ $discipline->link }}</td>
-                                        <td>{{ $discipline->person_name }} <br> {{ $discipline->designation }} <br> {{ $discipline->cell }} <br> {{ $discipline->email }}</td>
                                         <td>
-                                            @if($discipline->picture)
-                                                @foreach(json_decode($discipline->picture, true) as $picture)
-                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="120px" width="180px">
-                                                @endforeach
-                                            @else
-                                                No Images Available
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('interdisciplinary.research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('interdisciplinary.research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                            </form>
+                                            <div class="text-center p-2">
+                                                <h4>{{ ++$key }}. {{ $discipline->lab_name }}</h4>
+                                                <p><a href="{{ $discipline->link }}" target="_blank" class="text-decoration-none">{{ $discipline->link }}</a></p>
+                                                <p>{{ $discipline->person_name }}</p>
+                                                <p>{{ $discipline->designation }}</p>
+                                                <p>{{ $discipline->cell }}</p>
+                                                <p>{{ $discipline->email }}</p>
+                                                <div class="text-center">
+                                                    <a href="{{ route('interdisciplinary.research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                                    <form action="{{ route('interdisciplinary.research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                @if($discipline->picture)
+                                                    @foreach(json_decode($discipline->picture, true) as $picture)
+                                                        <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="Image Not Found" class="rounded pb-1" height="125px" width="208px">
+                                                    @endforeach
+                                                @else
+
+                                                @endif
+                                                @if ($discipline->image_links)
+                                                    <div class="existing-links">
+                                                        @foreach (json_decode($discipline->image_links, true) as $link)
+                                                            <iframe class="p-2" src="{{ $link }}" alt="Image Not Found" frameborder="0" height="180" width="260"></iframe>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -159,39 +185,47 @@
                         <table class="table table-bordered table-hover table-striped" id="" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>SL</th>
-                                        <!-- <th>Discipline</th> -->
-                                        <th>Lab Name</th>
-                                        <th>Website Link</th>
-                                        <th>Assigned Person</th>
-                                        <th>Images</th>
-                                        <th>Action</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($sciencediscipline as $key=>$discipline)
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <!-- <td>{{ $discipline->discipline }}</td> -->
-                                        <td>{{ $discipline->lab_name }}</td>
-                                        <td>{{ $discipline->link }}</td>
-                                        <td>{{ $discipline->person_name }} <br> {{ $discipline->designation }} <br> {{ $discipline->cell }} <br> {{ $discipline->email }}</td>
-                                        <td>
-                                            @if($discipline->picture)
-                                                @foreach(json_decode($discipline->picture, true) as $picture)
-                                                    <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="125px" width="208px">
-                                                @endforeach
-                                            @else
-                                                No Images Available
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('interdisciplinary.research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
-                                            <form action="{{ route('interdisciplinary.research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
-                                            </form>
+                                    <td>
+                                            <div class="text-center p-2">
+                                                <h4>{{ ++$key }}. {{ $discipline->lab_name }}</h4>
+                                                <p><a href="{{ $discipline->link }}" target="_blank" class="text-decoration-none">{{ $discipline->link }}</a></p>
+                                                <p>{{ $discipline->person_name }}</p>
+                                                <p>{{ $discipline->designation }}</p>
+                                                <p>{{ $discipline->cell }}</p>
+                                                <p>{{ $discipline->email }}</p>
+                                                <div class="text-center">
+                                                    <a href="{{ route('interdisciplinary.research.edit', $discipline->id) }}" class="btn btn-sm text-primary"><i class="fas fa-edit fa-sm"></i></a>
+                                                    <form action="{{ route('interdisciplinary.research.destroy', $discipline->id) }}" method="POST" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm text-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash fa-sm" aria-hidden="true"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                @if($discipline->picture)
+                                                    @foreach(json_decode($discipline->picture, true) as $picture)
+                                                        <img src="{{ asset('uploads/interdisciplinary_research/' . $picture) }}" alt="{{ $discipline->name }} Image" class="rounded pb-1" height="125px" width="208px">
+                                                    @endforeach
+                                                @else
+
+                                                @endif
+                                                @if ($discipline->image_links)
+                                                    <div class="existing-links">
+                                                        @foreach (json_decode($discipline->image_links, true) as $link)
+                                                            <iframe class="p-2" src="{{ $link }}" frameborder="0" height="180" width="260"></iframe>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -204,4 +238,28 @@
         </div>
     </section>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Add Link button click event
+        $('#add-link').click(function () {
+            var linkField = `
+                <div class="row input-container mb-4">
+                    <div class="col-8 col-lg-10">
+                        <input type="url" class="input" name="image_links[]" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="link" class="placeholder">Image Link</label>
+                    </div>
+                    <button type="button" class="col-4 col-lg-2 btn btn-outline-danger remove-link">Remove</button>
+                </div>
+            `;
+            $('.additional-links').append(linkField);
+        });
+
+        // Remove Link button click event
+        $('.additional-links').on('click', '.remove-link', function () {
+            $(this).closest('.input-container').remove();
+        });
+    });
+</script>
 @endsection

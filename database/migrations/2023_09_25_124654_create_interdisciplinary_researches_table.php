@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('lab_number')->nullable();
             $table->string('link')->nullable();
             $table->json('picture')->nullable();
+            $table->longtext('image_links')->nullable();
             $table->string('person_name')->nullable();
             $table->string('designation')->nullable();
             $table->string('cell')->nullable();

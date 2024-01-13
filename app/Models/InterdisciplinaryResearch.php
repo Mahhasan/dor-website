@@ -15,6 +15,7 @@ class InterdisciplinaryResearch extends Model
         'lab_number',
         'link',
         'picture',
+        'image_links',
         'person_name',
         'designation',
         'cell',

@@ -41,9 +41,12 @@ class InterdisciplinaryResearchController extends Controller
             'designation' => 'nullable',
             'cell' => 'nullable',
             'email' => 'nullable',
+            'image_links' => 'nullable|array',
+            'image_links.*' => 'url', // Validate links as URLs
         ]);
 
         $pictures = [];
+        $links = [];
 
         // Upload pictures and store their filenames
         if ($request->hasFile('picture')) {
@@ -53,12 +56,18 @@ class InterdisciplinaryResearchController extends Controller
                 $pictures[] = $imageName;
             }
         }
+        
+        if ($request->has('image_links')) {
+            $links = $request->input('image_links');
+        }
 
         InterdisciplinaryResearch::create([
             'discipline' => $request->discipline,
             'lab_name' => $request->lab_name,
+            'link' => $request->link,
             'lab_number' => $request->lab_number,
             'picture' => json_encode($pictures), // Store filenames as JSON
+            'image_links' => json_encode($links), // Store links as JSON
             'person_name' => $request->person_name,
             'designation' => $request->designation,
             'cell' => $request->cell,
@@ -89,10 +98,13 @@ class InterdisciplinaryResearchController extends Controller
                 'link' => 'nullable',
                 'picture' => 'nullable|array',
                 'picture.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image_links' => 'nullable|array',
+                'image_links.*' => 'url', // Validate links as URLs
             ]);
 
             $data = $request->only(['discipline', 'lab_name', 'lab_number', 'link', 'person_name', 'designation', 'cell', 'email']);
             $pictures = json_decode($interdisciplinaryResearch->picture, true) ?? [];
+            $links = json_decode($interdisciplinaryResearch->image_links, true) ?? [];
 
             // Upload new pictures and merge them with existing ones
             if ($request->hasFile('picture')) {
@@ -101,6 +113,11 @@ class InterdisciplinaryResearchController extends Controller
                     $pictureFile->move(public_path('uploads/interdisciplinary_research'), $imageName);
                     $pictures[] = $imageName;
                 }
+            }
+
+            // Store links
+            if ($request->has('image_links')) {
+                $links = $request->input('image_links');
             }
 
             // Handle deleted pictures

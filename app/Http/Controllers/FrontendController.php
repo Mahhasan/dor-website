@@ -94,7 +94,7 @@ class FrontendController extends Controller
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.publication_source', compact('sourceOfPublications', 'researchUpdates'));
     }
-
+ 
     public function interdisciplinaryResearch()
     {
         $interdiscipline = InterdisciplinaryResearch::all();
@@ -107,6 +107,12 @@ class FrontendController extends Controller
         $interdiscipline = InterdisciplinaryResearch::WHERE('id', $id)->get();
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.interdisciplinary_research_details', compact('id', 'interdiscipline', 'researchUpdates'));
+    }
+
+    public function promotionPolicy()
+    {
+        $researchUpdates = ResearchUpdate::all();
+        return view('frontend.promotion-policy', compact('researchUpdates'));
     }
 
     public function scienceDiscipline()
@@ -123,11 +129,11 @@ class FrontendController extends Controller
         return view('frontend.science_discipline_details', compact('id', 'sciencediscipline', 'researchUpdates'));
     }
 
-    public function researchUpdate($id)
+    public function researchUpdate($slug)
     {
-        $research_Updates = ResearchUpdate::WHERE('id', $id)->get();
+        $research_Updates = ResearchUpdate::WHERE('slug', $slug)->get();
         $researchUpdates = ResearchUpdate::all();
-        return view('frontend.research_update', compact('id', 'research_Updates', 'researchUpdates'));
+        return view('frontend.research_update', compact( 'slug', 'research_Updates', 'researchUpdates'));
     }
 
     public function journals()

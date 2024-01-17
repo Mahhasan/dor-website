@@ -7,8 +7,10 @@
                 <div class="col-md-12">
                     <div class="section-title text-center">
                         <h3>{{$discipline->lab_name}}</h3>
-                        <b>Assigned Person Details</b><br>
-                        <b>{{$discipline->person_name}}</b><br>
+                        @if($discipline->person_name)
+                            <b>Assigned Person Details</b><br>
+                            <b>{{$discipline->person_name}}</b><br>
+                        @endif
                         <b>{{$discipline->designation}}</b><br>
                         <p><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel: 0{{$discipline->cell}}">{{$discipline->cell}}</a>&nbsp;&nbsp;<i class="fa fa-envelope" aria-hidden="true"></i> <a href = "mailto: {{$discipline->email}}">{{$discipline->email}}</a> </p>
                     </div>

@@ -17,7 +17,11 @@
                                     <img src="{{ asset('frontend/images/path_to_default_image.jpg') }}" class="mx-auto" alt="">
                                 @endif
                                 <h6>{{ $ourTeam->name }}</h6>
-                                <h6>{{ $ourTeam->designation }}, {{ $ourTeam->department }}, {{ $ourTeam->faculties->short_name ?? '' }}</h6>
+                                <h6>{{ $ourTeam->designation }}, 
+                                    @if($ourTeam->department)
+                                        {{ $ourTeam->department }},
+                                    @endif 
+                                    {{ $ourTeam->faculties->short_name ?? '' }}</h6>
                             </div>
                         </div>
                     @endforeach

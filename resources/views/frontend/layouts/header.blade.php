@@ -87,7 +87,7 @@
           </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #002147;">
                   @foreach($researchUpdates as $researchUpdate)
-                        <li><a class="dropdown-item" href="{{ route('research-update', $researchUpdate->id)}}">{{ $researchUpdate->volume }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('research-update', $researchUpdate->slug)}}">{{ $researchUpdate->volume }}</a></li>
                   @endforeach
             </ul>
         </li>

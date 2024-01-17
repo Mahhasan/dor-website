@@ -46,7 +46,7 @@ Route::get('interdisciplinary_research', [FrontendController::class, 'interdisci
 Route::get('interdisciplinary_research/{id}', [FrontendController::class, 'interdisciplinaryResearchDetails'])->name('interdisciplinary-research-details');
 Route::get('science-discipline', [FrontendController::class, 'scienceDiscipline'])->name('science-discipline');
 Route::get('science-discipline/{id}', [FrontendController::class, 'scienceDisciplineDetails'])->name('science-discipline-details');
-Route::get('research-update/{id}', [FrontendController::class, 'researchUpdate'])->name('research-update');
+Route::get('research-update/{slug}', [FrontendController::class, 'researchUpdate'])->name('research-update');
 // Data viw using API from SmartEdu repository 
 Route::get('scopus-article', [DataController::class, 'scopus_article'])->name('scopus-article');
 Route::get('scopus-article/{id}', [DataController::class, 'scopus_article_details'])->name('scopus-article-details');
@@ -59,8 +59,8 @@ Route::get('event/{id}', [FrontendController::class, 'eventDetails'])->name('eve
 Route::get('photo', [FrontendController::class, 'photo'])->name('photo');
 Route::get('video', [FrontendController::class, 'video'])->name('video');
 
-Route::get('/Policy-on-Faculty-Promotion-System-that-Recognizes-Interdisciplinary-Research', function () {return view('frontend.promotion-policy');});
-Route::get('/diu-governance-meeting', function () {return view('frontend.diu-governance-meeting');});
+Route::get('/Policy-on-Faculty-Promotion-System-that-Recognizes-Interdisciplinary-Research', [FrontendController::class, 'promotionPolicy'])->name('promotion-policy');
+// Route::get('/diu-governance-meeting', function () {return view('frontend.diu-governance-meeting');});
 
 // Backend
 Route::get('home', [HomeController::class, 'index'])->name('home');

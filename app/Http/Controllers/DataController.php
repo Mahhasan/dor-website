@@ -15,7 +15,17 @@ class DataController extends Controller
             'verify'  => false,
         ]);
         $responseBody = json_decode($response->getBody());
-          
+          // Fetch details for each item and store in an array
+    foreach ($responseBody as $item) {
+        $detailUrl = "https://pd.daffodilvarsity.edu.bd/fgs/repository/{$item->id}";
+        $detailResponse = $client->request('GET', $detailUrl, [
+            'verify' => false,
+        ]);
+        $detailResponseBody = json_decode($detailResponse->getBody());
+        
+        // Assign cj_name to the item
+        $item->cj_name = $detailResponseBody->cj_name;
+    }
         //dd($responseBody);
         $researchUpdates = ResearchUpdate::all();
 		return view('frontend.scopus_article',compact('responseBody', 'researchUpdates'));

@@ -62,5 +62,17 @@
             </div>
         </div>
     </div>
+    <div id="popup-container">
+        <div id="popup-content">
+            <img src="images/mcu.png" alt="Popup Image">
+            <div class="overlay-text">
+                <p>We are excited to announce our signature of the Magna Charta Universitatum - MCU 2020: a global commitment to promote and support academic freedom, institutional autonomy, the connection between teaching and research, social responsibility and the core values of higher education.</p>
+                <p>Join us by signing the 2020 MCU and become part of a community committed to continuously improving the future of higher education.</p>
+                <p style="font-size:16px"><a href="https://www.magna-charta.org/magna-charta-universitatum/mcu2020" target="_blank">Apply now &#8594;</a></p>
+                <p>#MCU2020 #ResponsibleUniversities #AcademicFreedom</p>
+            </div>
+            <span class="close-button" onclick="closePopup()">&times;</span>
+        </div>
+    </div>
 </section>
 @endsection

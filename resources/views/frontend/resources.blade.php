@@ -16,7 +16,7 @@
                             @if(isset($resources))
                                 @foreach($resources as $key=>$resource)
                                     <tr>
-                                        <th scope="row">{{+$key}}</th>
+                                        <th scope="row">{{++$key}}</th>
                                         <td><a href="{{route('about-resource-details', $resource->id)}}" target="_blank">{{ $resource->topic }}</a></td>
                                     </tr>
                                 @endforeach

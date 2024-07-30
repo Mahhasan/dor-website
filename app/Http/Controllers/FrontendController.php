@@ -143,13 +143,6 @@ class FrontendController extends Controller
         return view('frontend.journal', compact('diuJournals', 'researchUpdates'));
     }
 
-    // public function researchCoordinator()
-    // {
-    //     $researchCoordinators = ResearchCoordinator::all();
-    //     $researchUpdates = ResearchUpdate::all();
-    //     return view('frontend.research_coordinator', compact('researchCoordinators', 'researchUpdates'));
-    // }
-
     public function researchCoordinator()
     {
         $researchCoordinators = ResearchCoordinator::with('departments', 'faculties')->get();
@@ -162,7 +155,7 @@ class FrontendController extends Controller
     
     public function ranking()
     {
-        $rankings = Ranking::orderByDesc('year')->orderByDesc('id')->get();
+        $rankings = Ranking::orderByDesc('year')->orderByDesc('id')->get()->groupBy('year');
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.ranking', compact('rankings', 'researchUpdates'));
     }

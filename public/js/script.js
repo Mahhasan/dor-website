@@ -192,3 +192,21 @@
 
 
 })(window.jQuery);
+
+// <!-- JavaScript to show/hide the popup -->=======================
+    //Function to close the popup
+    function closePopup() {
+        var popupContainer = document.getElementById("popup-container");
+        popupContainer.classList.remove("show"); // Remove 'show' class to hide the popup smoothly
+    }
+
+    // Show the popup
+    document.addEventListener("DOMContentLoaded", function() {
+        var popupContainer = document.getElementById("popup-container");
+        popupContainer.classList.add("show"); // Add 'show' class to show the popup smoothly
+
+        // Hide the popup after 10 seconds
+        setTimeout(function() {
+            closePopup(); // Call closePopup function to hide the popup
+        }, 20000); // 10 seconds in milliseconds
+    });

@@ -6,7 +6,6 @@
 
     <title> Division of Research </title>
 
-
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +24,6 @@
 </head>
 
 <body>
-
     <div class="page-wrapper">
         @include('frontend.layouts.header')
 
@@ -51,6 +49,7 @@
                                             <th>Faculty</th>
                                             <th>Department</th>
                                             <th>Year</th>
+                                            <th>Journal or Conference Name</th>
                                             <th>Details</th>
                                         </tr>
                                     </thead>
@@ -66,6 +65,7 @@
                                             <td style="text-transform: uppercase;">{{$row->faculty}}</td>
                                             <td style="text-transform: uppercase;">{{$row->department}}</td>
                                             <td>{{$row->publication_year}}</td>
+                                            <td>{{$row->cj_name}}</td> <!-- Display cj_name -->
                                             <td><a href="{{ route('scopus-article-details', $row->id) }}" target="_blank">Details</a></td>
                                         </tr>
                                         @endforeach

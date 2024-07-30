@@ -3690,3 +3690,93 @@ li {
   width: 50%;
 }
 /*# sourceMappingURL=maps/style.css.map */
+
+/* css for welcome page popup */
+/* Overlay styling */
+#popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: none; /* Hide the popup by default */
+  z-index: 9999; /* Ensure the popup appears on top of other content */
+  opacity: 0; /* Initially set opacity to 0 */
+  transition: opacity 0.5s ease; /* Add transition effect */
+  justify-content: center;
+  align-items: center;
+}
+
+#popup-container.show {
+  display: flex; /* Show the popup when it has the 'show' class */
+  opacity: 1; /* Set opacity to 1 */
+}
+
+#popup-content {
+  position: relative;
+  text-align: center;
+}
+
+/* Close button styling */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 32px;
+}
+
+/* Image styling */
+#popup-content img {
+  max-height: 80vh; /* Set max height for the image */
+  max-width: 80vw; /* Set max width for the image */
+}
+.overlay-text {
+position: absolute;
+bottom: 0px;
+background-color: rgba(92, 92, 92, 0.13);
+padding: 10px;
+border-radius: 5px;
+max-width: 100%;
+text-align: center;
+}
+
+.overlay-text p {
+  margin: 5px 0;
+  color: #833C2E;
+  line-height: 1.5rem;
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 991.98px) {
+  .overlay-text p {
+      line-height: 1.3rem;
+  }
+  /* Image styling */
+  #popup-content img {
+      max-height: 100vh; /* Set max height for the image */
+      max-width: 100vw; /* Set max width for the image */
+  }
+}
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .overlay-text {
+  padding: 4px;
+  }
+  .overlay-text p {
+      font-size: 15px;
+  }
+  #popup-content img {
+     min-height: 450px; 
+      /* width: 100vw; */
+  }
+}
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .overlay-text p {
+      font-size: 12px;
+      line-height: 1.0rem;
+  }
+}

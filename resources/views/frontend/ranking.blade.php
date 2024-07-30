@@ -14,21 +14,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($rankings as $key=>$ranking)
+                        @foreach($rankings as $year=>$yearlyRankings)
                             <tr>
-                                <th scope="row">{{ $ranking->year }}</th>
-                                <td>
-                                    <a href="{{ $ranking->link }}" target="_blank">{{ $ranking->title }}</a>
-                                </td>
-                                <td>
-                                    <a href="{{ $ranking->link }}" target="_blank">
-                                        @if($ranking->picture)
-                                            <img src="{{ asset('uploads/ranking/' . $ranking->picture) }}" style="display: block;margin-left: auto;margin-right: auto;max-width: 350px; max-height: 120px;">
-                                        @else
-                                            No Image Available
-                                        @endif
-                                    </a>
-                                </td>
+                                <th scope="row" rowspan="{{ $yearlyRankings->count() }}">{{ $year }}</th>
+                                @foreach($yearlyRankings as $key => $ranking)
+                                    @if($key > 0)
+                                        <tr>
+                                    @endif
+                                    <td>
+                                        <a href="{{ $ranking->link }}" target="_blank">{{ $ranking->title }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ $ranking->link }}" target="_blank">
+                                            @if($ranking->picture)
+                                                <img src="{{ asset('uploads/ranking/' . $ranking->picture) }}" style="display: block;margin-left: auto;margin-right: auto;max-width: 350px; max-height: 120px;">
+                                            @else
+                                                No Image Available
+                                            @endif
+                                        </a>
+                                    </td>
+                                    @if($key > 0)
+                                    @endif
+                                @endforeach
                             </tr>
                         @endforeach
                     </tbody>

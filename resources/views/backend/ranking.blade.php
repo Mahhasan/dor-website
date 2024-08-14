@@ -27,9 +27,10 @@
                             <option value="">Select Year</option>
                             @php
                                 $currentYear = date('Y');
+                                $nextYear = $currentYear + 1;
                             @endphp
                             
-                            @for ($i = $currentYear; $i >= ($currentYear - 40); $i--)
+                            @for ($i = $nextYear; $i >= ($currentYear - 40); $i--)
                                 <option value="{{ $i }}" {{ old('year', isset($ranking) && $ranking->year == $i ? 'selected' : '') }}>{{ $i }}</option>
                             @endfor
                         </select>
@@ -71,7 +72,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <!-- <th>SL</th> -->
                             <th>Year</th>
                             <th>Name of University Rankings</th>
                             <th>Image</th>
@@ -81,7 +81,6 @@
                     <tbody>
                         @foreach($rankings as $key=>$ranking)
                             <tr>
-                                <!-- <td>{{ ++$key }}</td> -->
                                 <td>{{ $ranking->year }}</td>
                                 <td><a href="{{ $ranking->link }}" target="_blank">{{ $ranking->title }}</a></td>
                                 <td>

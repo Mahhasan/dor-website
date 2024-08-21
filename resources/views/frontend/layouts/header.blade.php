@@ -28,13 +28,14 @@
                           <span></span>
                     </li>
               </ul> -->
-              <div class="link-btn">
+
+              <!-- <div class="link-btn">
                    <figure>
                     <a href="{{ url('/') }}">
                           <img src="{{url('images/dor-logo.png')}}" alt="" style="max-width: 80px;">
                     </a>
               </figure>
-              </div>
+              </div> -->
         </div>
   </div>
 </section>

@@ -20,5 +20,6 @@ class InterdisciplinaryResearch extends Model
         'designation',
         'cell',
         'email',
+        'research_area',
     ];
 }

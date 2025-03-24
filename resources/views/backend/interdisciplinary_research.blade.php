@@ -26,12 +26,21 @@
                         <div class="cut"></div>
                         <label for="discipline" class="placeholder">Discipline Name <span class="text-danger">*</span></label>
                     </div>
+
                     <div class="input-container col-sm-6 mb-4">
-                        <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->link : '') }}" placeholder=" "/>
+                        <select class="input bg-white" id="research_area" name="research_area" required placeholder=" ">
+                            <option value="" selected disabled>Select Research Area</option>
+                            <option value="Technology, Engineering, and Applied Sciences">Technology, Engineering, and Applied Sciences</option>
+                            <option value="Health, Life Sciences, and Biotechnology">Health, Life Sciences, and Biotechnology</option>
+                            <option value="Environmental Science, Sustainability, and Agriculture">Environmental Science, Sustainability, and Agriculture</option>
+                            <option value="Business, Innovation, and Industrial Development">Business, Innovation, and Industrial Development</option>
+                            <option value="Manufacturing, Materials Science, and Engineering">Manufacturing, Materials Science, and Engineering</option>
+                        </select>
                         <div class="cut"></div>
-                        <label for="link" class="placeholder">Website Link</label>
+                        <label for="research_area" class="placeholder">Research Domain<span class="text-danger">*</span></label>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="input-container col-sm-6 mb-4">
                         <input type="text" class="input" id="lab_name" name="lab_name" value="{{ old('lab_name', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->lab_name : '') }}" required placeholder=" "/>
@@ -45,7 +54,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-container col-md-12 mb-4">
+                    <div class="input-container col-sm-6 mb-4">
+                        <input type="url" class="input" id="link" name="link" value="{{ old('link', isset($interdisciplinaryResearch) ? $interdisciplinaryResearch->link : '') }}" placeholder=" "/>
+                        <div class="cut"></div>
+                        <label for="link" class="placeholder">Website Link</label>
+                    </div>
+
+                    <div class="input-container col-sm-6 mb-4">
                         <input type="file" class="input border-0 pt-2" id="picture[]" name="picture[]" accept="image/*" multiple placeholder=" ">
                         @if(isset($interdisciplinaryResearch) && $interdisciplinaryResearch->picture)
                             <div class="row existing-pictures float-right mt-3 ml-1 mr-1">
@@ -170,7 +185,7 @@
                                                         @endforeach
                                                     </div>
                                                 @else
-                                                    
+
                                                 @endif
                                             </div>
                                         </td>
@@ -223,7 +238,7 @@
                                                         @endforeach
                                                     </div>
                                                 @else
-                                                    
+
                                                 @endif
                                             </div>
                                         </td>

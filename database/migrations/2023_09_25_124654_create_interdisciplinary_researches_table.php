@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('interdisciplinary_researches', function (Blueprint $table) {
             $table->id();
             $table->string('discipline');
+            $table->string('research_area');
             $table->string('lab_name');
             $table->string('lab_number')->nullable();
             $table->string('link')->nullable();

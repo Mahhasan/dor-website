@@ -11,7 +11,7 @@ class InterdisciplinaryResearchController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         // $interdisciplinaryResearches = InterdisciplinaryResearch::all();
@@ -43,6 +43,7 @@ class InterdisciplinaryResearchController extends Controller
             'email' => 'nullable',
             'image_links' => 'nullable|array',
             'image_links.*' => 'url', // Validate links as URLs
+            'research_area' => 'required|string',
         ]);
 
         $pictures = [];
@@ -56,7 +57,7 @@ class InterdisciplinaryResearchController extends Controller
                 $pictures[] = $imageName;
             }
         }
-        
+
         if ($request->has('image_links')) {
             $links = $request->input('image_links');
         }
@@ -72,6 +73,7 @@ class InterdisciplinaryResearchController extends Controller
             'designation' => $request->designation,
             'cell' => $request->cell,
             'email' => $request->email,
+            'research_area' => $request->research_area,
         ]);
 
         return redirect()->route('interdisciplinary.research.index')->with('success', 'Record Created successfully');
@@ -100,6 +102,7 @@ class InterdisciplinaryResearchController extends Controller
                 'picture.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
                 'image_links' => 'nullable|array',
                 'image_links.*' => 'url', // Validate links as URLs
+                'research_area' => 'required|string',
             ]);
 
             $data = $request->only(['discipline', 'lab_name', 'lab_number', 'link', 'person_name', 'designation', 'cell', 'email']);

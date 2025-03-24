@@ -94,12 +94,17 @@ class FrontendController extends Controller
         $researchUpdates = ResearchUpdate::all();
         return view('frontend.publication_source', compact('sourceOfPublications', 'researchUpdates'));
     }
- 
+
     public function interdisciplinaryResearch()
     {
-        $interdiscipline = InterdisciplinaryResearch::all();
+        // $interdiscipline = InterdisciplinaryResearch::all();
+        $interdisciplineone = InterdisciplinaryResearch::where('research_area', 'Technology, Engineering, and Applied Sciences')->get();
+        $interdisciplinetwo = InterdisciplinaryResearch::where('research_area', 'Health, Life Sciences, and Biotechnology')->get();
+        $interdisciplinethree = InterdisciplinaryResearch::where('research_area', 'Environmental Science, Sustainability, and Agriculture')->get();
+        $interdisciplinefour = InterdisciplinaryResearch::where('research_area', 'Business, Innovation, and Industrial Development')->get();
+        $interdisciplinefive = InterdisciplinaryResearch::where('research_area', 'Manufacturing, Materials Science, and Engineering')->get();
         $researchUpdates = ResearchUpdate::all();
-        return view('frontend.interdisciplinary_research', compact('interdiscipline', 'researchUpdates'));
+        return view('frontend.interdisciplinary_research', compact('interdisciplineone', 'interdisciplinetwo', 'interdisciplinethree', 'interdisciplinefour', 'interdisciplinefive', 'researchUpdates'));
     }
 
     public function interdisciplinaryResearchDetails($id)
@@ -147,12 +152,12 @@ class FrontendController extends Controller
     {
         $researchCoordinators = ResearchCoordinator::with('departments', 'faculties')->get();
         $groupedCoordinators = $researchCoordinators->groupBy('faculty_id');
-    
+
         $researchUpdates = ResearchUpdate::all();
-    
+
         return view('frontend.research_coordinator', compact('groupedCoordinators', 'researchUpdates'));
     }
-    
+
     public function ranking()
     {
         $rankings = Ranking::orderByDesc('year')->orderByDesc('id')->get()->groupBy('year');
